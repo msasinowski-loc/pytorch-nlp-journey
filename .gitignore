@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.env
+.ipynb_checkpoints/
+*.csv
+*.tmx
+*.xliff
+data/
+models/
+*.pt
+*.bin
