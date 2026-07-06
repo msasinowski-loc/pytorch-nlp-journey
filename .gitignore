@@ -3,6 +3,7 @@ __pycache__/
 .env
 .ipynb_checkpoints/
 *.csv
+!private_knowledgeHub/KA_knowledge_acquired.csv
 *.tmx
 *.xliff
 data/
