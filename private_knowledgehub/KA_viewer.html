@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KA — Knowledge Acquired</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+  :root {
+    --bg:#0e0f11;--bg2:#14161a;--bg3:#1c1f25;--border:#2a2d35;
+    --text:#e8e9ed;--muted:#6b7080;--faint:#2e3140;
+    --c0:#3a3d4a;--c1:#4f7ab3;--c2:#2CB67D;--c3:#7C6AF5;
+    --pen:#a78bfa;--py:#60a5fa;--th:#34d399;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+  .header{padding:1.75rem 2rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+  .header h1{font-size:20px;font-weight:700;letter-spacing:-0.02em;}
+  .header p{font-size:12px;color:var(--muted);margin-top:3px;font-family:'JetBrains Mono',monospace;}
+  .source-bar{padding:8px 2rem;border-bottom:1px solid var(--border);font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;display:flex;align-items:center;gap:10px;}
+  .source-bar span{color:var(--c2);}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;padding:1.25rem 2rem;border-bottom:1px solid var(--border);}
+  .stat{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;text-align:center;}
+  .stat-val{font-size:24px;font-weight:700;font-family:'JetBrains Mono',monospace;}
+  .stat-lbl{font-size:11px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:0.05em;}
+  .progress-wrap{padding:0 2rem 1rem;border-bottom:1px solid var(--border);}
+  .progress-label{font-size:11px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between;}
+  .progress-track{height:6px;background:var(--faint);border-radius:99px;overflow:hidden;display:flex;gap:2px;}
+  .p-seg{height:100%;border-radius:99px;transition:width 0.4s;}
+  .controls{display:flex;gap:8px;flex-wrap:wrap;padding:1rem 2rem;border-bottom:1px solid var(--border);align-items:center;}
+  .controls input,.controls select{background:var(--bg2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:7px 12px;font-size:13px;font-family:'Syne',sans-serif;outline:none;}
+  .controls input{flex:1;min-width:180px;}
+  .controls input::placeholder{color:var(--muted);}
+  .controls input:focus,.controls select:focus{border-color:var(--muted);}
+  .filter-btn{padding:7px 14px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Syne',sans-serif;transition:all 0.15s;white-space:nowrap;}
+  .filter-btn:hover{background:var(--bg2);color:var(--text);}
+  .filter-btn.active{background:var(--bg3);color:var(--text);border-color:var(--muted);}
+  .result-count{font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-left:auto;white-space:nowrap;}
+  .table-wrap{padding:0 2rem 2rem;overflow-x:auto;}
+  table{width:100%;border-collapse:collapse;margin-top:1rem;}
+  thead th{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted);padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);cursor:pointer;user-select:none;white-space:nowrap;}
+  thead th:hover{color:var(--text);}
+  thead th.sorted{color:var(--text);}
+  tbody tr{border-bottom:1px solid var(--faint);transition:background 0.1s;}
+  tbody tr:hover{background:var(--bg2);}
+  tbody tr:last-child{border-bottom:none;}
+  td{padding:9px 12px;font-size:13px;vertical-align:middle;}
+  .td-id{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);white-space:nowrap;}
+  .td-kp{color:var(--text);line-height:1.4;max-width:420px;}
+  .td-cat{font-size:12px;color:var(--muted);white-space:nowrap;}
+  .angle-badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 7px;border-radius:4px;margin-right:6px;vertical-align:middle;white-space:nowrap;font-family:'JetBrains Mono',monospace;}
+  .a-P{background:rgba(167,139,250,0.15);color:var(--pen);}
+  .a-C{background:rgba(96,165,250,0.15);color:var(--py);}
+  .a-T{background:rgba(52,211,153,0.15);color:var(--th);}
+  .a-X{background:rgba(107,112,128,0.15);color:var(--muted);}
+  .conf-wrap{display:flex;gap:3px;align-items:center;}
+  .dot{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--faint);}
+  .dot.on{border-color:transparent;}
+  .conf-label{font-size:10px;color:var(--muted);margin-left:5px;font-family:'JetBrains Mono',monospace;white-space:nowrap;}
+  .section-row td{background:var(--bg2);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted);padding:6px 12px;border-bottom:1px solid var(--border);}
+  .empty{padding:2rem;text-align:center;font-size:14px;color:var(--muted);}
+  .loading{padding:3rem;text-align:center;font-size:14px;color:var(--muted);}
+  ::-webkit-scrollbar{width:5px;height:5px;}
+  ::-webkit-scrollbar-track{background:transparent;}
+  ::-webkit-scrollbar-thumb{background:var(--faint);border-radius:3px;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>KA — Knowledge Acquired</h1>
+    <p>pytorch-nlp-journey · msasinowski-loc</p>
+  </div>
+</div>
+
+<div class="source-bar">
+  Source: <span id="source-label">loading…</span>
+  <button class="filter-btn" onclick="reloadCSV()" style="margin-left:auto;font-size:11px;padding:4px 10px;">↻ reload</button>
+</div>
+
+<div class="stats" id="stats"><div class="loading">Loading KA data…</div></div>
+<div class="progress-wrap">
+  <div class="progress-label"><span>Confidence distribution</span><span id="prog-label"></span></div>
+  <div class="progress-track" id="prog-track"></div>
+</div>
+
+<div class="controls">
+  <input type="text" id="search" placeholder="Search knowledge points or IDs…" oninput="render()">
+  <select id="cat-filter" onchange="onCatChange()"><option value="">All categories</option></select>
+  <select id="sub-filter" onchange="render()"><option value="">All subcategories</option></select>
+  <button class="filter-btn active" data-angle="" onclick="setAngle('',this)">All angles</button>
+  <button class="filter-btn" data-angle="P" onclick="setAngle('P',this)">✏ pen &amp; paper</button>
+  <button class="filter-btn" data-angle="C" onclick="setAngle('C',this)">🐍 python</button>
+  <button class="filter-btn" data-angle="T" onclick="setAngle('T',this)">💡 theory</button>
+  <select id="conf-filter" onchange="render()">
+    <option value="">All confidence</option>
+    <option value="0">0 — unseen</option>
+    <option value="1">1 — fuzzy</option>
+    <option value="2">2 — familiar</option>
+    <option value="3">3 — solid</option>
+  </select>
+  <div class="result-count" id="result-count"></div>
+</div>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th onclick="setSort('id')">ID <span>↕</span></th>
+        <th onclick="setSort('kp')">Knowledge point <span>↕</span></th>
+        <th onclick="setSort('cat')">Category <span>↕</span></th>
+        <th onclick="setSort('conf')">Confidence <span>↕</span></th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+  <div class="empty" id="empty" style="display:none">No items match your filters.</div>
+</div>
+
+<script>
+let DATA = [];
+let sortCol = 'cat', sortDir = 1, angleFilter = '';
+
+function parseCSV(raw) {
+  return raw.trim().split('\n').slice(1).map(line => {
+    const lastComma = line.lastIndexOf(',');
+    const conf = parseInt(line.slice(lastComma + 1));
+    const rest = line.slice(0, lastComma);
+    const firstComma = rest.indexOf(',');
+    const secondLastComma = rest.lastIndexOf(',');
+    return {
+      id: rest.slice(0, firstComma),
+      kp: rest.slice(firstComma + 1, secondLastComma),
+      cat: rest.slice(secondLastComma + 1),
+      conf
+    };
+  }).filter(d => !isNaN(d.conf));
+}
+
+async function loadCSV() {
+  // Try relative path first (works when both files are in same folder e.g. GitHub repo)
+  const candidates = [
+    'KA_knowledge_acquired.csv',
+    './KA_knowledge_acquired.csv',
+  ];
+
+  for (const path of candidates) {
+    try {
+      const res = await fetch(path);
+      if (res.ok) {
+        const text = await res.text();
+        DATA = parseCSV(text);
+        document.getElementById('source-label').textContent = path + ' (' + DATA.length + ' items)';
+        buildFilters();
+        render();
+        return;
+      }
+    } catch(e) {}
+  }
+
+  // Fallback: prompt user to paste raw GitHub URL
+  document.getElementById('source-label').innerHTML =
+    '<span style="color:#E85D75">CSV not found.</span> Open from GitHub: paste raw URL below and press Load';
+  document.getElementById('stats').innerHTML = `
+    <div style="padding:1rem 0;grid-column:1/-1;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+      <input id="url-input" type="text" placeholder="https://raw.githubusercontent.com/msasinowski-loc/pytorch-nlp-journey/main/KA_knowledge_acquired.csv"
+        style="flex:1;min-width:300px;background:#14161a;border:1px solid #2a2d35;color:#e8e9ed;border-radius:8px;padding:8px 12px;font-size:13px;font-family:Syne,sans-serif;outline:none;">
+      <button onclick="loadFromURL()" class="filter-btn active" style="padding:8px 16px;">Load CSV</button>
+    </div>`;
+}
+
+async function loadFromURL() {
+  const url = document.getElementById('url-input').value.trim();
+  if (!url) return;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('fetch failed');
+    const text = await res.text();
+    DATA = parseCSV(text);
+    document.getElementById('source-label').textContent = url + ' (' + DATA.length + ' items)';
+    document.getElementById('stats').innerHTML = '';
+    buildFilters();
+    render();
+    renderStats();
+  } catch(e) {
+    alert('Could not load CSV from that URL. Check it is the raw GitHub URL.');
+  }
+}
+
+async function reloadCSV() { DATA = []; await loadCSV(); }
+
+function getAngle(id) {
+  if (id.endsWith('-P') || id.endsWith('-P2')) return 'P';
+  if (id.endsWith('-C')) return 'C';
+  if (id.endsWith('-T')) return 'T';
+  return 'X';
+}
+function getCatGroup(cat) { return cat.split(' / ')[0]; }
+function getSubCat(cat) { return cat.split(' / ')[1] || cat; }
+
+function setAngle(a, btn) {
+  angleFilter = a;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function setSort(col) {
+  if (sortCol === col) sortDir *= -1; else { sortCol = col; sortDir = 1; }
+  render();
+}
+
+function buildFilters() {
+  const cats = [...new Set(DATA.map(d => getCatGroup(d.cat)))].sort();
+  const catSel = document.getElementById('cat-filter');
+  catSel.innerHTML = '<option value="">All categories</option>';
+  cats.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = c; catSel.appendChild(o); });
+}
+
+function onCatChange() {
+  const catGroup = document.getElementById('cat-filter').value;
+  const subSel = document.getElementById('sub-filter');
+  subSel.innerHTML = '<option value="">All subcategories</option>';
+  if (catGroup) {
+    const subs = [...new Set(DATA.filter(d => getCatGroup(d.cat) === catGroup).map(d => getSubCat(d.cat)))].sort();
+    subs.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = s; subSel.appendChild(o); });
+  }
+  render();
+}
+
+function renderStats() {
+  const total = DATA.length;
+  const c0 = DATA.filter(d => d.conf === 0).length;
+  const c1 = DATA.filter(d => d.conf === 1).length;
+  const c2 = DATA.filter(d => d.conf === 2).length;
+  const c3 = DATA.filter(d => d.conf === 3).length;
+  document.getElementById('stats').innerHTML = `
+    <div class="stat"><div class="stat-val">${total}</div><div class="stat-lbl">Total</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--c0)">${c0}</div><div class="stat-lbl">0 Unseen</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--c1)">${c1}</div><div class="stat-lbl">1 Fuzzy</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--c2)">${c2}</div><div class="stat-lbl">2 Familiar</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--c3)">${c3}</div><div class="stat-lbl">3 Solid</div></div>`;
+  const track = document.getElementById('prog-track');
+  const colors = ['var(--c0)','var(--c1)','var(--c2)','var(--c3)'];
+  track.innerHTML = [c0,c1,c2,c3].map((n,i) =>
+    `<div class="p-seg" style="width:${(n/total*100).toFixed(1)}%;background:${colors[i]}"></div>`).join('');
+  document.getElementById('prog-label').textContent = `${Math.round((c2+c3)/total*100)}% familiar or better`;
+}
+
+function confDots(conf) {
+  const colors = ['var(--c0)','var(--c1)','var(--c2)','var(--c3)'];
+  const labels = ['unseen','fuzzy','familiar','solid'];
+  let h = '<div class="conf-wrap">';
+  for (let i = 0; i < 3; i++) {
+    const on = i < conf;
+    h += `<div class="dot${on?' on':''}" style="${on?'background:'+colors[conf]+';border-color:'+colors[conf]:''}"></div>`;
+  }
+  return h + `<span class="conf-label">${conf} — ${labels[conf]}</span></div>`;
+}
+
+function angleBadge(id) {
+  const a = getAngle(id);
+  const labels = {P:'✏ pen & paper',C:'🐍 python',T:'💡 theory',X:'other'};
+  return `<span class="angle-badge a-${a}">${labels[a]}</span>`;
+}
+
+function render() {
+  if (!DATA.length) return;
+  renderStats();
+  const q = document.getElementById('search').value.toLowerCase();
+  const catF = document.getElementById('cat-filter').value;
+  const subF = document.getElementById('sub-filter').value;
+  const confF = document.getElementById('conf-filter').value;
+
+  let filtered = DATA.filter(d => {
+    if (q && !d.kp.toLowerCase().includes(q) && !d.id.toLowerCase().includes(q)) return false;
+    if (catF && getCatGroup(d.cat) !== catF) return false;
+    if (subF && getSubCat(d.cat) !== subF) return false;
+    if (angleFilter && getAngle(d.id) !== angleFilter) return false;
+    if (confF !== '' && d.conf !== parseInt(confF)) return false;
+    return true;
+  });
+
+  filtered.sort((a,b) => {
+    const va = sortCol==='conf' ? a.conf : a[sortCol==='id'?'id':sortCol==='cat'?'cat':'kp'];
+    const vb = sortCol==='conf' ? b.conf : b[sortCol==='id'?'id':sortCol==='cat'?'cat':'kp'];
+    return va < vb ? -sortDir : va > vb ? sortDir : 0;
+  });
+
+  document.getElementById('result-count').textContent = `${filtered.length} / ${DATA.length} items`;
+  const tbody = document.getElementById('tbody');
+  const empty = document.getElementById('empty');
+
+  if (!filtered.length) { tbody.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display = 'none';
+
+  let html = '', lastCat = null;
+  filtered.forEach(d => {
+    if (sortCol === 'cat' && d.cat !== lastCat) {
+      html += `<tr class="section-row"><td colspan="4">${d.cat}</td></tr>`;
+      lastCat = d.cat;
+    }
+    html += `<tr><td class="td-id">${d.id}</td><td class="td-kp">${angleBadge(d.id)}${d.kp}</td><td class="td-cat">${d.cat}</td><td>${confDots(d.conf)}</td></tr>`;
+  });
+  tbody.innerHTML = html;
+}
+
+loadCSV();
+</script>
+</body>
+</html>
