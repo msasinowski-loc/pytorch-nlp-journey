@@ -116,26 +116,26 @@ M + col       # (2,1) broadcast across columns → (2,3)
 a = np.array([3, 4])
 b = np.array([1, 0])
 
-# Dot product — FM-LA-005
+# Dot product — FundMath-LinAlg-005
 np.dot(a, b)                            # 3·1 + 4·0 = 3
 
-# L2 norm — FM-LA-007
+# L2 norm — FundMath-LinAlg-007
 np.linalg.norm(a)                       # √(9+16) = 5
-np.linalg.norm(a, ord=1)               # L1 norm (Manhattan) — FM-LA-006
+np.linalg.norm(a, ord=1)               # L1 norm (Manhattan) — FundMath-LinAlg-006
 
-# Cosine similarity — FM-LA-009
+# Cosine similarity — FundMath-LinAlg-009
 np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 
-# Matrix multiplication — FM-LA-003
+# Matrix multiplication — FundMath-LinAlg-003
 M = np.array([[1, 2], [3, 4]])
 N = np.array([[5, 6], [7, 8]])
 M @ N                                   # preferred syntax
 np.matmul(M, N)                         # explicit, same result
 
-# Identity matrix — FM-LA-010
+# Identity matrix — FundMath-LinAlg-010
 np.eye(3)                               # 3×3 I — neutral element of matmul
-np.linalg.inv(M)                        # inverse — FM-LA-011
-np.linalg.eig(M)                        # eigenvalues & eigenvectors — FM-LA-012
+np.linalg.inv(M)                        # inverse — FundMath-LinAlg-011
+np.linalg.eig(M)                        # eigenvalues & eigenvectors — FundMath-LinAlg-012
 ```
 
 **Shape rule for matmul:** `(a×b) @ (b×c)` → `(a×c)`. Inner dims must match and disappear.
@@ -143,5 +143,51 @@ np.linalg.eig(M)                        # eigenvalues & eigenvectors — FM-LA-0
 
 ---
 
-*Last updated: Day 3 — NumPy session complete*
+## 🐍 NumPy — Reshaping
+`[numpy] [reshape] [flatten] [newaxis] [dimensions] [shape] [word embedding] [batch]`
+
+```python
+a = np.arange(12)              # [0, 1, 2, ... 11] — shape (12,)
+
+# reshape — total elements must stay the same
+a.reshape(3, 4)                # → (3, 4)
+a.reshape(4, -1)               # → (4, 3)  — -1 means "compute this dim for me"
+a.reshape(2, 2, 3)             # → (2, 2, 3) — 3D, works too
+
+# flatten — collapse any shape back to 1D
+a.reshape(3, 4).flatten()      # → (12,)
+
+# newaxis — insert a size-1 dimension without moving data
+v = np.array([1, 2, 3])       # shape (3,)
+v[np.newaxis, :]               # → (1, 3)  row vector
+v[:, np.newaxis]               # → (3, 1)  column vector
+```
+
+**The key insight:** no data is copied — reshaping just changes the lens NumPy uses to read the same memory block.
+
+**Word embedding example:**
+```python
+# "cat" as a 4-dim embedding
+cat = np.array([0.2, 0.8, 0.1, 0.5])   # (4,)  — ambiguous
+cat[np.newaxis, :]                        # (1, 4) — explicitly one word, 4 features
+cat[:, np.newaxis]                        # (4, 1) — column vector for matmul
+
+# batch of 3 words
+batch = np.array([[0.2, 0.8, 0.1, 0.5],
+                  [0.9, 0.1, 0.3, 0.2],
+                  [0.1, 0.9, 0.8, 0.3]])  # (3, 4) — 3 words × 4 dims
+```
+
+**When to use newaxis:** when broadcasting needs explicit row/col distinction, or when PyTorch expects a batch dimension and your array is 1D.
+
+| Shape | Meaning |
+|---|---|
+| `(768,)` | ambiguous flat vector |
+| `(1, 768)` | one word embedding, batch-ready |
+| `(768, 1)` | column vector for matmul |
+| `(32, 768)` | batch of 32 embeddings |
+
+---
+
+*Last updated: Day 4 — NumPy reshaping complete*
 *Next: Pandas · PyTorch tensors · OOP*

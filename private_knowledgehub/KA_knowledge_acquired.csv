@@ -1,187 +1,187 @@
 id,knowledge_point,category,confidence
-FM-LA-001-P,Vectors — pen and paper (draw and add vectors by hand),Fundamental Math / Linear Algebra,1
-FM-LA-001-C,Vectors — Python (numpy array operations),Fundamental Math / Linear Algebra,1
-FM-LA-001-T,Vectors — theory (what a vector space is; geometric vs algebraic view),Fundamental Math / Linear Algebra,1
-FM-LA-002-P,Linear combinations — pen and paper (compute c1v1 + c2v2 by hand),Fundamental Math / Linear Algebra,2
-FM-LA-002-P2,Linear combinations — pen and paper (determine if a target point is reachable given two vectors; solve c1v1 + c2v2 = target or prove impossibility),Fundamental Math / Linear Algebra,1
-FM-LA-002-C,Linear combinations — Python (np.dot / weighted sum),Fundamental Math / Linear Algebra,1
-FM-LA-002-T,Linear combinations — theory (span and basis; when is a set linearly independent?),Fundamental Math / Linear Algebra,2
-FM-LA-003-P,Matrix multiplication — pen and paper (row × column by hand),Fundamental Math / Linear Algebra,1
-FM-LA-003-C,Matrix multiplication — Python (np.matmul / @ operator),Fundamental Math / Linear Algebra,1
-FM-LA-003-T,Matrix multiplication — theory (why order matters; composition of linear maps),Fundamental Math / Linear Algebra,1
-FM-LA-013-P,Linear transformations — pen and paper (draw how a 2×2 matrix transforms a unit square),Fundamental Math / Linear Algebra,1
-FM-LA-013-C,Linear transformations — Python (apply matrix to a grid of vectors; visualise with matplotlib),Fundamental Math / Linear Algebra,0
-FM-LA-013-T,Linear transformations — theory (matrices as functions on space; why linearity means grid lines stay parallel and evenly spaced),Fundamental Math / Linear Algebra,1
-FM-LA-004-P,Transpose — pen and paper (flip rows/cols by hand),Fundamental Math / Linear Algebra,0
-FM-LA-004-C,Transpose — Python (arr.T and np.transpose),Fundamental Math / Linear Algebra,0
-FM-LA-004-T,Transpose — theory (relationship to dot product; symmetric matrices),Fundamental Math / Linear Algebra,0
-FM-LA-005-P,Dot product — pen and paper (compute a·b and angle between two vectors),Fundamental Math / Linear Algebra,1
-FM-LA-005-C,Dot product — Python (np.dot; verify with magnitudes and angle),Fundamental Math / Linear Algebra,1
-FM-LA-005-T,Dot product — theory (projection interpretation; why it shows up everywhere in ML),Fundamental Math / Linear Algebra,1
-FM-LA-006-P,L1 norm — pen and paper (compute Manhattan distance by hand),Fundamental Math / Linear Algebra,1
-FM-LA-006-C,L1 norm — Python (np.linalg.norm(v, ord=1)),Fundamental Math / Linear Algebra,1
-FM-LA-006-T,L1 norm — theory (sparsity; L1 vs L2 regularisation intuition),Fundamental Math / Linear Algebra,1
-FM-LA-007-P,L2 norm (Euclidean distance) — pen and paper (Pythagorean theorem in n dimensions),Fundamental Math / Linear Algebra,1
-FM-LA-007-C,L2 norm — Python (np.linalg.norm(v)),Fundamental Math / Linear Algebra,1
-FM-LA-007-T,L2 norm — theory (unit vectors; why MSE implicitly uses L2),Fundamental Math / Linear Algebra,1
-FM-LA-008-P,Unit vectors and normalisation — pen and paper (divide vector by its norm),Fundamental Math / Linear Algebra,0
-FM-LA-008-C,Unit vectors — Python (v / np.linalg.norm(v)),Fundamental Math / Linear Algebra,0
-FM-LA-008-T,Unit vectors — theory (why cosine similarity requires normalisation),Fundamental Math / Linear Algebra,0
-FM-LA-009-P,Cosine similarity — pen and paper (compute from dot product and norms),Fundamental Math / Linear Algebra,1
-FM-LA-009-C,Cosine similarity — Python (sklearn or manual implementation),Fundamental Math / Linear Algebra,1
-FM-LA-009-T,Cosine similarity — theory (why angle not distance for semantic similarity; relationship to dot product attention),Fundamental Math / Linear Algebra,1
-FM-LA-010-P,Identity matrix — pen and paper (write 3×3 identity; verify Av = v),Fundamental Math / Linear Algebra,0
-FM-LA-010-C,Identity matrix — Python (np.eye(n)),Fundamental Math / Linear Algebra,1
-FM-LA-010-T,Identity matrix — theory (neutral element of matrix mult; role in initialisation),Fundamental Math / Linear Algebra,0
-FM-LA-011-P,Inverse of a matrix — pen and paper (2×2 inverse by hand),Fundamental Math / Linear Algebra,0
-FM-LA-011-C,Inverse — Python (np.linalg.inv; check when matrix is singular),Fundamental Math / Linear Algebra,0
-FM-LA-011-T,Inverse — theory (when does it exist? determinant = 0 case),Fundamental Math / Linear Algebra,0
-FM-LA-012-P,Eigenvalues and eigenvectors — pen and paper (solve det(A - λI) = 0 for 2×2),Fundamental Math / Linear Algebra,1
-FM-LA-012-C,Eigenvalues and eigenvectors — Python (np.linalg.eig),Fundamental Math / Linear Algebra,1
-FM-LA-012-T,Eigenvalues and eigenvectors — theory (PCA connection; what eigendecomposition reveals about a transformation),Fundamental Math / Linear Algebra,1
-FM-CA-001-P,Derivative — pen and paper (apply power / product / chain rule),Fundamental Math / Calculus,0
-FM-CA-001-C,Derivative — Python (compute numerically with finite differences; verify with sympy),Fundamental Math / Calculus,0
-FM-CA-001-T,Derivative — theory (rate of change; why it tells us how to adjust weights),Fundamental Math / Calculus,0
-FM-CA-002-P,Chain rule — pen and paper (multi-layer composite function),Fundamental Math / Calculus,0
-FM-CA-002-C,Chain rule — Python (trace autograd backward pass; compare to manual),Fundamental Math / Calculus,0
-FM-CA-002-T,Chain rule — theory (this IS backpropagation — recognise it),Fundamental Math / Calculus,0
-FM-CA-003-P,Partial derivatives — pen and paper (hold one variable constant),Fundamental Math / Calculus,0
-FM-CA-003-C,Partial derivatives — Python (sympy.diff or numerical approximation),Fundamental Math / Calculus,0
-FM-CA-003-T,Partial derivatives — theory (gradient as vector of all partials; directional derivative),Fundamental Math / Calculus,0
-FM-CA-004-P,Gradient descent — pen and paper (one step of θ = θ − α∇L by hand),Fundamental Math / Calculus,0
-FM-CA-004-C,Gradient descent — Python (implement from scratch; compare to torch.optim.SGD),Fundamental Math / Calculus,0
-FM-CA-004-T,Gradient descent — theory (learning rate sensitivity; saddle points; local vs global minima),Fundamental Math / Calculus,0
-FM-CA-005-P,Logarithms — pen and paper (simplify log expressions; change of base),Fundamental Math / Calculus,1
-FM-CA-005-C,Logarithms — Python (np.log / np.log2 / np.log10; log-sum-exp trick),Fundamental Math / Calculus,1
-FM-CA-005-T,Logarithms — theory (why cross-entropy uses log; numerical stability of log-softmax),Fundamental Math / Calculus,1
-FM-PR-001-P,Basic probability — pen and paper (enumerate sample space; compute P(A)),Fundamental Math / Probability,0
-FM-PR-001-C,Basic probability — Python (simulate with np.random; verify empirically),Fundamental Math / Probability,0
-FM-PR-001-T,Basic probability — theory (frequentist vs Bayesian framing),Fundamental Math / Probability,0
-FM-PR-002-P,Conditional probability — pen and paper (Venn diagram + formula),Fundamental Math / Probability,0
-FM-PR-002-C,Conditional probability — Python (filter a DataFrame; estimate from data),Fundamental Math / Probability,0
-FM-PR-002-T,Conditional probability — theory (independence; why conditioning matters in language models),Fundamental Math / Probability,0
-FM-PR-003-P,Bayes' theorem — pen and paper (classic medical test example),Fundamental Math / Probability,0
-FM-PR-003-C,Bayes' theorem — Python (implement naive Bayes classifier from scratch),Fundamental Math / Probability,0
-FM-PR-003-T,Bayes' theorem — theory (prior / likelihood / posterior; Bayesian vs frequentist ML),Fundamental Math / Probability,0
-FM-PR-004-P,Probability distributions — pen and paper (sketch Gaussian; compute from formula),Fundamental Math / Probability,0
-FM-PR-004-C,Probability distributions — Python (scipy.stats; plot PDF/CDF with matplotlib),Fundamental Math / Probability,0
-FM-PR-004-T,Probability distributions — theory (discrete vs continuous; why softmax outputs a distribution),Fundamental Math / Probability,0
-FM-PR-005-P,Expected value and variance — pen and paper (compute E[X] and Var[X] for a simple distribution),Fundamental Math / Probability,0
-FM-PR-005-C,Expected value and variance — Python (np.mean / np.var; empirical vs theoretical),Fundamental Math / Probability,0
-FM-PR-005-T,Expected value and variance — theory (bias-variance trade-off; what high variance in a model means),Fundamental Math / Probability,0
-FM-ML-001-P,MSE — pen and paper (compute for a tiny prediction set),Fundamental Math / ML Math,1
-FM-ML-001-C,MSE — Python (np.mean((y_pred - y_true)**2); sklearn.metrics.mean_squared_error),Fundamental Math / ML Math,1
-FM-ML-001-T,MSE — theory (why squaring? connection to L2 norm; sensitivity to outliers vs MAE),Fundamental Math / ML Math,1
-FM-ML-002-P,Sigmoid function — pen and paper (evaluate at z = 0 / 2 / -2; sketch curve),Fundamental Math / ML Math,1
-FM-ML-002-C,Sigmoid function — Python (implement manually; compare to torch.sigmoid),Fundamental Math / ML Math,1
-FM-ML-002-T,Sigmoid function — theory (squashing to [0,1]; vanishing gradient problem; why ReLU replaced it in deep nets),Fundamental Math / ML Math,1
-FM-ML-003-P,TF-IDF — pen and paper (compute TF and IDF for a tiny 3-doc corpus),Fundamental Math / ML Math,1
-FM-ML-003-C,TF-IDF — Python (sklearn TfidfVectorizer; inspect feature weights),Fundamental Math / ML Math,1
-FM-ML-003-T,TF-IDF — theory (why IDF down-weights common words; limits vs embeddings; still useful in MT domain adaptation),Fundamental Math / ML Math,1
-P1-PY-001,Python basic setup — venv and pip,Phase 1 / Python,0
-P1-PY-002,NumPy — installation and import,Phase 1 / Python,1
-P1-PY-003,NumPy — array creation (np.array / np.zeros / np.ones),Phase 1 / Python,1
-P1-PY-004,NumPy — indexing and slicing,Phase 1 / Python,1
-P1-PY-005,NumPy — broadcasting rules,Phase 1 / Python,1
-P1-PY-006,NumPy — vectorized operations vs Python loops,Phase 1 / Python,1
-P1-PY-007,NumPy — matrix operations (np.dot / np.matmul),Phase 1 / Python,1
-P1-PY-008,NumPy — reshaping arrays,Phase 1 / Python,0
-P1-PY-009,Pandas — Series and DataFrame basics,Phase 1 / Python,0
-P1-PY-010,Pandas — reading CSV files,Phase 1 / Python,0
-P1-PY-011,Pandas — filtering rows with boolean indexing,Phase 1 / Python,0
-P1-PY-012,Pandas — groupby and aggregation,Phase 1 / Python,0
-P1-PY-013,Pandas — handling missing values,Phase 1 / Python,0
-P1-PY-014,OOP — classes and instances,Phase 1 / Python,0
-P1-PY-015,OOP — inheritance and method overriding,Phase 1 / Python,0
-P1-PY-016,Python — list comprehensions and generators,Phase 1 / Python,0
-P1-PY-017,Python — decorators and context managers,Phase 1 / Python,0
-P1-PY-018,Parsing TMX files in Python,Phase 1 / Localization Practice,0
-P1-PY-019,Parsing XLIFF files in Python,Phase 1 / Localization Practice,0
-P1-PY-020,Analyzing translation memory coverage with Pandas,Phase 1 / Localization Practice,0
-P2-PT-001,PyTorch — installation and basic import,Phase 2 / Tensors,0
-P2-PT-002,Tensor creation — torch.tensor / zeros / ones / rand,Phase 2 / Tensors,0
-P2-PT-003,Tensor data types (dtype) and device (cpu / cuda),Phase 2 / Tensors,0
-P2-PT-004,Tensor indexing and slicing,Phase 2 / Tensors,0
-P2-PT-005,Tensor broadcasting rules,Phase 2 / Tensors,0
-P2-PT-006,Tensor reshaping — view / reshape / squeeze / unsqueeze,Phase 2 / Tensors,0
-P2-PT-007,Element-wise operations vs matrix operations,Phase 2 / Tensors,0
-P2-PT-008,Moving tensors to GPU with .to(device),Phase 2 / Tensors,0
-P2-PT-009,Autograd — requires_grad and computation graph,Phase 2 / Autograd,0
-P2-PT-010,Autograd — .backward() and gradient accumulation,Phase 2 / Autograd,0
-P2-PT-011,Autograd — .detach() and torch.no_grad(),Phase 2 / Autograd,0
-P2-PT-012,Autograd — zeroing gradients between batches,Phase 2 / Autograd,0
-P2-NN-001,Forward propagation — manual implementation,Phase 2 / Neural Networks,0
-P2-NN-002,Activation functions — ReLU / sigmoid / tanh,Phase 2 / Neural Networks,0
-P2-NN-003,Loss functions — MSE,Phase 2 / Neural Networks,0
-P2-NN-004,Loss functions — cross-entropy,Phase 2 / Neural Networks,0
-P2-NN-005,Backpropagation — chain rule applied layer by layer,Phase 2 / Neural Networks,0
-P2-NN-006,SGD optimizer — mechanics,Phase 2 / Neural Networks,0
-P2-NN-007,Mini-batch gradient descent,Phase 2 / Neural Networks,0
-P2-NN-008,Training loop — full structure (forward / loss / backward / step),Phase 2 / Neural Networks,0
-P2-NN-009,nn.Module — defining a custom model class,Phase 2 / Neural Networks,0
-P2-NN-010,nn.Linear — parameters and usage,Phase 2 / Neural Networks,0
-P2-NN-011,DataLoader and Dataset — basic setup,Phase 2 / Neural Networks,0
-P2-NN-012,Overfitting — definition and detection,Phase 2 / Neural Networks,0
-P2-NN-013,Dropout — concept and when to use,Phase 2 / Neural Networks,0
-P2-NN-014,Batch normalization — concept,Phase 2 / Neural Networks,0
-P3-NLP-001,Tokenization — word-level vs subword,Phase 3 / NLP Foundations,0
-P3-NLP-002,BPE (Byte Pair Encoding) — algorithm,Phase 3 / NLP Foundations,0
-P3-NLP-003,WordPiece — how it differs from BPE,Phase 3 / NLP Foundations,0
-P3-NLP-004,SentencePiece — language-agnostic tokenization,Phase 3 / NLP Foundations,0
-P3-NLP-005,Vocabulary size trade-offs,Phase 3 / NLP Foundations,0
-P3-NLP-006,One-hot encoding — concept and limitations,Phase 3 / NLP Foundations,0
-P3-NLP-007,Word embeddings — dense representation intuition,Phase 3 / NLP Foundations,0
-P3-NLP-008,Word2Vec — skip-gram and CBOW,Phase 3 / NLP Foundations,0
-P3-NLP-009,Embedding layer in PyTorch (nn.Embedding),Phase 3 / NLP Foundations,0
-P3-NLP-010,RNN — architecture and hidden state,Phase 3 / Sequence Models,0
-P3-NLP-011,Vanishing gradient problem in RNNs,Phase 3 / Sequence Models,0
-P3-NLP-012,LSTM — cell state / forget / input / output gates,Phase 3 / Sequence Models,0
-P3-NLP-013,GRU — simplified gating mechanism,Phase 3 / Sequence Models,0
-P3-NLP-014,Seq2seq architecture — encoder / decoder,Phase 3 / Sequence Models,0
-P3-NLP-015,Attention mechanism — additive (Bahdanau),Phase 3 / Sequence Models,0
-P3-NLP-016,Attention mechanism — scaled dot-product,Phase 3 / Sequence Models,0
-P3-TF-001,Transformer — overall architecture overview,Phase 3 / Transformers,0
-P3-TF-002,Multi-head attention — intuition,Phase 3 / Transformers,0
-P3-TF-003,Multi-head attention — Q / K / V matrices,Phase 3 / Transformers,0
-P3-TF-004,Positional encoding — why needed and how it works,Phase 3 / Transformers,0
-P3-TF-005,Feed-forward sublayer in transformer block,Phase 3 / Transformers,0
-P3-TF-006,Layer normalization,Phase 3 / Transformers,0
-P3-TF-007,Encoder-only models — BERT architecture,Phase 3 / Transformers,0
-P3-TF-008,Decoder-only models — GPT architecture,Phase 3 / Transformers,0
-P3-TF-009,Encoder-decoder models — T5 / mT5,Phase 3 / Transformers,0
-P3-TF-010,Pre-training vs fine-tuning — concept,Phase 3 / Transformers,0
-P3-HF-001,Hugging Face — AutoTokenizer usage,Phase 3 / Hugging Face,0
-P3-HF-002,Hugging Face — AutoModel and AutoModelForX,Phase 3 / Hugging Face,0
-P3-HF-003,Hugging Face — pipeline() API,Phase 3 / Hugging Face,0
-P3-HF-004,Hugging Face — Trainer API basics,Phase 3 / Hugging Face,0
-P3-HF-005,Hugging Face — datasets library,Phase 3 / Hugging Face,0
-P3-HF-006,Fine-tuning a sequence classification model,Phase 3 / Hugging Face,0
-P3-HF-007,mBERT — multilingual BERT overview,Phase 3 / Hugging Face,0
-P3-HF-008,NLLB — No Language Left Behind model,Phase 3 / Hugging Face,0
-P3-HF-009,mT5 — multilingual T5 usage,Phase 3 / Hugging Face,0
-P3-MT-001,BLEU score — formula and intuition,Phase 3 / MT Evaluation,0
-P3-MT-002,BLEU score — limitations,Phase 3 / MT Evaluation,0
-P3-MT-003,chrF — character n-gram metric,Phase 3 / MT Evaluation,0
-P3-MT-004,COMET — learned metric overview,Phase 3 / MT Evaluation,0
-P3-MT-005,MT post-editing — quality estimation as ML task,Phase 3 / MT Evaluation,0
-P4-ML-001,Model evaluation — train / val / test split,Phase 4 / MLOps,0
-P4-ML-002,Cross-validation — k-fold,Phase 4 / MLOps,0
-P4-ML-003,Precision / recall / F1 — formulas,Phase 4 / MLOps,0
-P4-ML-004,Confusion matrix,Phase 4 / MLOps,0
-P4-ML-005,Data drift — definition and detection,Phase 4 / MLOps,0
-P4-ML-006,Model checkpointing — saving and loading state_dict,Phase 4 / MLOps,0
-P4-ML-007,Experiment tracking with Weights & Biases,Phase 4 / MLOps,0
-P4-ML-008,Experiment tracking with MLflow,Phase 4 / MLOps,0
-P4-ML-009,FastAPI — basic endpoint setup,Phase 4 / Deployment,0
-P4-ML-010,FastAPI — serving a model with a POST endpoint,Phase 4 / Deployment,0
-P4-ML-011,Docker — Dockerfile basics,Phase 4 / Deployment,0
-P4-ML-012,Docker — building and running an image,Phase 4 / Deployment,0
-P4-ML-013,Docker — containerizing a Python ML app,Phase 4 / Deployment,0
-P4-ML-014,Git — branching and merging workflow,Phase 4 / Deployment,0
-P4-ML-015,Git — writing meaningful commit messages for ML projects,Phase 4 / Deployment,0
-P4-ML-016,Hugging Face Hub — pushing a model,Phase 4 / Deployment,0
-P4-ML-017,Hugging Face Hub — model cards,Phase 4 / Deployment,0
-P4-CL-001,Cloud storage — S3 basics (upload / download / buckets),Phase 4 / Cloud,0
-P4-CL-002,Cloud storage — GCS or Azure Blob equivalent,Phase 4 / Cloud,0
-P4-CL-003,Managed training jobs — SageMaker or Vertex AI overview,Phase 4 / Cloud,0
-P4-CL-004,IAM and access management — basic concepts,Phase 4 / Cloud,0
+FundMath-LinAlg-001-PnP,Vectors — pen and paper (draw and add vectors by hand),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-001-Coding,Vectors — Python (numpy array operations),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-001-Theory,Vectors — theory (what a vector space is; geometric vs algebraic view),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-002-PnP,Linear combinations — pen and paper (compute c1v1 + c2v2 by hand),Fundamental Math / Linear Algebra,2
+FundMath-LinAlg-002-PnP2,Linear combinations — pen and paper (determine if a target point is reachable given two vectors; solve c1v1 + c2v2 = target or prove impossibility),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-002-Coding,Linear combinations — Python (np.dot / weighted sum),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-002-Theory,Linear combinations — theory (span and basis; when is a set linearly independent?),Fundamental Math / Linear Algebra,2
+FundMath-LinAlg-003-PnP,Matrix multiplication — pen and paper (row × column by hand),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-003-Coding,Matrix multiplication — Python (np.matmul / @ operator),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-003-Theory,Matrix multiplication — theory (why order matters; composition of linear maps),Fundamental Math / Linear Algebra,2
+FundMath-LinAlg-013-PnP,Linear transformations — pen and paper (draw how a 2×2 matrix transforms a unit square),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-013-Coding,Linear transformations — Python (apply matrix to a grid of vectors; visualise with matplotlib),Fundamental Math / Linear Algebra,0
+FundMath-LinAlg-013-Theory,Linear transformations — theory (matrices as functions on space; columns = where basis vectors land; scales to any dimension including 768-dim transformer layers),Fundamental Math / Linear Algebra,2
+FundMath-LinAlg-004-PnP,Transpose — pen and paper (flip rows/cols by hand),Fundamental Math / Linear Algebra,0
+FundMath-LinAlg-004-Coding,Transpose — Python (arr.T and np.transpose),Fundamental Math / Linear Algebra,0
+FundMath-LinAlg-004-Theory,Transpose — theory (relationship to dot product; symmetric matrices),Fundamental Math / Linear Algebra,0
+FundMath-LinAlg-005-PnP,Dot product — pen and paper (compute a·b and angle between two vectors),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-005-Coding,Dot product — Python (np.dot; verify with magnitudes and angle),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-005-Theory,Dot product — theory (projection interpretation; why it shows up everywhere in ML),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-006-PnP,L1 norm — pen and paper (compute Manhattan distance by hand),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-006-Coding,L1 norm — Python (np.linalg.norm(v, ord=1)),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-006-Theory,L1 norm — theory (sparsity; L1 vs L2 regularisation intuition),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-007-PnP,L2 norm (Euclidean distance) — pen and paper (Pythagorean theorem in n dimensions),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-007-Coding,L2 norm — Python (np.linalg.norm(v)),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-007-Theory,L2 norm — theory (unit vectors; why MSE implicitly uses L2),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-008-PnP,Unit vectors and normalisation — pen and paper (divide vector by its norm),Fundamental Math / Linear Algebra,0
+FundMath-LinAlg-008-Coding,Unit vectors — Python (v / np.linalg.norm(v)),Fundamental Math / Linear Algebra,0
+FundMath-LinAlg-008-Theory,Unit vectors — theory (why cosine similarity requires normalisation),Fundamental Math / Linear Algebra,0
+FundMath-LinAlg-009-PnP,Cosine similarity — pen and paper (compute from dot product and norms),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-009-Coding,Cosine similarity — Python (sklearn or manual implementation),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-009-Theory,Cosine similarity — theory (why angle not distance for semantic similarity; relationship to dot product attention),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-010-PnP,Identity matrix — pen and paper (write 3×3 identity; verify Av = v),Fundamental Math / Linear Algebra,0
+FundMath-LinAlg-010-Coding,Identity matrix — Python (np.eye(n)),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-010-Theory,Identity matrix — theory (neutral element of matrix mult; role in initialisation),Fundamental Math / Linear Algebra,0
+FundMath-LinAlg-011-PnP,Inverse of a matrix — pen and paper (2×2 inverse by hand),Fundamental Math / Linear Algebra,0
+FundMath-LinAlg-011-Coding,Inverse — Python (np.linalg.inv; check when matrix is singular),Fundamental Math / Linear Algebra,0
+FundMath-LinAlg-011-Theory,Inverse — theory (when does it exist? determinant = 0 case),Fundamental Math / Linear Algebra,0
+FundMath-LinAlg-012-PnP,Eigenvalues and eigenvectors — pen and paper (solve det(A - λI) = 0 for 2×2),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-012-Coding,Eigenvalues and eigenvectors — Python (np.linalg.eig),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-012-Theory,Eigenvalues and eigenvectors — theory (PCA connection; what eigendecomposition reveals about a transformation),Fundamental Math / Linear Algebra,1
+FundMath-Calculus-001-PnP,Derivative — pen and paper (apply power / product / chain rule),Fundamental Math / Calculus,0
+FundMath-Calculus-001-Coding,Derivative — Python (compute numerically with finite differences; verify with sympy),Fundamental Math / Calculus,0
+FundMath-Calculus-001-Theory,Derivative — theory (rate of change; why it tells us how to adjust weights),Fundamental Math / Calculus,0
+FundMath-Calculus-002-PnP,Chain rule — pen and paper (multi-layer composite function),Fundamental Math / Calculus,0
+FundMath-Calculus-002-Coding,Chain rule — Python (trace autograd backward pass; compare to manual),Fundamental Math / Calculus,0
+FundMath-Calculus-002-Theory,Chain rule — theory (this IS backpropagation — recognise it),Fundamental Math / Calculus,0
+FundMath-Calculus-003-PnP,Partial derivatives — pen and paper (hold one variable constant),Fundamental Math / Calculus,0
+FundMath-Calculus-003-Coding,Partial derivatives — Python (sympy.diff or numerical approximation),Fundamental Math / Calculus,0
+FundMath-Calculus-003-Theory,Partial derivatives — theory (gradient as vector of all partials; directional derivative),Fundamental Math / Calculus,0
+FundMath-Calculus-004-PnP,Gradient descent — pen and paper (one step of θ = θ − α∇L by hand),Fundamental Math / Calculus,0
+FundMath-Calculus-004-Coding,Gradient descent — Python (implement from scratch; compare to torch.optim.SGD),Fundamental Math / Calculus,0
+FundMath-Calculus-004-Theory,Gradient descent — theory (learning rate sensitivity; saddle points; local vs global minima),Fundamental Math / Calculus,0
+FundMath-Calculus-005-PnP,Logarithms — pen and paper (simplify log expressions; change of base),Fundamental Math / Calculus,1
+FundMath-Calculus-005-Coding,Logarithms — Python (np.log / np.log2 / np.log10; log-sum-exp trick),Fundamental Math / Calculus,1
+FundMath-Calculus-005-Theory,Logarithms — theory (why cross-entropy uses log; numerical stability of log-softmax),Fundamental Math / Calculus,1
+FundMath-Prob-001-PnP,Basic probability — pen and paper (enumerate sample space; compute P(A)),Fundamental Math / Probability,0
+FundMath-Prob-001-Coding,Basic probability — Python (simulate with np.random; verify empirically),Fundamental Math / Probability,0
+FundMath-Prob-001-Theory,Basic probability — theory (frequentist vs Bayesian framing),Fundamental Math / Probability,0
+FundMath-Prob-002-PnP,Conditional probability — pen and paper (Venn diagram + formula),Fundamental Math / Probability,0
+FundMath-Prob-002-Coding,Conditional probability — Python (filter a DataFrame; estimate from data),Fundamental Math / Probability,0
+FundMath-Prob-002-Theory,Conditional probability — theory (independence; why conditioning matters in language models),Fundamental Math / Probability,0
+FundMath-Prob-003-PnP,Bayes' theorem — pen and paper (classic medical test example),Fundamental Math / Probability,0
+FundMath-Prob-003-Coding,Bayes' theorem — Python (implement naive Bayes classifier from scratch),Fundamental Math / Probability,0
+FundMath-Prob-003-Theory,Bayes' theorem — theory (prior / likelihood / posterior; Bayesian vs frequentist ML),Fundamental Math / Probability,0
+FundMath-Prob-004-PnP,Probability distributions — pen and paper (sketch Gaussian; compute from formula),Fundamental Math / Probability,0
+FundMath-Prob-004-Coding,Probability distributions — Python (scipy.stats; plot PDF/CDF with matplotlib),Fundamental Math / Probability,0
+FundMath-Prob-004-Theory,Probability distributions — theory (discrete vs continuous; why softmax outputs a distribution),Fundamental Math / Probability,0
+FundMath-Prob-005-PnP,Expected value and variance — pen and paper (compute E[X] and Var[X] for a simple distribution),Fundamental Math / Probability,0
+FundMath-Prob-005-Coding,Expected value and variance — Python (np.mean / np.var; empirical vs theoretical),Fundamental Math / Probability,0
+FundMath-Prob-005-Theory,Expected value and variance — theory (bias-variance trade-off; what high variance in a model means),Fundamental Math / Probability,0
+FundMath-MLMath-001-PnP,MSE — pen and paper (compute for a tiny prediction set),Fundamental Math / ML Math,1
+FundMath-MLMath-001-Coding,MSE — Python (np.mean((y_pred - y_true)**2); sklearn.metrics.mean_squared_error),Fundamental Math / ML Math,1
+FundMath-MLMath-001-Theory,MSE — theory (why squaring? connection to L2 norm; sensitivity to outliers vs MAE),Fundamental Math / ML Math,1
+FundMath-MLMath-002-PnP,Sigmoid function — pen and paper (evaluate at z = 0 / 2 / -2; sketch curve),Fundamental Math / ML Math,1
+FundMath-MLMath-002-Coding,Sigmoid function — Python (implement manually; compare to torch.sigmoid),Fundamental Math / ML Math,1
+FundMath-MLMath-002-Theory,Sigmoid function — theory (squashing to [0,1]; vanishing gradient problem; why ReLU replaced it in deep nets),Fundamental Math / ML Math,1
+FundMath-MLMath-003-PnP,TF-IDF — pen and paper (compute TF and IDF for a tiny 3-doc corpus),Fundamental Math / ML Math,1
+FundMath-MLMath-003-Coding,TF-IDF — Python (sklearn TfidfVectorizer; inspect feature weights),Fundamental Math / ML Math,1
+FundMath-MLMath-003-Theory,TF-IDF — theory (why IDF down-weights common words; limits vs embeddings; still useful in MT domain adaptation),Fundamental Math / ML Math,1
+Ph1-Python-001,Python basic setup — venv and pip,Phase 1 / Python,0
+Ph1-Python-002,NumPy — installation and import,Phase 1 / Python,1
+Ph1-Python-003,NumPy — array creation (np.array / np.zeros / np.ones),Phase 1 / Python,1
+Ph1-Python-004,NumPy — indexing and slicing,Phase 1 / Python,1
+Ph1-Python-005,NumPy — broadcasting rules,Phase 1 / Python,1
+Ph1-Python-006,NumPy — vectorized operations vs Python loops,Phase 1 / Python,1
+Ph1-Python-007,NumPy — matrix operations (np.dot / np.matmul),Phase 1 / Python,1
+Ph1-Python-008,NumPy — reshaping arrays,Phase 1 / Python,1
+Ph1-Python-009,Pandas — Series and DataFrame basics,Phase 1 / Python,0
+Ph1-Python-010,Pandas — reading CSV files,Phase 1 / Python,0
+Ph1-Python-011,Pandas — filtering rows with boolean indexing,Phase 1 / Python,0
+Ph1-Python-012,Pandas — groupby and aggregation,Phase 1 / Python,0
+Ph1-Python-013,Pandas — handling missing values,Phase 1 / Python,0
+Ph1-Python-014,OOP — classes and instances,Phase 1 / Python,0
+Ph1-Python-015,OOP — inheritance and method overriding,Phase 1 / Python,0
+Ph1-Python-016,Python — list comprehensions and generators,Phase 1 / Python,0
+Ph1-Python-017,Python — decorators and context managers,Phase 1 / Python,0
+Ph1-Python-018,Parsing TMX files in Python,Phase 1 / Localization Practice,0
+Ph1-Python-019,Parsing XLIFF files in Python,Phase 1 / Localization Practice,0
+Ph1-Python-020,Analyzing translation memory coverage with Pandas,Phase 1 / Localization Practice,0
+Ph2-PyTorch-001,PyTorch — installation and basic import,Phase 2 / Tensors,0
+Ph2-PyTorch-002,Tensor creation — torch.tensor / zeros / ones / rand,Phase 2 / Tensors,0
+Ph2-PyTorch-003,Tensor data types (dtype) and device (cpu / cuda),Phase 2 / Tensors,0
+Ph2-PyTorch-004,Tensor indexing and slicing,Phase 2 / Tensors,0
+Ph2-PyTorch-005,Tensor broadcasting rules,Phase 2 / Tensors,0
+Ph2-PyTorch-006,Tensor reshaping — view / reshape / squeeze / unsqueeze,Phase 2 / Tensors,0
+Ph2-PyTorch-007,Element-wise operations vs matrix operations,Phase 2 / Tensors,0
+Ph2-PyTorch-008,Moving tensors to GPU with .to(device),Phase 2 / Tensors,0
+Ph2-PyTorch-009,Autograd — requires_grad and computation graph,Phase 2 / Autograd,0
+Ph2-PyTorch-010,Autograd — .backward() and gradient accumulation,Phase 2 / Autograd,0
+Ph2-PyTorch-011,Autograd — .detach() and torch.no_grad(),Phase 2 / Autograd,0
+Ph2-PyTorch-012,Autograd — zeroing gradients between batches,Phase 2 / Autograd,0
+Ph2-NeuralNet-001,Forward propagation — manual implementation,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-002,Activation functions — ReLU / sigmoid / tanh,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-003,Loss functions — MSE,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-004,Loss functions — cross-entropy,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-005,Backpropagation — chain rule applied layer by layer,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-006,SGD optimizer — mechanics,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-007,Mini-batch gradient descent,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-008,Training loop — full structure (forward / loss / backward / step),Phase 2 / Neural Networks,0
+Ph2-NeuralNet-009,nn.Module — defining a custom model class,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-010,nn.Linear — parameters and usage,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-011,DataLoader and Dataset — basic setup,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-012,Overfitting — definition and detection,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-013,Dropout — concept and when to use,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-014,Batch normalization — concept,Phase 2 / Neural Networks,0
+Ph3-NLP-001,Tokenization — word-level vs subword,Phase 3 / NLP Foundations,0
+Ph3-NLP-002,BPE (Byte Pair Encoding) — algorithm,Phase 3 / NLP Foundations,0
+Ph3-NLP-003,WordPiece — how it differs from BPE,Phase 3 / NLP Foundations,0
+Ph3-NLP-004,SentencePiece — language-agnostic tokenization,Phase 3 / NLP Foundations,0
+Ph3-NLP-005,Vocabulary size trade-offs,Phase 3 / NLP Foundations,0
+Ph3-NLP-006,One-hot encoding — concept and limitations,Phase 3 / NLP Foundations,0
+Ph3-NLP-007,Word embeddings — dense representation intuition,Phase 3 / NLP Foundations,0
+Ph3-NLP-008,Word2Vec — skip-gram and CBOW,Phase 3 / NLP Foundations,0
+Ph3-NLP-009,Embedding layer in PyTorch (nn.Embedding),Phase 3 / NLP Foundations,0
+Ph3-NLP-010,RNN — architecture and hidden state,Phase 3 / Sequence Models,0
+Ph3-NLP-011,Vanishing gradient problem in RNNs,Phase 3 / Sequence Models,0
+Ph3-NLP-012,LSTM — cell state / forget / input / output gates,Phase 3 / Sequence Models,0
+Ph3-NLP-013,GRU — simplified gating mechanism,Phase 3 / Sequence Models,0
+Ph3-NLP-014,Seq2seq architecture — encoder / decoder,Phase 3 / Sequence Models,0
+Ph3-NLP-015,Attention mechanism — additive (Bahdanau),Phase 3 / Sequence Models,0
+Ph3-NLP-016,Attention mechanism — scaled dot-product,Phase 3 / Sequence Models,0
+Ph3-Transformer-001,Transformer — overall architecture overview,Phase 3 / Transformers,0
+Ph3-Transformer-002,Multi-head attention — intuition,Phase 3 / Transformers,0
+Ph3-Transformer-003,Multi-head attention — Q / K / V matrices,Phase 3 / Transformers,0
+Ph3-Transformer-004,Positional encoding — why needed and how it works,Phase 3 / Transformers,0
+Ph3-Transformer-005,Feed-forward sublayer in transformer block,Phase 3 / Transformers,0
+Ph3-Transformer-006,Layer normalization,Phase 3 / Transformers,0
+Ph3-Transformer-007,Encoder-only models — BERT architecture,Phase 3 / Transformers,0
+Ph3-Transformer-008,Decoder-only models — GPT architecture,Phase 3 / Transformers,0
+Ph3-Transformer-009,Encoder-decoder models — T5 / mT5,Phase 3 / Transformers,0
+Ph3-Transformer-010,Pre-training vs fine-tuning — concept,Phase 3 / Transformers,0
+Ph3-HuggFace-001,Hugging Face — AutoTokenizer usage,Phase 3 / Hugging Face,0
+Ph3-HuggFace-002,Hugging Face — AutoModel and AutoModelForX,Phase 3 / Hugging Face,0
+Ph3-HuggFace-003,Hugging Face — pipeline() API,Phase 3 / Hugging Face,0
+Ph3-HuggFace-004,Hugging Face — Trainer API basics,Phase 3 / Hugging Face,0
+Ph3-HuggFace-005,Hugging Face — datasets library,Phase 3 / Hugging Face,0
+Ph3-HuggFace-006,Fine-tuning a sequence classification model,Phase 3 / Hugging Face,0
+Ph3-HuggFace-007,mBERT — multilingual BERT overview,Phase 3 / Hugging Face,0
+Ph3-HuggFace-008,NLLB — No Language Left Behind model,Phase 3 / Hugging Face,0
+Ph3-HuggFace-009,mT5 — multilingual T5 usage,Phase 3 / Hugging Face,0
+Ph3-MTEval-001,BLEU score — formula and intuition,Phase 3 / MT Evaluation,0
+Ph3-MTEval-002,BLEU score — limitations,Phase 3 / MT Evaluation,0
+Ph3-MTEval-003,chrF — character n-gram metric,Phase 3 / MT Evaluation,0
+Ph3-MTEval-004,COMET — learned metric overview,Phase 3 / MT Evaluation,0
+Ph3-MTEval-005,MT post-editing — quality estimation as ML task,Phase 3 / MT Evaluation,0
+Ph4-MLMath-001,Model evaluation — train / val / test split,Phase 4 / MLOps,0
+Ph4-MLMath-002,Cross-validation — k-fold,Phase 4 / MLOps,0
+Ph4-MLMath-003,Precision / recall / F1 — formulas,Phase 4 / MLOps,0
+Ph4-MLMath-004,Confusion matrix,Phase 4 / MLOps,0
+Ph4-MLMath-005,Data drift — definition and detection,Phase 4 / MLOps,0
+Ph4-MLMath-006,Model checkpointing — saving and loading state_dict,Phase 4 / MLOps,0
+Ph4-MLMath-007,Experiment tracking with Weights & Biases,Phase 4 / MLOps,0
+Ph4-MLMath-008,Experiment tracking with MLflow,Phase 4 / MLOps,0
+Ph4-MLMath-009,FastAPI — basic endpoint setup,Phase 4 / Deployment,0
+Ph4-MLMath-010,FastAPI — serving a model with a POST endpoint,Phase 4 / Deployment,0
+Ph4-MLMath-011,Docker — Dockerfile basics,Phase 4 / Deployment,0
+Ph4-MLMath-012,Docker — building and running an image,Phase 4 / Deployment,0
+Ph4-MLMath-013,Docker — containerizing a Python ML app,Phase 4 / Deployment,0
+Ph4-MLMath-014,Git — branching and merging workflow,Phase 4 / Deployment,0
+Ph4-MLMath-015,Git — writing meaningful commit messages for ML projects,Phase 4 / Deployment,0
+Ph4-MLMath-016,Hugging Face Hub — pushing a model,Phase 4 / Deployment,0
+Ph4-MLMath-017,Hugging Face Hub — model cards,Phase 4 / Deployment,0
+Ph4-Cloud-001,Cloud storage — S3 basics (upload / download / buckets),Phase 4 / Cloud,0
+Ph4-Cloud-002,Cloud storage — GCS or Azure Blob equivalent,Phase 4 / Cloud,0
+Ph4-Cloud-003,Managed training jobs — SageMaker or Vertex AI overview,Phase 4 / Cloud,0
+Ph4-Cloud-004,IAM and access management — basic concepts,Phase 4 / Cloud,0

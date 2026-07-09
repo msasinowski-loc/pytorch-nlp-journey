@@ -40,7 +40,7 @@ git pull
 
 # optional
 git status
-# compares versions
+# compares branches
 
 # 3. Stage all changes
 git add .
