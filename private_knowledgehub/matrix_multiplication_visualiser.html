@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrix Multiplication Visualiser</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+  :root {
+    --bg:#0e0f11;--bg2:#14161a;--bg3:#1c1f25;--border:#2a2d35;
+    --text:#e8e9ed;--muted:#6b7080;--faint:#2e3140;
+    --accent:#378ADD;--accent-bg:rgba(55,138,221,0.12);--accent-border:rgba(55,138,221,0.35);
+    --pro:#7C6AF5;--pro-bg:rgba(124,106,245,0.12);--pro-border:rgba(124,106,245,0.35);
+    --success:#2CB67D;--success-bg:rgba(44,182,125,0.12);--success-border:rgba(44,182,125,0.35);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:2rem;}
+
+  h1{font-size:20px;font-weight:700;letter-spacing:-0.02em;margin-bottom:4px;}
+  .subtitle{font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:1.5rem;}
+
+  .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+  .tab{padding:9px 18px;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.15s;user-select:none;}
+  .tab:hover{color:var(--text);}
+  .tab.active{color:var(--text);border-bottom-color:var(--text);}
+
+  .panel{display:none;}
+  .panel.active{display:block;}
+
+  .grid-wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:1.5rem;}
+
+  .matrix{display:flex;flex-direction:column;gap:4px;}
+  .matrix-label{font-size:11px;color:var(--muted);text-align:center;margin-bottom:4px;font-family:'JetBrains Mono',monospace;}
+  .mat-row{display:flex;gap:4px;}
+  .cell{width:48px;height:48px;border:0.5px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500;font-family:'JetBrains Mono',monospace;background:var(--bg2);color:var(--text);transition:background 0.25s,border-color 0.25s,color 0.25s;}
+  .cell.hi-row{background:var(--accent-bg);border-color:var(--accent-border);color:var(--accent);}
+  .cell.hi-col{background:var(--pro-bg);border-color:var(--pro-border);color:var(--pro);}
+  .cell.hi-res{background:var(--success-bg);border-color:var(--success-border);color:var(--success);}
+
+  .op-sign{font-size:24px;color:var(--muted);font-weight:300;}
+  .equals{font-size:24px;color:var(--muted);font-weight:300;}
+
+  .step-box{background:var(--bg2);border:0.5px solid var(--border);border-radius:10px;padding:14px 16px;font-size:13px;color:var(--muted);line-height:1.7;min-height:80px;margin-bottom:1rem;}
+  .step-box strong{color:var(--text);font-weight:500;}
+  .step-box .formula{font-family:'JetBrains Mono',monospace;font-size:13px;margin-top:6px;}
+
+  .controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+  .ctrl-btn{padding:7px 16px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:0.5px solid var(--border);background:transparent;color:var(--text);transition:all 0.15s;font-family:'Syne',sans-serif;}
+  .ctrl-btn:hover{background:var(--bg3);}
+  .ctrl-btn:disabled{opacity:0.35;cursor:not-allowed;}
+  .step-counter{font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:1rem;}
+  .legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);}
+  .legend-dot{width:12px;height:12px;border-radius:3px;}
+  .ld-row{background:var(--accent-bg);border:1px solid var(--accent-border);}
+  .ld-col{background:var(--pro-bg);border:1px solid var(--pro-border);}
+  .ld-res{background:var(--success-bg);border:1px solid var(--success-border);}
+</style>
+</head>
+<body>
+
+<h1>Matrix multiplication visualiser</h1>
+<p class="subtitle">pytorch-nlp-journey · step through each dot product</p>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('vm',this)">vector × matrix</div>
+  <div class="tab" onclick="switchTab('mm',this)">matrix × matrix</div>
+</div>
+
+<!-- VECTOR × MATRIX -->
+<div class="panel active" id="panel-vm">
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot ld-row"></div>input row</div>
+    <div class="legend-item"><div class="legend-dot ld-col"></div>matrix column</div>
+    <div class="legend-item"><div class="legend-dot ld-res"></div>result cell</div>
+  </div>
+  <div class="grid-wrap">
+    <div class="matrix">
+      <div class="matrix-label">v (1×3)</div>
+      <div class="mat-row">
+        <div class="cell" id="vm-v0">1</div>
+        <div class="cell" id="vm-v1">2</div>
+        <div class="cell" id="vm-v2">3</div>
+      </div>
+    </div>
+    <div class="op-sign">×</div>
+    <div class="matrix">
+      <div class="matrix-label">M (3×2)</div>
+      <div class="mat-row"><div class="cell" id="vm-m00">1</div><div class="cell" id="vm-m01">4</div></div>
+      <div class="mat-row"><div class="cell" id="vm-m10">2</div><div class="cell" id="vm-m11">5</div></div>
+      <div class="mat-row"><div class="cell" id="vm-m20">3</div><div class="cell" id="vm-m21">6</div></div>
+    </div>
+    <div class="equals">=</div>
+    <div class="matrix">
+      <div class="matrix-label">result (1×2)</div>
+      <div class="mat-row">
+        <div class="cell" id="vm-r0">?</div>
+        <div class="cell" id="vm-r1">?</div>
+      </div>
+    </div>
+  </div>
+  <div class="step-box" id="vm-step-box">Press <strong>next step</strong> to begin.</div>
+  <div class="controls">
+    <button class="ctrl-btn" onclick="vmPrev()" id="vm-prev" disabled>← prev</button>
+    <button class="ctrl-btn" onclick="vmNext()" id="vm-next">next step →</button>
+    <button class="ctrl-btn" onclick="vmReset()">reset</button>
+    <span class="step-counter" id="vm-counter">step 0 / 2</span>
+  </div>
+</div>
+
+<!-- MATRIX × MATRIX -->
+<div class="panel" id="panel-mm">
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot ld-row"></div>active row (A)</div>
+    <div class="legend-item"><div class="legend-dot ld-col"></div>active column (B)</div>
+    <div class="legend-item"><div class="legend-dot ld-res"></div>result cell</div>
+  </div>
+  <div class="grid-wrap">
+    <div class="matrix">
+      <div class="matrix-label">A (2×3)</div>
+      <div class="mat-row"><div class="cell" id="mm-a00">1</div><div class="cell" id="mm-a01">2</div><div class="cell" id="mm-a02">3</div></div>
+      <div class="mat-row"><div class="cell" id="mm-a10">4</div><div class="cell" id="mm-a11">5</div><div class="cell" id="mm-a12">6</div></div>
+    </div>
+    <div class="op-sign">×</div>
+    <div class="matrix">
+      <div class="matrix-label">B (3×2)</div>
+      <div class="mat-row"><div class="cell" id="mm-b00">7</div><div class="cell" id="mm-b01">8</div></div>
+      <div class="mat-row"><div class="cell" id="mm-b10">9</div><div class="cell" id="mm-b11">10</div></div>
+      <div class="mat-row"><div class="cell" id="mm-b20">11</div><div class="cell" id="mm-b21">12</div></div>
+    </div>
+    <div class="equals">=</div>
+    <div class="matrix">
+      <div class="matrix-label">result (2×2)</div>
+      <div class="mat-row"><div class="cell" id="mm-r00">?</div><div class="cell" id="mm-r01">?</div></div>
+      <div class="mat-row"><div class="cell" id="mm-r10">?</div><div class="cell" id="mm-r11">?</div></div>
+    </div>
+  </div>
+  <div class="step-box" id="mm-step-box">Press <strong>next step</strong> to begin.</div>
+  <div class="controls">
+    <button class="ctrl-btn" onclick="mmPrev()" id="mm-prev" disabled>← prev</button>
+    <button class="ctrl-btn" onclick="mmNext()" id="mm-next">next step →</button>
+    <button class="ctrl-btn" onclick="mmReset()">reset</button>
+    <span class="step-counter" id="mm-counter">step 0 / 4</span>
+  </div>
+</div>
+
+<script>
+function switchTab(id,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-'+id).classList.add('active');
+}
+
+const V=[1,2,3],M=[[1,4],[2,5],[3,6]];
+const vmRes=[V[0]*M[0][0]+V[1]*M[1][0]+V[2]*M[2][0],V[0]*M[0][1]+V[1]*M[1][1]+V[2]*M[2][1]];
+const vmSteps=[
+  {row:[0,1,2],col:0,resIdx:0,text:`<strong>Result cell [0,0]</strong> — dot product of v with column 0 of M.<div class="formula">(1×1)+(2×2)+(3×3) = 1+4+9 = <strong>${vmRes[0]}</strong></div>`},
+  {row:[0,1,2],col:1,resIdx:1,text:`<strong>Result cell [0,1]</strong> — dot product of v with column 1 of M.<div class="formula">(1×4)+(2×5)+(3×6) = 4+10+18 = <strong>${vmRes[1]}</strong></div>`}
+];
+let vmStep=0;
+function vmClearHighlights(){['vm-v0','vm-v1','vm-v2','vm-m00','vm-m01','vm-m10','vm-m11','vm-m20','vm-m21','vm-r0','vm-r1'].forEach(id=>{const el=document.getElementById(id);if(el)el.className='cell';});}
+function vmApplyStep(idx){vmClearHighlights();const s=vmSteps[idx];s.row.forEach(r=>document.getElementById('vm-v'+r).classList.add('hi-row'));[0,1,2].forEach(r=>document.getElementById(`vm-m${r}${s.col}`).classList.add('hi-col'));const rEl=document.getElementById('vm-r'+s.resIdx);rEl.classList.add('hi-res');rEl.textContent=vmRes[s.resIdx];document.getElementById('vm-step-box').innerHTML=s.text;document.getElementById('vm-counter').textContent=`step ${idx+1} / 2`;document.getElementById('vm-prev').disabled=idx===0;document.getElementById('vm-next').disabled=idx===vmSteps.length-1;}
+function vmNext(){if(vmStep<vmSteps.length-1){vmStep++;vmApplyStep(vmStep);}}
+function vmPrev(){if(vmStep>0){vmStep--;vmApplyStep(vmStep);}}
+function vmReset(){vmStep=0;vmClearHighlights();['vm-r0','vm-r1'].forEach(id=>document.getElementById(id).textContent='?');document.getElementById('vm-step-box').innerHTML='Press <strong>next step</strong> to begin.';document.getElementById('vm-counter').textContent='step 0 / 2';document.getElementById('vm-prev').disabled=true;document.getElementById('vm-next').disabled=false;}
+
+const A=[[1,2,3],[4,5,6]],B=[[7,8],[9,10],[11,12]];
+const R=[[A[0][0]*B[0][0]+A[0][1]*B[1][0]+A[0][2]*B[2][0],A[0][0]*B[0][1]+A[0][1]*B[1][1]+A[0][2]*B[2][1]],[A[1][0]*B[0][0]+A[1][1]*B[1][0]+A[1][2]*B[2][0],A[1][0]*B[0][1]+A[1][1]*B[1][1]+A[1][2]*B[2][1]]];
+const mmSteps=[
+  {ar:0,bc:0,ri:0,rj:0,text:`<strong>Result [0,0]</strong> — row 0 of A · column 0 of B.<div class="formula">(1×7)+(2×9)+(3×11) = 7+18+33 = <strong>${R[0][0]}</strong></div>`},
+  {ar:0,bc:1,ri:0,rj:1,text:`<strong>Result [0,1]</strong> — row 0 of A · column 1 of B.<div class="formula">(1×8)+(2×10)+(3×12) = 8+20+36 = <strong>${R[0][1]}</strong></div>`},
+  {ar:1,bc:0,ri:1,rj:0,text:`<strong>Result [1,0]</strong> — row 1 of A · column 0 of B.<div class="formula">(4×7)+(5×9)+(6×11) = 28+45+66 = <strong>${R[1][0]}</strong></div>`},
+  {ar:1,bc:1,ri:1,rj:1,text:`<strong>Result [1,1]</strong> — row 1 of A · column 1 of B.<div class="formula">(4×8)+(5×10)+(6×12) = 32+50+72 = <strong>${R[1][1]}</strong></div>`}
+];
+let mmStep=0;
+function mmClearHighlights(){for(let r=0;r<2;r++)for(let c=0;c<3;c++){const el=document.getElementById(`mm-a${r}${c}`);if(el)el.className='cell';}for(let r=0;r<3;r++)for(let c=0;c<2;c++){const el=document.getElementById(`mm-b${r}${c}`);if(el)el.className='cell';}for(let r=0;r<2;r++)for(let c=0;c<2;c++){const el=document.getElementById(`mm-r${r}${c}`);if(el)el.className='cell';}}
+function mmApplyStep(idx){mmClearHighlights();const s=mmSteps[idx];for(let c=0;c<3;c++)document.getElementById(`mm-a${s.ar}${c}`).classList.add('hi-row');for(let r=0;r<3;r++)document.getElementById(`mm-b${r}${s.bc}`).classList.add('hi-col');const rEl=document.getElementById(`mm-r${s.ri}${s.rj}`);rEl.classList.add('hi-res');rEl.textContent=R[s.ri][s.rj];document.getElementById('mm-step-box').innerHTML=s.text;document.getElementById('mm-counter').textContent=`step ${idx+1} / 4`;document.getElementById('mm-prev').disabled=idx===0;document.getElementById('mm-next').disabled=idx===mmSteps.length-1;}
+function mmNext(){if(mmStep<mmSteps.length-1){mmStep++;mmApplyStep(mmStep);}}
+function mmPrev(){if(mmStep>0){mmStep--;mmApplyStep(mmStep);}}
+function mmReset(){mmStep=0;mmClearHighlights();for(let r=0;r<2;r++)for(let c=0;c<2;c++)document.getElementById(`mm-r${r}${c}`).textContent='?';document.getElementById('mm-step-box').innerHTML='Press <strong>next step</strong> to begin.';document.getElementById('mm-counter').textContent='step 0 / 4';document.getElementById('mm-prev').disabled=true;document.getElementById('mm-next').disabled=false;}
+</script>
+</body>
+</html>

@@ -17,6 +17,14 @@ Open these from `private_knowledgeHub/` in your browser:
 - `learning_path_tracker.html` — check what's planned for today
 - `KA_viewer.html` — review what's due for spaced repetition
 
+07/08 update:
+for KA viewer, I need to run this in command:
+cd C:\Users\mateu\pytorch-nlp-journey\private_knowledgehub
+python -m http.server 8000
+Then go to http://localhost:8000/KA_viewer.html. Ctrl+C to stop when done.
+
+
+
 ### 3. Brief Claude
 Paste this at the start of the conversation:
 

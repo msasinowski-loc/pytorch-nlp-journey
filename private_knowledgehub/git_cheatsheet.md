@@ -38,8 +38,16 @@ git pull
 
 # 2. Do your work (edit files, write code)
 
+# optional
+git status
+# compares versions
+
 # 3. Stage all changes
 git add .
+
+# it stages everything — new files and modified files — from the current directory downward. 
+# this will catch all the changes, no need to be explicit about a particular file in the directory
+
 
 # 4. Commit with a message
 git commit -m "what you did"
