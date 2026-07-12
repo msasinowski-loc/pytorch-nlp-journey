@@ -12,6 +12,9 @@ FundMath-LinAlg-003-Theory,Matrix multiplication — theory (why order matters; 
 FundMath-LinAlg-013-PnP,Linear transformations — pen and paper (draw how a 2×2 matrix transforms a unit square),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-013-Coding,Linear transformations — Python (apply matrix to a grid of vectors; visualise with matplotlib),Fundamental Math / Linear Algebra,0
 FundMath-LinAlg-013-Theory,Linear transformations — theory (matrices as functions on space; columns = where basis vectors land; scales to any dimension including 768-dim transformer layers),Fundamental Math / Linear Algebra,2
+FundMath-LinAlg-014-PnP,Determinant — pen and paper (compute det for 2x2; identify singular matrices; interpret sign),Fundamental Math / Linear Algebra,2
+FundMath-LinAlg-014-Coding,Determinant — Python (np.linalg.det; verify singular matrix gives 0),Fundamental Math / Linear Algebra,0
+FundMath-LinAlg-014-Theory,Determinant — theory (area/volume scaling factor; sign = orientation; det=0 means singular; connection to vanishing gradients),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-004-PnP,Transpose — pen and paper (flip rows/cols by hand),Fundamental Math / Linear Algebra,0
 FundMath-LinAlg-004-Coding,Transpose — Python (arr.T and np.transpose),Fundamental Math / Linear Algebra,0
 FundMath-LinAlg-004-Theory,Transpose — theory (relationship to dot product; symmetric matrices),Fundamental Math / Linear Algebra,0
