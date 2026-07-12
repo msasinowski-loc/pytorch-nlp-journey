@@ -78,110 +78,215 @@ FundMath-MLMath-002-Theory,Sigmoid function — theory (squashing to [0,1]; vani
 FundMath-MLMath-003-PnP,TF-IDF — pen and paper (compute TF and IDF for a tiny 3-doc corpus),Fundamental Math / ML Math,1
 FundMath-MLMath-003-Coding,TF-IDF — Python (sklearn TfidfVectorizer; inspect feature weights),Fundamental Math / ML Math,1
 FundMath-MLMath-003-Theory,TF-IDF — theory (why IDF down-weights common words; limits vs embeddings; still useful in MT domain adaptation),Fundamental Math / ML Math,1
-Ph1-Python-001,Python basic setup — venv and pip,Phase 1 / Python,0
-Ph1-Python-002,NumPy — installation and import,Phase 1 / Python,1
-Ph1-Python-003,NumPy — array creation (np.array / np.zeros / np.ones),Phase 1 / Python,1
-Ph1-Python-004,NumPy — indexing and slicing,Phase 1 / Python,1
-Ph1-Python-005,NumPy — broadcasting rules,Phase 1 / Python,1
-Ph1-Python-006,NumPy — vectorized operations vs Python loops,Phase 1 / Python,1
-Ph1-Python-007,NumPy — matrix operations (np.dot / np.matmul),Phase 1 / Python,1
-Ph1-Python-008,NumPy — reshaping arrays,Phase 1 / Python,1
-Ph1-Python-009,Pandas — Series and DataFrame basics,Phase 1 / Python,0
-Ph1-Python-010,Pandas — reading CSV files,Phase 1 / Python,0
-Ph1-Python-011,Pandas — filtering rows with boolean indexing,Phase 1 / Python,0
-Ph1-Python-012,Pandas — groupby and aggregation,Phase 1 / Python,0
-Ph1-Python-013,Pandas — handling missing values,Phase 1 / Python,0
-Ph1-Python-014,OOP — classes and instances,Phase 1 / Python,0
-Ph1-Python-015,OOP — inheritance and method overriding,Phase 1 / Python,0
-Ph1-Python-016,Python — list comprehensions and generators,Phase 1 / Python,0
-Ph1-Python-017,Python — decorators and context managers,Phase 1 / Python,0
-Ph1-Python-018,Parsing TMX files in Python,Phase 1 / Localization Practice,0
-Ph1-Python-019,Parsing XLIFF files in Python,Phase 1 / Localization Practice,0
-Ph1-Python-020,Analyzing translation memory coverage with Pandas,Phase 1 / Localization Practice,0
-Ph2-PyTorch-001,PyTorch — installation and basic import,Phase 2 / Tensors,0
-Ph2-PyTorch-002,Tensor creation — torch.tensor / zeros / ones / rand,Phase 2 / Tensors,0
-Ph2-PyTorch-003,Tensor data types (dtype) and device (cpu / cuda),Phase 2 / Tensors,0
-Ph2-PyTorch-004,Tensor indexing and slicing,Phase 2 / Tensors,0
-Ph2-PyTorch-005,Tensor broadcasting rules,Phase 2 / Tensors,0
-Ph2-PyTorch-006,Tensor reshaping — view / reshape / squeeze / unsqueeze,Phase 2 / Tensors,0
-Ph2-PyTorch-007,Element-wise operations vs matrix operations,Phase 2 / Tensors,0
-Ph2-PyTorch-008,Moving tensors to GPU with .to(device),Phase 2 / Tensors,0
-Ph2-PyTorch-009,Autograd — requires_grad and computation graph,Phase 2 / Autograd,0
-Ph2-PyTorch-010,Autograd — .backward() and gradient accumulation,Phase 2 / Autograd,0
-Ph2-PyTorch-011,Autograd — .detach() and torch.no_grad(),Phase 2 / Autograd,0
-Ph2-PyTorch-012,Autograd — zeroing gradients between batches,Phase 2 / Autograd,0
-Ph2-NeuralNet-001,Forward propagation — manual implementation,Phase 2 / Neural Networks,0
-Ph2-NeuralNet-002,Activation functions — ReLU / sigmoid / tanh,Phase 2 / Neural Networks,0
-Ph2-NeuralNet-003,Loss functions — MSE,Phase 2 / Neural Networks,0
-Ph2-NeuralNet-004,Loss functions — cross-entropy,Phase 2 / Neural Networks,0
-Ph2-NeuralNet-005,Backpropagation — chain rule applied layer by layer,Phase 2 / Neural Networks,0
-Ph2-NeuralNet-006,SGD optimizer — mechanics,Phase 2 / Neural Networks,0
-Ph2-NeuralNet-007,Mini-batch gradient descent,Phase 2 / Neural Networks,0
-Ph2-NeuralNet-008,Training loop — full structure (forward / loss / backward / step),Phase 2 / Neural Networks,0
-Ph2-NeuralNet-009,nn.Module — defining a custom model class,Phase 2 / Neural Networks,0
-Ph2-NeuralNet-010,nn.Linear — parameters and usage,Phase 2 / Neural Networks,0
-Ph2-NeuralNet-011,DataLoader and Dataset — basic setup,Phase 2 / Neural Networks,0
-Ph2-NeuralNet-012,Overfitting — definition and detection,Phase 2 / Neural Networks,0
-Ph2-NeuralNet-013,Dropout — concept and when to use,Phase 2 / Neural Networks,0
-Ph2-NeuralNet-014,Batch normalization — concept,Phase 2 / Neural Networks,0
-Ph3-NLP-001,Tokenization — word-level vs subword,Phase 3 / NLP Foundations,0
-Ph3-NLP-002,BPE (Byte Pair Encoding) — algorithm,Phase 3 / NLP Foundations,0
-Ph3-NLP-003,WordPiece — how it differs from BPE,Phase 3 / NLP Foundations,0
-Ph3-NLP-004,SentencePiece — language-agnostic tokenization,Phase 3 / NLP Foundations,0
-Ph3-NLP-005,Vocabulary size trade-offs,Phase 3 / NLP Foundations,0
-Ph3-NLP-006,One-hot encoding — concept and limitations,Phase 3 / NLP Foundations,0
-Ph3-NLP-007,Word embeddings — dense representation intuition,Phase 3 / NLP Foundations,0
-Ph3-NLP-008,Word2Vec — skip-gram and CBOW,Phase 3 / NLP Foundations,0
-Ph3-NLP-009,Embedding layer in PyTorch (nn.Embedding),Phase 3 / NLP Foundations,0
-Ph3-NLP-010,RNN — architecture and hidden state,Phase 3 / Sequence Models,0
-Ph3-NLP-011,Vanishing gradient problem in RNNs,Phase 3 / Sequence Models,0
-Ph3-NLP-012,LSTM — cell state / forget / input / output gates,Phase 3 / Sequence Models,0
-Ph3-NLP-013,GRU — simplified gating mechanism,Phase 3 / Sequence Models,0
-Ph3-NLP-014,Seq2seq architecture — encoder / decoder,Phase 3 / Sequence Models,0
-Ph3-NLP-015,Attention mechanism — additive (Bahdanau),Phase 3 / Sequence Models,0
-Ph3-NLP-016,Attention mechanism — scaled dot-product,Phase 3 / Sequence Models,0
-Ph3-Transformer-001,Transformer — overall architecture overview,Phase 3 / Transformers,0
-Ph3-Transformer-002,Multi-head attention — intuition,Phase 3 / Transformers,0
-Ph3-Transformer-003,Multi-head attention — Q / K / V matrices,Phase 3 / Transformers,0
-Ph3-Transformer-004,Positional encoding — why needed and how it works,Phase 3 / Transformers,0
-Ph3-Transformer-005,Feed-forward sublayer in transformer block,Phase 3 / Transformers,0
-Ph3-Transformer-006,Layer normalization,Phase 3 / Transformers,0
-Ph3-Transformer-007,Encoder-only models — BERT architecture,Phase 3 / Transformers,0
-Ph3-Transformer-008,Decoder-only models — GPT architecture,Phase 3 / Transformers,0
-Ph3-Transformer-009,Encoder-decoder models — T5 / mT5,Phase 3 / Transformers,0
-Ph3-Transformer-010,Pre-training vs fine-tuning — concept,Phase 3 / Transformers,0
-Ph3-HuggFace-001,Hugging Face — AutoTokenizer usage,Phase 3 / Hugging Face,0
-Ph3-HuggFace-002,Hugging Face — AutoModel and AutoModelForX,Phase 3 / Hugging Face,0
-Ph3-HuggFace-003,Hugging Face — pipeline() API,Phase 3 / Hugging Face,0
-Ph3-HuggFace-004,Hugging Face — Trainer API basics,Phase 3 / Hugging Face,0
-Ph3-HuggFace-005,Hugging Face — datasets library,Phase 3 / Hugging Face,0
-Ph3-HuggFace-006,Fine-tuning a sequence classification model,Phase 3 / Hugging Face,0
-Ph3-HuggFace-007,mBERT — multilingual BERT overview,Phase 3 / Hugging Face,0
-Ph3-HuggFace-008,NLLB — No Language Left Behind model,Phase 3 / Hugging Face,0
-Ph3-HuggFace-009,mT5 — multilingual T5 usage,Phase 3 / Hugging Face,0
-Ph3-MTEval-001,BLEU score — formula and intuition,Phase 3 / MT Evaluation,0
-Ph3-MTEval-002,BLEU score — limitations,Phase 3 / MT Evaluation,0
-Ph3-MTEval-003,chrF — character n-gram metric,Phase 3 / MT Evaluation,0
-Ph3-MTEval-004,COMET — learned metric overview,Phase 3 / MT Evaluation,0
-Ph3-MTEval-005,MT post-editing — quality estimation as ML task,Phase 3 / MT Evaluation,0
-Ph4-MLMath-001,Model evaluation — train / val / test split,Phase 4 / MLOps,0
-Ph4-MLMath-002,Cross-validation — k-fold,Phase 4 / MLOps,0
-Ph4-MLMath-003,Precision / recall / F1 — formulas,Phase 4 / MLOps,0
-Ph4-MLMath-004,Confusion matrix,Phase 4 / MLOps,0
-Ph4-MLMath-005,Data drift — definition and detection,Phase 4 / MLOps,0
-Ph4-MLMath-006,Model checkpointing — saving and loading state_dict,Phase 4 / MLOps,0
-Ph4-MLMath-007,Experiment tracking with Weights & Biases,Phase 4 / MLOps,0
-Ph4-MLMath-008,Experiment tracking with MLflow,Phase 4 / MLOps,0
-Ph4-MLMath-009,FastAPI — basic endpoint setup,Phase 4 / Deployment,0
-Ph4-MLMath-010,FastAPI — serving a model with a POST endpoint,Phase 4 / Deployment,0
-Ph4-MLMath-011,Docker — Dockerfile basics,Phase 4 / Deployment,0
-Ph4-MLMath-012,Docker — building and running an image,Phase 4 / Deployment,0
-Ph4-MLMath-013,Docker — containerizing a Python ML app,Phase 4 / Deployment,0
-Ph4-MLMath-014,Git — branching and merging workflow,Phase 4 / Deployment,0
-Ph4-MLMath-015,Git — writing meaningful commit messages for ML projects,Phase 4 / Deployment,0
-Ph4-MLMath-016,Hugging Face Hub — pushing a model,Phase 4 / Deployment,0
-Ph4-MLMath-017,Hugging Face Hub — model cards,Phase 4 / Deployment,0
-Ph4-Cloud-001,Cloud storage — S3 basics (upload / download / buckets),Phase 4 / Cloud,0
-Ph4-Cloud-002,Cloud storage — GCS or Azure Blob equivalent,Phase 4 / Cloud,0
-Ph4-Cloud-003,Managed training jobs — SageMaker or Vertex AI overview,Phase 4 / Cloud,0
-Ph4-Cloud-004,IAM and access management — basic concepts,Phase 4 / Cloud,0
+Ph1-Python-001-Coding,Python basic setup — venv and pip,Phase 1 / Python,0
+Ph1-Python-002-Coding,NumPy — installation and import,Phase 1 / Python,1
+Ph1-Python-003-Coding,NumPy — array creation (np.array / np.zeros / np.ones),Phase 1 / Python,1
+Ph1-Python-004-Coding,NumPy — indexing and slicing,Phase 1 / Python,1
+Ph1-Python-005-Coding,NumPy — broadcasting rules,Phase 1 / Python,1
+Ph1-Python-006-Coding,NumPy — vectorized operations vs Python loops,Phase 1 / Python,1
+Ph1-Python-007-Coding,NumPy — matrix operations (np.dot / np.matmul),Phase 1 / Python,1
+Ph1-Python-008-Coding,NumPy — reshaping arrays,Phase 1 / Python,1
+Ph1-Python-009-Coding,Pandas — Series and DataFrame basics,Phase 1 / Python,0
+Ph1-Python-010-Coding,Pandas — reading CSV files,Phase 1 / Python,0
+Ph1-Python-011-Coding,Pandas — filtering rows with boolean indexing,Phase 1 / Python,0
+Ph1-Python-012-Coding,Pandas — groupby and aggregation,Phase 1 / Python,0
+Ph1-Python-013-Coding,Pandas — handling missing values,Phase 1 / Python,0
+Ph1-Python-014-Coding,OOP — classes and instances,Phase 1 / Python,0
+Ph1-Python-015-Coding,OOP — inheritance and method overriding,Phase 1 / Python,0
+Ph1-Python-016-Coding,Python — list comprehensions and generators,Phase 1 / Python,0
+Ph1-Python-017-Coding,Python — decorators and context managers,Phase 1 / Python,0
+Ph1-Python-018-Coding,Parsing TMX files in Python,Phase 1 / Localization Practice,0
+Ph1-Python-019-Coding,Parsing XLIFF files in Python,Phase 1 / Localization Practice,0
+Ph1-Python-020-Coding,Analyzing translation memory coverage with Pandas,Phase 1 / Localization Practice,0
+Ph2-PyTorch-001-Coding,PyTorch — installation and basic import,Phase 2 / Tensors,0
+Ph2-PyTorch-001-Theory,PyTorch — installation and basic import,Phase 2 / Tensors,0
+Ph2-PyTorch-002-Coding,Tensor creation — torch.tensor / zeros / ones / rand,Phase 2 / Tensors,0
+Ph2-PyTorch-002-Theory,Tensor creation — torch.tensor / zeros / ones / rand,Phase 2 / Tensors,0
+Ph2-PyTorch-003-Coding,Tensor data types (dtype) and device (cpu / cuda),Phase 2 / Tensors,0
+Ph2-PyTorch-003-Theory,Tensor data types (dtype) and device (cpu / cuda),Phase 2 / Tensors,0
+Ph2-PyTorch-004-Coding,Tensor indexing and slicing,Phase 2 / Tensors,0
+Ph2-PyTorch-004-Theory,Tensor indexing and slicing,Phase 2 / Tensors,0
+Ph2-PyTorch-005-Coding,Tensor broadcasting rules,Phase 2 / Tensors,0
+Ph2-PyTorch-005-Theory,Tensor broadcasting rules,Phase 2 / Tensors,0
+Ph2-PyTorch-006-Coding,Tensor reshaping — view / reshape / squeeze / unsqueeze,Phase 2 / Tensors,0
+Ph2-PyTorch-006-Theory,Tensor reshaping — view / reshape / squeeze / unsqueeze,Phase 2 / Tensors,0
+Ph2-PyTorch-007-Coding,Element-wise operations vs matrix operations,Phase 2 / Tensors,0
+Ph2-PyTorch-007-Theory,Element-wise operations vs matrix operations,Phase 2 / Tensors,0
+Ph2-PyTorch-008-Coding,Moving tensors to GPU with .to(device),Phase 2 / Tensors,0
+Ph2-PyTorch-008-Theory,Moving tensors to GPU with .to(device),Phase 2 / Tensors,0
+Ph2-PyTorch-009-Coding,Autograd — requires_grad and computation graph,Phase 2 / Autograd,0
+Ph2-PyTorch-009-Theory,Autograd — requires_grad and computation graph,Phase 2 / Autograd,0
+Ph2-PyTorch-010-Coding,Autograd — .backward() and gradient accumulation,Phase 2 / Autograd,0
+Ph2-PyTorch-010-Theory,Autograd — .backward() and gradient accumulation,Phase 2 / Autograd,0
+Ph2-PyTorch-011-Coding,Autograd — .detach() and torch.no_grad(),Phase 2 / Autograd,0
+Ph2-PyTorch-011-Theory,Autograd — .detach() and torch.no_grad(),Phase 2 / Autograd,0
+Ph2-PyTorch-012-Coding,Autograd — zeroing gradients between batches,Phase 2 / Autograd,0
+Ph2-PyTorch-012-Theory,Autograd — zeroing gradients between batches,Phase 2 / Autograd,0
+Ph2-NeuralNet-001-PnP,Forward propagation — manual implementation,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-001-Coding,Forward propagation — manual implementation,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-001-Theory,Forward propagation — manual implementation,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-002-PnP,Activation functions — ReLU / sigmoid / tanh,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-002-Coding,Activation functions — ReLU / sigmoid / tanh,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-002-Theory,Activation functions — ReLU / sigmoid / tanh,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-003-PnP,Loss functions — MSE,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-003-Coding,Loss functions — MSE,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-003-Theory,Loss functions — MSE,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-004-PnP,Loss functions — cross-entropy,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-004-Coding,Loss functions — cross-entropy,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-004-Theory,Loss functions — cross-entropy,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-005-PnP,Backpropagation — chain rule applied layer by layer,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-005-Coding,Backpropagation — chain rule applied layer by layer,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-005-Theory,Backpropagation — chain rule applied layer by layer,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-006-PnP,SGD optimizer — mechanics,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-006-Coding,SGD optimizer — mechanics,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-006-Theory,SGD optimizer — mechanics,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-007-PnP,Mini-batch gradient descent,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-007-Coding,Mini-batch gradient descent,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-007-Theory,Mini-batch gradient descent,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-008-PnP,Training loop — full structure (forward / loss / backward / step),Phase 2 / Neural Networks,0
+Ph2-NeuralNet-008-Coding,Training loop — full structure (forward / loss / backward / step),Phase 2 / Neural Networks,0
+Ph2-NeuralNet-008-Theory,Training loop — full structure (forward / loss / backward / step),Phase 2 / Neural Networks,0
+Ph2-NeuralNet-009-PnP,nn.Module — defining a custom model class,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-009-Coding,nn.Module — defining a custom model class,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-009-Theory,nn.Module — defining a custom model class,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-010-PnP,nn.Linear — parameters and usage,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-010-Coding,nn.Linear — parameters and usage,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-010-Theory,nn.Linear — parameters and usage,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-011-PnP,DataLoader and Dataset — basic setup,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-011-Coding,DataLoader and Dataset — basic setup,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-011-Theory,DataLoader and Dataset — basic setup,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-012-PnP,Overfitting — definition and detection,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-012-Coding,Overfitting — definition and detection,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-012-Theory,Overfitting — definition and detection,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-013-PnP,Dropout — concept and when to use,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-013-Coding,Dropout — concept and when to use,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-013-Theory,Dropout — concept and when to use,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-014-PnP,Batch normalization — concept,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-014-Coding,Batch normalization — concept,Phase 2 / Neural Networks,0
+Ph2-NeuralNet-014-Theory,Batch normalization — concept,Phase 2 / Neural Networks,0
+Ph3-NLP-001-PnP,Tokenization — word-level vs subword,Phase 3 / NLP Foundations,0
+Ph3-NLP-001-Coding,Tokenization — word-level vs subword,Phase 3 / NLP Foundations,0
+Ph3-NLP-001-Theory,Tokenization — word-level vs subword,Phase 3 / NLP Foundations,0
+Ph3-NLP-002-PnP,BPE (Byte Pair Encoding) — algorithm,Phase 3 / NLP Foundations,0
+Ph3-NLP-002-Coding,BPE (Byte Pair Encoding) — algorithm,Phase 3 / NLP Foundations,0
+Ph3-NLP-002-Theory,BPE (Byte Pair Encoding) — algorithm,Phase 3 / NLP Foundations,0
+Ph3-NLP-003-PnP,WordPiece — how it differs from BPE,Phase 3 / NLP Foundations,0
+Ph3-NLP-003-Coding,WordPiece — how it differs from BPE,Phase 3 / NLP Foundations,0
+Ph3-NLP-003-Theory,WordPiece — how it differs from BPE,Phase 3 / NLP Foundations,0
+Ph3-NLP-004-PnP,SentencePiece — language-agnostic tokenization,Phase 3 / NLP Foundations,0
+Ph3-NLP-004-Coding,SentencePiece — language-agnostic tokenization,Phase 3 / NLP Foundations,0
+Ph3-NLP-004-Theory,SentencePiece — language-agnostic tokenization,Phase 3 / NLP Foundations,0
+Ph3-NLP-005-PnP,Vocabulary size trade-offs,Phase 3 / NLP Foundations,0
+Ph3-NLP-005-Coding,Vocabulary size trade-offs,Phase 3 / NLP Foundations,0
+Ph3-NLP-005-Theory,Vocabulary size trade-offs,Phase 3 / NLP Foundations,0
+Ph3-NLP-006-PnP,One-hot encoding — concept and limitations,Phase 3 / NLP Foundations,0
+Ph3-NLP-006-Coding,One-hot encoding — concept and limitations,Phase 3 / NLP Foundations,0
+Ph3-NLP-006-Theory,One-hot encoding — concept and limitations,Phase 3 / NLP Foundations,0
+Ph3-NLP-007-PnP,Word embeddings — dense representation intuition,Phase 3 / NLP Foundations,0
+Ph3-NLP-007-Coding,Word embeddings — dense representation intuition,Phase 3 / NLP Foundations,0
+Ph3-NLP-007-Theory,Word embeddings — dense representation intuition,Phase 3 / NLP Foundations,0
+Ph3-NLP-008-PnP,Word2Vec — skip-gram and CBOW,Phase 3 / NLP Foundations,0
+Ph3-NLP-008-Coding,Word2Vec — skip-gram and CBOW,Phase 3 / NLP Foundations,0
+Ph3-NLP-008-Theory,Word2Vec — skip-gram and CBOW,Phase 3 / NLP Foundations,0
+Ph3-NLP-009-PnP,Embedding layer in PyTorch (nn.Embedding),Phase 3 / NLP Foundations,0
+Ph3-NLP-009-Coding,Embedding layer in PyTorch (nn.Embedding),Phase 3 / NLP Foundations,0
+Ph3-NLP-009-Theory,Embedding layer in PyTorch (nn.Embedding),Phase 3 / NLP Foundations,0
+Ph3-NLP-010-PnP,RNN — architecture and hidden state,Phase 3 / Sequence Models,0
+Ph3-NLP-010-Coding,RNN — architecture and hidden state,Phase 3 / Sequence Models,0
+Ph3-NLP-010-Theory,RNN — architecture and hidden state,Phase 3 / Sequence Models,0
+Ph3-NLP-011-PnP,Vanishing gradient problem in RNNs,Phase 3 / Sequence Models,0
+Ph3-NLP-011-Coding,Vanishing gradient problem in RNNs,Phase 3 / Sequence Models,0
+Ph3-NLP-011-Theory,Vanishing gradient problem in RNNs,Phase 3 / Sequence Models,0
+Ph3-NLP-012-PnP,LSTM — cell state / forget / input / output gates,Phase 3 / Sequence Models,0
+Ph3-NLP-012-Coding,LSTM — cell state / forget / input / output gates,Phase 3 / Sequence Models,0
+Ph3-NLP-012-Theory,LSTM — cell state / forget / input / output gates,Phase 3 / Sequence Models,0
+Ph3-NLP-013-PnP,GRU — simplified gating mechanism,Phase 3 / Sequence Models,0
+Ph3-NLP-013-Coding,GRU — simplified gating mechanism,Phase 3 / Sequence Models,0
+Ph3-NLP-013-Theory,GRU — simplified gating mechanism,Phase 3 / Sequence Models,0
+Ph3-NLP-014-PnP,Seq2seq architecture — encoder / decoder,Phase 3 / Sequence Models,0
+Ph3-NLP-014-Coding,Seq2seq architecture — encoder / decoder,Phase 3 / Sequence Models,0
+Ph3-NLP-014-Theory,Seq2seq architecture — encoder / decoder,Phase 3 / Sequence Models,0
+Ph3-NLP-015-PnP,Attention mechanism — additive (Bahdanau),Phase 3 / Sequence Models,0
+Ph3-NLP-015-Coding,Attention mechanism — additive (Bahdanau),Phase 3 / Sequence Models,0
+Ph3-NLP-015-Theory,Attention mechanism — additive (Bahdanau),Phase 3 / Sequence Models,0
+Ph3-NLP-016-PnP,Attention mechanism — scaled dot-product,Phase 3 / Sequence Models,0
+Ph3-NLP-016-Coding,Attention mechanism — scaled dot-product,Phase 3 / Sequence Models,0
+Ph3-NLP-016-Theory,Attention mechanism — scaled dot-product,Phase 3 / Sequence Models,0
+Ph3-Transformer-001-PnP,Transformer — overall architecture overview,Phase 3 / Transformers,0
+Ph3-Transformer-001-Coding,Transformer — overall architecture overview,Phase 3 / Transformers,0
+Ph3-Transformer-001-Theory,Transformer — overall architecture overview,Phase 3 / Transformers,0
+Ph3-Transformer-002-PnP,Multi-head attention — intuition,Phase 3 / Transformers,0
+Ph3-Transformer-002-Coding,Multi-head attention — intuition,Phase 3 / Transformers,0
+Ph3-Transformer-002-Theory,Multi-head attention — intuition,Phase 3 / Transformers,0
+Ph3-Transformer-003-PnP,Multi-head attention — Q / K / V matrices,Phase 3 / Transformers,0
+Ph3-Transformer-003-Coding,Multi-head attention — Q / K / V matrices,Phase 3 / Transformers,0
+Ph3-Transformer-003-Theory,Multi-head attention — Q / K / V matrices,Phase 3 / Transformers,0
+Ph3-Transformer-004-PnP,Positional encoding — why needed and how it works,Phase 3 / Transformers,0
+Ph3-Transformer-004-Coding,Positional encoding — why needed and how it works,Phase 3 / Transformers,0
+Ph3-Transformer-004-Theory,Positional encoding — why needed and how it works,Phase 3 / Transformers,0
+Ph3-Transformer-005-PnP,Feed-forward sublayer in transformer block,Phase 3 / Transformers,0
+Ph3-Transformer-005-Coding,Feed-forward sublayer in transformer block,Phase 3 / Transformers,0
+Ph3-Transformer-005-Theory,Feed-forward sublayer in transformer block,Phase 3 / Transformers,0
+Ph3-Transformer-006-PnP,Layer normalization,Phase 3 / Transformers,0
+Ph3-Transformer-006-Coding,Layer normalization,Phase 3 / Transformers,0
+Ph3-Transformer-006-Theory,Layer normalization,Phase 3 / Transformers,0
+Ph3-Transformer-007-PnP,Encoder-only models — BERT architecture,Phase 3 / Transformers,0
+Ph3-Transformer-007-Coding,Encoder-only models — BERT architecture,Phase 3 / Transformers,0
+Ph3-Transformer-007-Theory,Encoder-only models — BERT architecture,Phase 3 / Transformers,0
+Ph3-Transformer-008-PnP,Decoder-only models — GPT architecture,Phase 3 / Transformers,0
+Ph3-Transformer-008-Coding,Decoder-only models — GPT architecture,Phase 3 / Transformers,0
+Ph3-Transformer-008-Theory,Decoder-only models — GPT architecture,Phase 3 / Transformers,0
+Ph3-Transformer-009-PnP,Encoder-decoder models — T5 / mT5,Phase 3 / Transformers,0
+Ph3-Transformer-009-Coding,Encoder-decoder models — T5 / mT5,Phase 3 / Transformers,0
+Ph3-Transformer-009-Theory,Encoder-decoder models — T5 / mT5,Phase 3 / Transformers,0
+Ph3-Transformer-010-PnP,Pre-training vs fine-tuning — concept,Phase 3 / Transformers,0
+Ph3-Transformer-010-Coding,Pre-training vs fine-tuning — concept,Phase 3 / Transformers,0
+Ph3-Transformer-010-Theory,Pre-training vs fine-tuning — concept,Phase 3 / Transformers,0
+Ph3-HuggFace-001-Coding,Hugging Face — AutoTokenizer usage,Phase 3 / Hugging Face,0
+Ph3-HuggFace-002-Coding,Hugging Face — AutoModel and AutoModelForX,Phase 3 / Hugging Face,0
+Ph3-HuggFace-003-Coding,Hugging Face — pipeline() API,Phase 3 / Hugging Face,0
+Ph3-HuggFace-004-Coding,Hugging Face — Trainer API basics,Phase 3 / Hugging Face,0
+Ph3-HuggFace-005-Coding,Hugging Face — datasets library,Phase 3 / Hugging Face,0
+Ph3-HuggFace-006-Coding,Fine-tuning a sequence classification model,Phase 3 / Hugging Face,0
+Ph3-HuggFace-007-Coding,mBERT — multilingual BERT overview,Phase 3 / Hugging Face,0
+Ph3-HuggFace-008-Coding,NLLB — No Language Left Behind model,Phase 3 / Hugging Face,0
+Ph3-HuggFace-009-Coding,mT5 — multilingual T5 usage,Phase 3 / Hugging Face,0
+Ph3-MTEval-001-Coding,BLEU score — formula and intuition,Phase 3 / MT Evaluation,0
+Ph3-MTEval-001-Theory,BLEU score — formula and intuition,Phase 3 / MT Evaluation,0
+Ph3-MTEval-002-Coding,BLEU score — limitations,Phase 3 / MT Evaluation,0
+Ph3-MTEval-002-Theory,BLEU score — limitations,Phase 3 / MT Evaluation,0
+Ph3-MTEval-003-Coding,chrF — character n-gram metric,Phase 3 / MT Evaluation,0
+Ph3-MTEval-003-Theory,chrF — character n-gram metric,Phase 3 / MT Evaluation,0
+Ph3-MTEval-004-Coding,COMET — learned metric overview,Phase 3 / MT Evaluation,0
+Ph3-MTEval-004-Theory,COMET — learned metric overview,Phase 3 / MT Evaluation,0
+Ph3-MTEval-005-Coding,MT post-editing — quality estimation as ML task,Phase 3 / MT Evaluation,0
+Ph3-MTEval-005-Theory,MT post-editing — quality estimation as ML task,Phase 3 / MT Evaluation,0
+Ph4-MLMath-001-Coding,Model evaluation — train / val / test split,Phase 4 / MLOps,0
+Ph4-MLMath-001-Theory,Model evaluation — train / val / test split,Phase 4 / MLOps,0
+Ph4-MLMath-002-Coding,Cross-validation — k-fold,Phase 4 / MLOps,0
+Ph4-MLMath-002-Theory,Cross-validation — k-fold,Phase 4 / MLOps,0
+Ph4-MLMath-003-Coding,Precision / recall / F1 — formulas,Phase 4 / MLOps,0
+Ph4-MLMath-003-Theory,Precision / recall / F1 — formulas,Phase 4 / MLOps,0
+Ph4-MLMath-004-Coding,Confusion matrix,Phase 4 / MLOps,0
+Ph4-MLMath-004-Theory,Confusion matrix,Phase 4 / MLOps,0
+Ph4-MLMath-005-Coding,Data drift — definition and detection,Phase 4 / MLOps,0
+Ph4-MLMath-005-Theory,Data drift — definition and detection,Phase 4 / MLOps,0
+Ph4-MLMath-006-Coding,Model checkpointing — saving and loading state_dict,Phase 4 / MLOps,0
+Ph4-MLMath-006-Theory,Model checkpointing — saving and loading state_dict,Phase 4 / MLOps,0
+Ph4-MLMath-007-Coding,Experiment tracking with Weights & Biases,Phase 4 / MLOps,0
+Ph4-MLMath-007-Theory,Experiment tracking with Weights & Biases,Phase 4 / MLOps,0
+Ph4-MLMath-008-Coding,Experiment tracking with MLflow,Phase 4 / MLOps,0
+Ph4-MLMath-008-Theory,Experiment tracking with MLflow,Phase 4 / MLOps,0
+Ph4-MLMath-009-Coding,FastAPI — basic endpoint setup,Phase 4 / Deployment,0
+Ph4-MLMath-010-Coding,FastAPI — serving a model with a POST endpoint,Phase 4 / Deployment,0
+Ph4-MLMath-011-Coding,Docker — Dockerfile basics,Phase 4 / Deployment,0
+Ph4-MLMath-012-Coding,Docker — building and running an image,Phase 4 / Deployment,0
+Ph4-MLMath-013-Coding,Docker — containerizing a Python ML app,Phase 4 / Deployment,0
+Ph4-MLMath-014-Coding,Git — branching and merging workflow,Phase 4 / Deployment,0
+Ph4-MLMath-015-Coding,Git — writing meaningful commit messages for ML projects,Phase 4 / Deployment,0
+Ph4-MLMath-016-Coding,Hugging Face Hub — pushing a model,Phase 4 / Deployment,0
+Ph4-MLMath-017-Coding,Hugging Face Hub — model cards,Phase 4 / Deployment,0
+Ph4-Cloud-001-Coding,Cloud storage — S3 basics (upload / download / buckets),Phase 4 / Cloud,0
+Ph4-Cloud-002-Coding,Cloud storage — GCS or Azure Blob equivalent,Phase 4 / Cloud,0
+Ph4-Cloud-003-Coding,Managed training jobs — SageMaker or Vertex AI overview,Phase 4 / Cloud,0
+Ph4-Cloud-004-Coding,IAM and access management — basic concepts,Phase 4 / Cloud,0
