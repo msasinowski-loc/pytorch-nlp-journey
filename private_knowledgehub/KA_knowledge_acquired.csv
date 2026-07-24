@@ -74,7 +74,7 @@ FundMath-Prob-005-PnP,Expected value and variance — pen and paper (compute E[X
 FundMath-Prob-005-Coding,Expected value and variance — Python (np.mean / np.var; empirical vs theoretical),Fundamental Math / Probability,0
 FundMath-Prob-005-Theory,Expected value and variance — theory (bias-variance trade-off; what high variance in a model means),Fundamental Math / Probability,0
 FundMath-MLMath-001-PnP,MSE — pen and paper (compute for a tiny prediction set),Fundamental Math / ML Math,1
-FundMath-MLMath-001-Coding,MSE — Python (np.mean((y_pred - y_true)**2); sklearn.metrics.mean_squared_error),Fundamental Math / ML Math,1
+FundMath-MLMath-001-Coding,MSE — Python (np.mean((y_pred - y_true)**2); sklearn.metrics.mean_squared_error),Fundamental Math / ML Math,2
 FundMath-MLMath-001-Theory,MSE — theory (why squaring? connection to L2 norm; sensitivity to outliers vs MAE),Fundamental Math / ML Math,1
 FundMath-MLMath-002-PnP,Sigmoid function — pen and paper (evaluate at z = 0 / 2 / -2; sketch curve),Fundamental Math / ML Math,1
 FundMath-MLMath-002-Coding,Sigmoid function — Python (implement manually; compare to torch.sigmoid),Fundamental Math / ML Math,1
@@ -86,10 +86,11 @@ Ph1-Python-001-Coding,Python basic setup — venv and pip,Phase 1 / Python,0
 Ph1-Python-002-Coding,NumPy — installation and import,Phase 1 / Python,2
 Ph1-Python-003-Coding,NumPy — array creation (np.array / np.zeros / np.ones),Phase 1 / Python,2
 Ph1-Python-004-Coding,NumPy — indexing and slicing,Phase 1 / Python,1
+Ph1-Python-004b-Coding,NumPy — indexing syntax (single element; negative index; slices with start:stop:step; [:-1] vs [-1]; multi-dim M[row col]; column access M[:, n]),Phase 1 / Python,1
 Ph1-Python-005-Coding,NumPy — broadcasting rules,Phase 1 / Python,2
 Ph1-Python-006-Coding,NumPy — vectorized operations vs Python loops,Phase 1 / Python,2
 Ph1-Python-007-Coding,NumPy — matrix operations (np.dot / np.matmul),Phase 1 / Python,2
-Ph1-Python-008-Coding,NumPy — reshaping arrays,Phase 1 / Python,1
+Ph1-Python-008-Coding,NumPy — reshaping arrays,Phase 1 / Python,2
 Ph1-Python-009-Coding,Pandas — Series and DataFrame basics,Phase 1 / Python,0
 Ph1-Python-010-Coding,Pandas — reading CSV files,Phase 1 / Python,0
 Ph1-Python-011-Coding,Pandas — filtering rows with boolean indexing,Phase 1 / Python,0
