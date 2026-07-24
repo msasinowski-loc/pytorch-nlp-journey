@@ -37,15 +37,15 @@ FundMath-LinAlg-009-Theory,Cosine similarity — theory (why angle not distance 
 FundMath-LinAlg-010-PnP,Identity matrix — pen and paper (write 3×3 identity; verify Av = v),Fundamental Math / Linear Algebra,0
 FundMath-LinAlg-010-Coding,Identity matrix — Python (np.eye(n)),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-010-Theory,Identity matrix — theory (neutral element of matrix mult; role in initialisation),Fundamental Math / Linear Algebra,0
-FundMath-LinAlg-011-PnP,Inverse of a matrix — pen and paper (2×2 inverse by hand),Fundamental Math / Linear Algebra,0
+FundMath-LinAlg-011-PnP,Inverse of a matrix — pen and paper (2×2 inverse by hand),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-011-Coding,Inverse — Python (np.linalg.inv; check when matrix is singular),Fundamental Math / Linear Algebra,0
-FundMath-LinAlg-011-Theory,Inverse — theory (when does it exist? determinant = 0 case),Fundamental Math / Linear Algebra,0
+FundMath-LinAlg-011-Theory,Inverse — theory (when does it exist? determinant = 0 case),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-012-PnP,Eigenvalues and eigenvectors — pen and paper (solve det(A - λI) = 0 for 2×2),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-012-Coding,Eigenvalues and eigenvectors — Python (np.linalg.eig),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-012-Theory,Eigenvalues and eigenvectors — theory (PCA connection; what eigendecomposition reveals about a transformation),Fundamental Math / Linear Algebra,1
-FundMath-Calculus-001-PnP,Derivative — pen and paper (apply power / product / chain rule),Fundamental Math / Calculus,0
+FundMath-Calculus-001-PnP,Derivative — pen and paper (apply power / product / chain rule),Fundamental Math / Calculus,1
 FundMath-Calculus-001-Coding,Derivative — Python (compute numerically with finite differences; verify with sympy),Fundamental Math / Calculus,0
-FundMath-Calculus-001-Theory,Derivative — theory (rate of change; why it tells us how to adjust weights),Fundamental Math / Calculus,0
+FundMath-Calculus-001-Theory,Derivative — theory (rate of change; why it tells us how to adjust weights),Fundamental Math / Calculus,1
 FundMath-Calculus-002-PnP,Chain rule — pen and paper (multi-layer composite function),Fundamental Math / Calculus,0
 FundMath-Calculus-002-Coding,Chain rule — Python (trace autograd backward pass; compare to manual),Fundamental Math / Calculus,0
 FundMath-Calculus-002-Theory,Chain rule — theory (this IS backpropagation — recognise it),Fundamental Math / Calculus,0
