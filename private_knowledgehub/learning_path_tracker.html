@@ -801,8 +801,8 @@ function save(s) { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch {
 let state = load();
 
 // Pre-check completed tasks
-const PRE_CHECKED = ['d1-1','d1-2','d1-3','d1-5','d2-1','d2-2','d2-3','d2-4','d2-5','w1-1','w1-2','w1-3','w1-4'];
-PRE_CHECKED.forEach(id => { if (state[id] === undefined) state[id] = true; });
+const PRE_CHECKED = ['d1-1','d1-2','d1-3','d1-4','d1-5','d2-1','d2-2','d2-3','d2-4','d2-5','w1-1','w1-2','w1-3','w1-4','w14-1','w14-2','w14-3','w14-4','w15-1','w15-2','w15-3','w15-4','w16-1','w16-2'];
+PRE_CHECKED.forEach(id => { state[id] = true; });
 save(state);
 
 function toggle(row) {
