@@ -6,10 +6,10 @@ FundMath-LinAlg-002-PnP,Linear combinations — pen and paper (compute c1v1 + c2
 FundMath-LinAlg-002-PnP2,Linear combinations — pen and paper (determine if a target point is reachable given two vectors; solve c1v1 + c2v2 = target or prove impossibility),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-002-Coding,Linear combinations — Python (np.dot / weighted sum),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-002-Theory,Linear combinations — theory (span and basis; when is a set linearly independent?),Fundamental Math / Linear Algebra,2
-FundMath-LinAlg-003-PnP,Matrix multiplication — pen and paper (row × column by hand),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-003-PnP,Matrix multiplication — pen and paper (row × column by hand),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-003-Coding,Matrix multiplication — Python (np.matmul / @ operator),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-003-Theory,Matrix multiplication — theory (why order matters; composition of linear maps; inner dimension rule; why dot products require equal-length vectors; 1D vector special case; A@A.T as similarity matrix; batched matmul in 3D),Fundamental Math / Linear Algebra,2
-FundMath-LinAlg-015-Theory,Matrix multiplication — theory (shape rules: (m x n) @ (n x p) → (m x p); inner dims must match because each result cell is a dot product; NumPy 1D exception; batched matmul (b m n) @ (b n p) → (b m p); A@A.T = row similarity matrix),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-015-Theory,Matrix multiplication — theory (shape rules: (m×n)@(n×p)→(m×p); inner dims must match; NumPy 1D exception; non-square matrices change dimensionality; A@A.T = row similarity matrix; batched matmul),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-013-PnP,Linear transformations — pen and paper (draw how a 2×2 matrix transforms a unit square),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-013-Coding,Linear transformations — Python (apply matrix to a grid of vectors; visualise with matplotlib),Fundamental Math / Linear Algebra,0
 FundMath-LinAlg-013-Theory,Linear transformations — theory (matrices as functions on space; columns = where basis vectors land; scales to any dimension including 768-dim transformer layers),Fundamental Math / Linear Algebra,2
@@ -22,6 +22,7 @@ FundMath-LinAlg-004-Theory,Transpose — theory (relationship to dot product; sy
 FundMath-LinAlg-005-PnP,Dot product — pen and paper (compute a·b and angle between two vectors),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-005-Coding,Dot product — Python (np.dot; verify with magnitudes and angle),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-005-Theory,Dot product — theory (projection interpretation; why it shows up everywhere in ML),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-016-Theory,Dot product duality — theory (3B1B duality: dot product as projection onto a line; every linear transformation from nD to 1D has a dual vector; why dot product captures directional alignment),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-006-PnP,L1 norm — pen and paper (compute Manhattan distance by hand),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-006-Coding,L1 norm — Python (np.linalg.norm(v, ord=1)),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-006-Theory,L1 norm — theory (sparsity; L1 vs L2 regularisation intuition),Fundamental Math / Linear Algebra,1
@@ -37,15 +38,15 @@ FundMath-LinAlg-009-Theory,Cosine similarity — theory (why angle not distance 
 FundMath-LinAlg-010-PnP,Identity matrix — pen and paper (write 3×3 identity; verify Av = v),Fundamental Math / Linear Algebra,0
 FundMath-LinAlg-010-Coding,Identity matrix — Python (np.eye(n)),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-010-Theory,Identity matrix — theory (neutral element of matrix mult; role in initialisation),Fundamental Math / Linear Algebra,0
-FundMath-LinAlg-011-PnP,Inverse of a matrix — pen and paper (2×2 inverse by hand),Fundamental Math / Linear Algebra,0
+FundMath-LinAlg-011-PnP,Inverse of a matrix — pen and paper (2×2 inverse by hand),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-011-Coding,Inverse — Python (np.linalg.inv; check when matrix is singular),Fundamental Math / Linear Algebra,0
-FundMath-LinAlg-011-Theory,Inverse — theory (when does it exist? determinant = 0 case),Fundamental Math / Linear Algebra,0
+FundMath-LinAlg-011-Theory,Inverse — theory (when does it exist? determinant = 0 case),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-012-PnP,Eigenvalues and eigenvectors — pen and paper (solve det(A - λI) = 0 for 2×2),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-012-Coding,Eigenvalues and eigenvectors — Python (np.linalg.eig),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-012-Theory,Eigenvalues and eigenvectors — theory (PCA connection; what eigendecomposition reveals about a transformation),Fundamental Math / Linear Algebra,1
-FundMath-Calculus-001-PnP,Derivative — pen and paper (apply power / product / chain rule),Fundamental Math / Calculus,0
+FundMath-Calculus-001-PnP,Derivative — pen and paper (apply power / product / chain rule),Fundamental Math / Calculus,1
 FundMath-Calculus-001-Coding,Derivative — Python (compute numerically with finite differences; verify with sympy),Fundamental Math / Calculus,0
-FundMath-Calculus-001-Theory,Derivative — theory (rate of change; why it tells us how to adjust weights),Fundamental Math / Calculus,0
+FundMath-Calculus-001-Theory,Derivative — theory (rate of change; why it tells us how to adjust weights),Fundamental Math / Calculus,1
 FundMath-Calculus-002-PnP,Chain rule — pen and paper (multi-layer composite function),Fundamental Math / Calculus,0
 FundMath-Calculus-002-Coding,Chain rule — Python (trace autograd backward pass; compare to manual),Fundamental Math / Calculus,0
 FundMath-Calculus-002-Theory,Chain rule — theory (this IS backpropagation — recognise it),Fundamental Math / Calculus,0

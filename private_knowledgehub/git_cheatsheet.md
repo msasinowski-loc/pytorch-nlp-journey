@@ -38,16 +38,8 @@ git pull
 
 # 2. Do your work (edit files, write code)
 
-# optional
-git status
-# compares branches
-
 # 3. Stage all changes
 git add .
-
-# it stages everything — new files and modified files — from the current directory downward. 
-# this will catch all the changes, no need to be explicit about a particular file in the directory
-
 
 # 4. Commit with a message
 git commit -m "what you did"
@@ -153,6 +145,58 @@ models/
 
 ---
 
+## ⚡ Merge conflicts — what they are and how to fix them
+
+A merge conflict happens when two machines edited the **same lines** of the same file. Git can't decide which version wins, so it stops and asks you to choose.
+
+### When it happens
+```bash
+git pull
+# AUTO-MERGING FAILED:
+# CONFLICT (content): Merge conflict in private_knowledgehub/file.html
+```
+
+### What Git puts in the file
+```
+<<<<<<< HEAD
+your local version of the line
+=======
+the remote version of the line (from GitHub)
+>>>>>>> abc1234
+```
+
+### How to fix it — step by step
+```bash
+# Step 1 — open the conflicted file in VS Code
+code private_knowledgehub/learning_path_tracker.html
+
+# Step 2 — search for <<<<<<< in the file (Ctrl+F)
+# You'll see the conflict markers — decide which version to keep
+
+# Step 3 — delete the markers and everything you don't want
+# Keep only the final clean version of the lines
+
+# Step 4 — save the file, then mark it resolved
+git add private_knowledgehub/learning_path_tracker.html
+
+# Step 5 — commit and push
+git commit -m "resolve merge conflict in tracker"
+git push
+```
+
+### Which version to keep?
+For the learning tracker: keep **your local version** (between `<<<<<<< HEAD` and `=======`) since it reflects your most recent session updates from Claude.
+
+### How to avoid conflicts
+```bash
+# Always pull BEFORE making any changes
+git pull        # ← do this first, every session, on every machine
+```
+
+> The root cause is always the same: both machines changed the same file without syncing first. `git pull` before starting work eliminates this.
+
+---
+
 ## 💬 Good commit message format
 
 ```
@@ -168,4 +212,4 @@ Examples:
 
 ---
 
-*Last updated: Day 1 — pytorch-nlp-journey*
+*Last updated: Day 6 — merge conflict resolution added*
