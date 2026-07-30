@@ -20,16 +20,18 @@ FundMath-LinAlg-004-PnP,Transpose — pen and paper (flip rows/cols by hand),Fun
 FundMath-LinAlg-004-Coding,Transpose — Python (arr.T and np.transpose),Fundamental Math / Linear Algebra,0
 FundMath-LinAlg-004-Theory,Transpose — theory (relationship to dot product; symmetric matrices),Fundamental Math / Linear Algebra,0
 FundMath-LinAlg-005-PnP,Dot product — pen and paper (compute a·b and angle between two vectors),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-005b-PnP,Dot product — pen and paper (compute angle between vectors using cos θ = a·b / (‖a‖·‖b‖); interpret the angle),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-005-Coding,Dot product — Python (np.dot; verify with magnitudes and angle),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-005-Theory,Dot product — theory (projection interpretation; why it shows up everywhere in ML),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-016-Theory,Dot product duality — theory (3B1B duality: dot product as projection onto a line; every linear transformation from nD to 1D has a dual vector; why dot product captures directional alignment),Fundamental Math / Linear Algebra,1
-FundMath-LinAlg-006-PnP,L1 norm — pen and paper (compute Manhattan distance by hand),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-006-PnP,L1 norm — pen and paper (compute Manhattan distance by hand),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-006-Coding,L1 norm — Python (np.linalg.norm(v, ord=1)),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-006-Theory,L1 norm — theory (sparsity; L1 vs L2 regularisation intuition),Fundamental Math / Linear Algebra,1
-FundMath-LinAlg-007-PnP,L2 norm (Euclidean distance) — pen and paper (Pythagorean theorem in n dimensions),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-007-PnP,L2 norm (Euclidean distance) — pen and paper (Pythagorean theorem in n dimensions),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-007-Coding,L2 norm — Python (np.linalg.norm(v)),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-007-Theory,L2 norm — theory (unit vectors; why MSE implicitly uses L2),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-008-PnP,Unit vectors and normalisation — pen and paper (divide vector by its norm),Fundamental Math / Linear Algebra,0
+FundMath-LinAlg-008b-PnP,Unit vectors — pen and paper (normalise a vector by dividing by its L2 norm; verify result has norm = 1),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-008-Coding,Unit vectors — Python (v / np.linalg.norm(v)),Fundamental Math / Linear Algebra,0
 FundMath-LinAlg-008-Theory,Unit vectors — theory (why cosine similarity requires normalisation),Fundamental Math / Linear Algebra,0
 FundMath-LinAlg-009-PnP,Cosine similarity — pen and paper (compute from dot product and norms),Fundamental Math / Linear Algebra,1

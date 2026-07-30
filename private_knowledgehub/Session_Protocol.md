@@ -17,14 +17,6 @@ Open these from `private_knowledgeHub/` in your browser:
 - `learning_path_tracker.html` — check what's planned for today
 - `KA_viewer.html` — review what's due for spaced repetition
 
-07/08 update:
-for KA viewer, I need to run this in command:
-cd C:\Users\mateu\pytorch-nlp-journey\private_knowledgehub
-python -m http.server 8000
-Then go to http://localhost:8000/KA_viewer.html. Ctrl+C to stop when done.
-
-
-
 ### 3. Brief Claude
 Paste this at the start of the conversation:
 
@@ -57,7 +49,18 @@ git push
 ```
 
 ### 3. Update the tracker
-Check off completed tasks in `learning_path_tracker.html`. Note: tracker state is localStorage only — it does not sync via Git. This is a known limitation.
+Tell Claude which days or tasks are complete — Claude will hard-code the checkboxes in the HTML file. Download the updated `learning_path_tracker.html` and push it to GitHub alongside the CSV.
+
+> ⚠️ **Do not rely on clicking checkboxes in the browser** — tracker state saves to localStorage which is browser-only and does not sync via Git. The only way to sync tracker state across machines is to push an updated HTML file from Claude.
+
+```powershell
+Copy-Item "$HOME\Downloads\learning_path_tracker.html" private_knowledgehub\ -Force
+git add private_knowledgehub/learning_path_tracker.html
+git commit -m "update tracker - Day X complete"
+git push
+```
+
+> 🔮 **Planned improvement (Phase 2):** rebuild tracker to read/write state from the CSV so sync is automatic. Until then, update via Claude.
 
 ### 4. Note anything unresolved
 If a concept didn't click, flag it here or in Notion before closing. Don't rely on memory across sessions.
@@ -100,4 +103,39 @@ If a concept didn't click, flag it here or in Notion before closing. Don't rely 
 
 ---
 
-*Last updated: Day 4 — GitHub sync complete*
+*Last updated: Day 5 — tracker sync architecture clarified*
+
+---
+
+## 🌅 Daily Warm-up Protocol (weekdays only)
+
+Run every weekday before starting new content. 15 minutes max.
+
+### Structure — fixed every day
+```
+5 min  — 1 Theory item (confidence 1, related to today's theme if natural)
+10 min — 3–4 items from the active angle (lowest confidence first)
+```
+
+### Angle rotation — alternates daily
+```
+Day 6  → Pen & Paper
+Day 7  → Coding
+Day 8  → Pen & Paper
+...and so on
+```
+
+### Item selection rule
+Filter KA for confidence 1 in the active angle. If ties, prioritise items most relevant to upcoming content. Never include items at confidence 0 (unseen) in the warm-up.
+
+### Warm-up prompt for Claude
+```
+Today is Day X — [PnP / Coding] warm-up day.
+Here is my KA CSV: [paste raw GitHub URL]
+Please generate today's warm-up following the session protocol.
+```
+
+### What counts as a pass (→ confidence 2)
+- Got the core answer right without needing to open the answer first
+- Could explain it in plain language without prompting
+- For Coding: wrote the syntax correctly on the first attempt
