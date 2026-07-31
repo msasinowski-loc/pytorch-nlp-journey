@@ -46,7 +46,7 @@ FundMath-LinAlg-011-Theory,Inverse — theory (when does it exist? determinant =
 FundMath-LinAlg-012-PnP,Eigenvalues and eigenvectors — pen and paper (solve det(A - λI) = 0 for 2×2),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-012-Coding,Eigenvalues and eigenvectors — Python (np.linalg.eig),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-012-Theory,Eigenvalues and eigenvectors — theory (PCA connection; what eigendecomposition reveals about a transformation),Fundamental Math / Linear Algebra,1
-FundMath-Calculus-001-PnP,Derivative — pen and paper (apply power / product / chain rule),Fundamental Math / Calculus,1
+FundMath-Calculus-001-PnP,Derivative — pen and paper (apply power / product / chain rule),Fundamental Math / Calculus,2
 FundMath-Calculus-001-Coding,Derivative — Python (compute numerically with finite differences; verify with sympy),Fundamental Math / Calculus,0
 FundMath-Calculus-001-Theory,Derivative — theory (rate of change; why it tells us how to adjust weights),Fundamental Math / Calculus,1
 FundMath-Calculus-002-PnP,Chain rule — pen and paper (multi-layer composite function),Fundamental Math / Calculus,0
