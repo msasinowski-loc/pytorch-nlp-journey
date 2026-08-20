@@ -48,7 +48,7 @@ FundMath-LinAlg-012-Coding,Eigenvalues and eigenvectors — Python (np.linalg.ei
 FundMath-LinAlg-012-Theory,Eigenvalues and eigenvectors — theory (PCA connection; what eigendecomposition reveals about a transformation),Fundamental Math / Linear Algebra,1
 FundMath-Calculus-001-PnP,Derivative — pen and paper (apply power / product / chain rule),Fundamental Math / Calculus,2
 FundMath-Calculus-001-Coding,Derivative — Python (compute numerically with finite differences; verify with sympy),Fundamental Math / Calculus,0
-FundMath-Calculus-001-Theory,Derivative — theory (rate of change; why it tells us how to adjust weights),Fundamental Math / Calculus,1
+FundMath-Calculus-001-Theory,Derivative — theory (rate of change; why it tells us how to adjust weights),Fundamental Math / Calculus,2
 FundMath-Calculus-002-PnP,Chain rule — pen and paper (multi-layer composite function),Fundamental Math / Calculus,0
 FundMath-Calculus-002-Coding,Chain rule — Python (trace autograd backward pass; compare to manual),Fundamental Math / Calculus,0
 FundMath-Calculus-002-Theory,Chain rule — theory (this IS backpropagation — recognise it),Fundamental Math / Calculus,0
@@ -59,7 +59,7 @@ FundMath-Calculus-004-PnP,Gradient descent — pen and paper (one step of θ = �
 FundMath-Calculus-004-Coding,Gradient descent — Python (implement from scratch; compare to torch.optim.SGD),Fundamental Math / Calculus,0
 FundMath-Calculus-004-Theory,Gradient descent — theory (learning rate sensitivity; saddle points; local vs global minima),Fundamental Math / Calculus,0
 FundMath-Calculus-005-PnP,Logarithms — pen and paper (simplify log expressions; change of base),Fundamental Math / Calculus,1
-FundMath-Calculus-005-Coding,Logarithms — Python (np.log / np.log2 / np.log10; log-sum-exp trick),Fundamental Math / Calculus,1
+FundMath-Calculus-005-Coding,Logarithms — Python (np.log / np.log2 / np.log10; log-sum-exp trick),Fundamental Math / Calculus,2
 FundMath-Calculus-005-Theory,Logarithms — theory (why cross-entropy uses log; numerical stability of log-softmax),Fundamental Math / Calculus,1
 FundMath-Prob-001-PnP,Basic probability — pen and paper (enumerate sample space; compute P(A)),Fundamental Math / Probability,0
 FundMath-Prob-001-Coding,Basic probability — Python (simulate with np.random; verify empirically),Fundamental Math / Probability,0
