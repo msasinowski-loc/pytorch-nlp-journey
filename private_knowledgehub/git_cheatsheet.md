@@ -197,6 +197,50 @@ git pull        # ← do this first, every session, on every machine
 
 ---
 
+## ⚠️ Uncommitted local changes blocking pull
+
+Different from a merge conflict. Git refuses to pull because it would overwrite your local uncommitted changes.
+
+### What it looks like
+```
+error: Your local changes to the following files would be overwritten by merge:
+        private_knowledgehub/KA_knowledge_acquired.csv
+Please commit your changes or stash them before you merge.
+Aborting
+```
+
+### Diagnose first
+```bash
+git status          # see which files are modified locally
+git log --oneline   # see how far behind you are from GitHub
+```
+
+### Option A — keep your local changes (they are newer)
+```bash
+git add private_knowledgehub/KA_knowledge_acquired.csv
+git commit -m "local KA updates"
+git pull            # now pulls cleanly (or shows a real merge conflict)
+git push
+```
+
+### Option B — discard local changes (GitHub version is newer)
+```bash
+git restore private_knowledgehub/KA_knowledge_acquired.csv
+git pull
+```
+> ⚠️ `git restore` permanently discards your local changes. Only use if you're sure GitHub has the version you want.
+
+### How to decide which option
+Check which version is more up to date — your local file's last modified date vs what you know you last pushed. The KA CSV is the source of truth, so the most recently updated version wins.
+
+### How to avoid this
+```bash
+git pull                          # always first, before touching any files
+git add . && git commit -m "..." && git push   # always push before switching machines
+```
+
+---
+
 ## 💬 Good commit message format
 
 ```
@@ -212,4 +256,4 @@ Examples:
 
 ---
 
-*Last updated: Day 6 — merge conflict resolution added*
+*Last updated: Weekend — uncommitted changes troubleshooting added*
