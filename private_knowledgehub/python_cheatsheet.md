@@ -191,3 +191,120 @@ batch = np.array([[0.2, 0.8, 0.1, 0.5],
 
 *Last updated: Day 4 — NumPy reshaping complete*
 *Next: Pandas · PyTorch tensors · OOP*
+
+---
+
+## 🐍 Pandas — DataFrame basics
+`[pandas] [dataframe] [series] [read_csv] [loc] [iloc] [filter] [groupby] [missing] [nan]`
+
+```python
+import pandas as pd
+import numpy as np
+
+# Create DataFrame from dict
+df = pd.DataFrame({
+    'language':  ['English', 'French', 'German'],
+    'segments':  [1200, 850, 930],
+    'coverage':  [1.0, 0.85, None]       # None → NaN automatically
+})
+
+# Inspection
+df.shape          # (3, 3) — rows, cols
+df.dtypes         # column types — strings show as 'object'
+df.head()         # first 5 rows
+df.isnull().sum() # count missing per column
+
+# Column and row access
+df['language']           # single column → Series
+df[['language', 'segments']]  # multiple columns → DataFrame
+df.loc[1]                # row by index label
+df.loc[1, 'segments']    # specific cell by label
+df.iloc[1]               # row by integer position
+df.iloc[1, 0]            # cell by integer position
+
+# Filtering
+df[df['segments'] > 900]             # boolean filter
+df[df['coverage'].isnull()]          # rows with missing values
+df[~df['coverage'].isnull()]         # rows without missing values
+
+# Add computed column
+df['pct'] = df['coverage'] * 100
+
+# Groupby
+df.groupby('language')['segments'].sum()    # sum per group
+df.groupby('language')['segments'].count()  # count non-null per group
+
+# Missing values
+df.isnull()              # boolean mask of missing values
+df.dropna()              # drop rows with any NaN
+df.fillna(0)             # replace NaN with 0
+df.loc[1, 'coverage'] = np.nan   # manually set a missing value
+```
+
+**loc vs iloc:**
+- `loc` — label-based (use index labels and column names)
+- `iloc` — integer-based (use position numbers, 0-indexed)
+- Matters when index isn't 0,1,2,3 — e.g. after filtering
+
+---
+
+## 🐍 XML parsing — ElementTree
+`[xml] [elementtree] [tmx] [xliff] [parse] [findall] [attrib] [localization]`
+
+```python
+import xml.etree.ElementTree as ET
+
+# Load and navigate
+tree = ET.parse('file.tmx')       # parse file → ElementTree object
+root = tree.getroot()              # get root element (<tmx>)
+
+# Navigate structure
+root.findall('body/tu')            # all <tu> inside <body>
+tu.findall('tuv')                  # all <tuv> inside a <tu>
+tuv.find('seg')                    # first <seg> inside a <tuv>
+
+# Read attributes and text
+tuv.attrib                         # dict of all attributes
+tuv.attrib['xml:lang']             # specific attribute (if no namespace)
+seg.text                           # text content of element
+seg.text or ''                     # handle None for empty tags
+
+# Namespace handling (TMX uses xml: namespace)
+XML_LANG = '{http://www.w3.org/XML/1998/namespace}lang'
+lang = tuv.attrib[XML_LANG]        # 'en-US', 'fr-FR', etc.
+
+# TMX parsing pattern
+segments = []
+for tu in root.findall('body/tu'):
+    source = None
+    target = None
+    target_lang = None
+    for tuv in tu.findall('tuv'):
+        lang = tuv.attrib[XML_LANG]
+        seg = tuv.find('seg')
+        text = seg.text if seg is not None and seg.text else None
+        if lang == 'en-US':
+            source = text
+        else:
+            target = text
+            target_lang = lang
+    segments.append({
+        'source': source,
+        'target': target,
+        'target_lang': target_lang,
+        'source_len': len(source.split()) if source else 0,
+        'target_len': len(target.split()) if target else 0,
+    })
+
+df = pd.DataFrame(segments)
+```
+
+**File path note:**
+- Never hardcode absolute paths in shared code
+- Relative paths work if you `cd` into the project dir first
+- For robust scripts: `os.path.join(os.path.dirname(__file__), 'file.tmx')`
+
+---
+
+*Last updated: Weekend project — XML parsing and Pandas added*
+*Next: PyTorch tensors · OOP · TMX parser project*

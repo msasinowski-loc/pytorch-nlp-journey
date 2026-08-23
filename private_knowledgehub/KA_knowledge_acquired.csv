@@ -3,7 +3,7 @@ FundMath-LinAlg-001-PnP,Vectors — pen and paper (draw and add vectors by hand)
 FundMath-LinAlg-001-Coding,Vectors — Python (numpy array operations),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-001-Theory,Vectors — theory (what a vector space is; geometric vs algebraic view),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-002-PnP,Linear combinations — pen and paper (compute c1v1 + c2v2 by hand),Fundamental Math / Linear Algebra,2
-FundMath-LinAlg-002-PnP2,Linear combinations — pen and paper (determine if a target point is reachable given two vectors; solve c1v1 + c2v2 = target or prove impossibility),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-002-PnP2,Linear combinations — pen and paper (determine if a target point is reachable given two vectors; solve c1v1 + c2v2 = target or prove impossibility),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-002-Coding,Linear combinations — Python (np.dot / weighted sum),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-002-Theory,Linear combinations — theory (span and basis; when is a set linearly independent?),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-003-PnP,Matrix multiplication — pen and paper (row × column by hand),Fundamental Math / Linear Algebra,2
@@ -23,7 +23,7 @@ FundMath-LinAlg-005-PnP,Dot product — pen and paper (compute a·b and angle be
 FundMath-LinAlg-005b-PnP,Dot product — pen and paper (compute angle between vectors using cos θ = a·b / (‖a‖·‖b‖); interpret the angle),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-005-Coding,Dot product — Python (np.dot; verify with magnitudes and angle),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-005-Theory,Dot product — theory (projection interpretation; why it shows up everywhere in ML),Fundamental Math / Linear Algebra,1
-FundMath-LinAlg-016-Theory,Dot product duality — theory (3B1B duality: dot product as projection onto a line; every linear transformation from nD to 1D has a dual vector; why dot product captures directional alignment),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-016-Theory,Dot product duality — theory (3B1B duality: dot product as projection onto a line; every linear transformation from nD to 1D has a dual vector; why dot product captures directional alignment),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-006-PnP,L1 norm — pen and paper (compute Manhattan distance by hand),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-006-Coding,L1 norm — Python (np.linalg.norm(v, ord=1)),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-006-Theory,L1 norm — theory (sparsity; L1 vs L2 regularisation intuition),Fundamental Math / Linear Algebra,1
@@ -34,7 +34,7 @@ FundMath-LinAlg-008-PnP,Unit vectors and normalisation — pen and paper (divide
 FundMath-LinAlg-008b-PnP,Unit vectors — pen and paper (normalise a vector by dividing by its L2 norm; verify result has norm = 1),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-008-Coding,Unit vectors — Python (v / np.linalg.norm(v)),Fundamental Math / Linear Algebra,0
 FundMath-LinAlg-008-Theory,Unit vectors — theory (why cosine similarity requires normalisation),Fundamental Math / Linear Algebra,0
-FundMath-LinAlg-009-PnP,Cosine similarity — pen and paper (compute from dot product and norms),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-009-PnP,Cosine similarity — pen and paper (compute from dot product and norms),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-009-Coding,Cosine similarity — Python (sklearn or manual implementation),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-009-Theory,Cosine similarity — theory (why angle not distance for semantic similarity; relationship to dot product attention),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-010-PnP,Identity matrix — pen and paper (write 3×3 identity; verify Av = v),Fundamental Math / Linear Algebra,0
@@ -49,12 +49,12 @@ FundMath-LinAlg-012-Theory,Eigenvalues and eigenvectors — theory (PCA connecti
 FundMath-Calculus-001-PnP,Derivative — pen and paper (apply power / product / chain rule),Fundamental Math / Calculus,2
 FundMath-Calculus-001-Coding,Derivative — Python (compute numerically with finite differences; verify with sympy),Fundamental Math / Calculus,0
 FundMath-Calculus-001-Theory,Derivative — theory (rate of change; why it tells us how to adjust weights),Fundamental Math / Calculus,2
-FundMath-Calculus-002-PnP,Chain rule — pen and paper (multi-layer composite function),Fundamental Math / Calculus,0
+FundMath-Calculus-002-PnP,Chain rule — pen and paper (multi-layer composite function; apply step by step),Fundamental Math / Calculus,1
 FundMath-Calculus-002-Coding,Chain rule — Python (trace autograd backward pass; compare to manual),Fundamental Math / Calculus,0
-FundMath-Calculus-002-Theory,Chain rule — theory (this IS backpropagation — recognise it),Fundamental Math / Calculus,0
-FundMath-Calculus-003-PnP,Partial derivatives — pen and paper (hold one variable constant),Fundamental Math / Calculus,0
+FundMath-Calculus-002-Theory,Chain rule — theory (this IS backpropagation — recognise it; d/dx f(g(x)) = f'(g(x)) · g'(x)),Fundamental Math / Calculus,1
+FundMath-Calculus-003-PnP,Partial derivatives — pen and paper (hold one variable constant; compute ∂f/∂x and ∂f/∂y),Fundamental Math / Calculus,1
 FundMath-Calculus-003-Coding,Partial derivatives — Python (sympy.diff or numerical approximation),Fundamental Math / Calculus,0
-FundMath-Calculus-003-Theory,Partial derivatives — theory (gradient as vector of all partials; directional derivative),Fundamental Math / Calculus,0
+FundMath-Calculus-003-Theory,Partial derivatives — theory (gradient as vector of all partials; each partial = slope in one direction),Fundamental Math / Calculus,1
 FundMath-Calculus-004-PnP,Gradient descent — pen and paper (one step of θ = θ − α∇L by hand),Fundamental Math / Calculus,0
 FundMath-Calculus-004-Coding,Gradient descent — Python (implement from scratch; compare to torch.optim.SGD),Fundamental Math / Calculus,0
 FundMath-Calculus-004-Theory,Gradient descent — theory (learning rate sensitivity; saddle points; local vs global minima),Fundamental Math / Calculus,0
@@ -94,11 +94,11 @@ Ph1-Python-005-Coding,NumPy — broadcasting rules,Phase 1 / Python,2
 Ph1-Python-006-Coding,NumPy — vectorized operations vs Python loops,Phase 1 / Python,2
 Ph1-Python-007-Coding,NumPy — matrix operations (np.dot / np.matmul),Phase 1 / Python,2
 Ph1-Python-008-Coding,NumPy — reshaping arrays,Phase 1 / Python,2
-Ph1-Python-009-Coding,Pandas — Series and DataFrame basics,Phase 1 / Python,0
-Ph1-Python-010-Coding,Pandas — reading CSV files,Phase 1 / Python,0
-Ph1-Python-011-Coding,Pandas — filtering rows with boolean indexing,Phase 1 / Python,0
-Ph1-Python-012-Coding,Pandas — groupby and aggregation,Phase 1 / Python,0
-Ph1-Python-013-Coding,Pandas — handling missing values,Phase 1 / Python,0
+Ph1-Python-009-Coding,Pandas — Series and DataFrame basics,Phase 1 / Python,1
+Ph1-Python-010-Coding,Pandas — reading CSV files,Phase 1 / Python,1
+Ph1-Python-011-Coding,Pandas — filtering rows with boolean indexing,Phase 1 / Python,1
+Ph1-Python-012-Coding,Pandas — groupby and aggregation,Phase 1 / Python,1
+Ph1-Python-013-Coding,Pandas — handling missing values,Phase 1 / Python,1
 Ph1-Python-014-Coding,OOP — classes and instances,Phase 1 / Python,0
 Ph1-Python-015-Coding,OOP — inheritance and method overriding,Phase 1 / Python,0
 Ph1-Python-016-Coding,Python — list comprehensions and generators,Phase 1 / Python,0
@@ -106,6 +106,8 @@ Ph1-Python-017-Coding,Python — decorators and context managers,Phase 1 / Pytho
 Ph1-Python-018-Coding,Parsing TMX files in Python,Phase 1 / Localization Practice,0
 Ph1-Python-019-Coding,Parsing XLIFF files in Python,Phase 1 / Localization Practice,0
 Ph1-Python-020-Coding,Analyzing translation memory coverage with Pandas,Phase 1 / Localization Practice,0
+Ph1-Loc-001-Coding,XML parsing — read a TMX/XLIFF file with ElementTree; navigate tree structure; extract attributes and text from elements,Phase 1 / Localization Practice,0
+Ph1-Loc-002-Coding,Dictionary building — build and append dicts in a loop; handle None/missing values; collect results into a list for DataFrame conversion,Phase 1 / Localization Practice,0
 Ph2-PyTorch-001-Coding,PyTorch — installation and basic import,Phase 2 / Tensors,0
 Ph2-PyTorch-001-Theory,PyTorch — installation and basic import,Phase 2 / Tensors,0
 Ph2-PyTorch-002-Coding,Tensor creation — torch.tensor / zeros / ones / rand,Phase 2 / Tensors,0

@@ -139,3 +139,47 @@ Please generate today's warm-up following the session protocol.
 - Got the core answer right without needing to open the answer first
 - Could explain it in plain language without prompting
 - For Coding: wrote the syntax correctly on the first attempt
+
+---
+
+## 📋 Coding warm-up review protocol
+
+When you submit code for review, Claude follows this two-stage process:
+
+**Stage 1 — verdict only, no answers:**
+Claude marks each item as ✅ correct or ❌ wrong, with a one-line hint at most.
+No syntax fixes, no solutions shown yet.
+
+**Stage 2 — fixes (only after you ask):**
+After seeing which items are wrong, you attempt to fix them yourself first.
+Then ask Claude for the corrections if still stuck.
+
+This applies to all coding exercises during warm-up. For new content sessions the flow is more flexible.
+
+---
+
+## 🏗 Weekend Project Protocol
+
+**Every weekend — one coding-only project, 30–60 minutes.**
+
+No PnP, no theory. A single self-contained coding challenge that uses everything learned so far in a realistic scenario.
+
+### Design principles
+- Localization-adjacent where possible (TMX, XLIFF, bilingual data, MT evaluation)
+- Uses NumPy + Pandas as the primary tools, adding new libraries as the curriculum progresses
+- Produces something pushable to GitHub as a portfolio commit
+- Walkthrough provided (milestones + tool hints) but no starter code
+
+### First project attempted: Translation Memory Analyser
+- Parse a TMX file with ElementTree
+- Load into Pandas DataFrame
+- Compute coverage stats per language, length ratio outliers, near-duplicate detection via cosine similarity
+- **Outcome:** surfaced gaps in XML parsing and dict building → added as KA items Ph1-Loc-001 and Ph1-Loc-002
+- **Status:** incomplete, retry when XML parsing and dict building reach confidence 2
+
+### Weekend project prompt for Claude
+```
+It's the weekend. I have [X] minutes.
+My current KA items at confidence 2+: [paste or link CSV]
+Suggest a weekend coding project appropriate for my level.
+```
