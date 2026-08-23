@@ -254,24 +254,43 @@ df.loc[1, 'coverage'] = np.nan   # manually set a missing value
 ```python
 import xml.etree.ElementTree as ET
 
-# Load and navigate
-tree = ET.parse('file.tmx')       # parse file → ElementTree object
-root = tree.getroot()              # get root element (<tmx>)
+# ── XML element anatomy ───────────────────────────────────────
+# <book id="1" rating="5">Deep Learning</book>
+#  ↑ tag name  ↑ attributes (dict)      ↑ .text (string)
+#
+# <book id="1" rating="5">   → element with 2 attributes, no text
+# <title>Deep Learning</title> → element with 0 attributes, has text
+# <year></year>               → element with 0 attributes, .text = None
+#
+# Attributes live INSIDE the opening tag.
+# Text content lives BETWEEN opening and closing tags.
+# Child elements also live between tags — but as nested XML.
 
-# Navigate structure
-root.findall('body/tu')            # all <tu> inside <body>
-tu.findall('tuv')                  # all <tuv> inside a <tu>
-tuv.find('seg')                    # first <seg> inside a <tuv>
+# Load from file vs string
+tree = ET.parse('file.tmx')        # parse a file → ElementTree object
+root = tree.getroot()               # get root element
+root = ET.fromstring(xml_string)    # parse a string directly → root element
 
-# Read attributes and text
-tuv.attrib                         # dict of all attributes
-tuv.attrib['xml:lang']             # specific attribute (if no namespace)
-seg.text                           # text content of element
-seg.text or ''                     # handle None for empty tags
+# find() vs findall()
+root.find('book')                   # first match only — like regex non-greedy stop
+root.findall('book')                # ALL matches → list
+root.findall('body/tu')             # path navigation — all <tu> inside <body>
+tu.findall('tuv')                   # all <tuv> inside a <tu>
+tuv.find('seg')                     # first <seg> inside a <tuv>
+
+# Read attributes — always two separate steps
+element.attrib                      # full dict of ALL attributes
+element.attrib['id']                # one specific attribute by key
+# Never use find("book id") — path syntax is tag names only, not tag+attribute
+
+# Read text content
+seg.text                            # string content, or None if empty
+seg.text or ''                      # handle None safely
+seg.text if seg is not None and seg.text else None   # full safe pattern
 
 # Namespace handling (TMX uses xml: namespace)
 XML_LANG = '{http://www.w3.org/XML/1998/namespace}lang'
-lang = tuv.attrib[XML_LANG]        # 'en-US', 'fr-FR', etc.
+lang = tuv.attrib[XML_LANG]         # 'en-US', 'fr-FR', etc.
 
 # TMX parsing pattern
 segments = []
@@ -306,5 +325,5 @@ df = pd.DataFrame(segments)
 
 ---
 
-*Last updated: Weekend project — XML parsing and Pandas added*
+*Last updated: Day 7 — XML element anatomy and find vs findall clarified*
 *Next: PyTorch tensors · OOP · TMX parser project*

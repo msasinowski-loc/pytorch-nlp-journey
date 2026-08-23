@@ -1,38 +1,36 @@
-import pandas as pd
-import numpy as np
+import xml.etree.ElementTree as ET
 
-# creating a dffrom a dix
+xml_string = """
+<library>
+  <book id="1">
+    <title>Deep Learning</title>
+    <year>2016</year>
+  </book>
+  <book id="2">
+    <title>Python for Data Analysis</title>
+    <year>2022</year>
+  </book>
+  <book id="3">
+    <title>Attention Is All You Need</title>
+    <year></year>
+  </book>
+</library>
+"""
 
-data = {
-    'language': ['English', 'French', 'Xhosa', 'Kree'],
-    'segments': [1200, 640, 230, 100],
-    'translated': [1200, 600, 210, 90],
-    'review_done': [True, False, True, False]
-}
+# Parse the string (not a file this time — use ET.fromstring())
 
-df = pd.DataFrame(data)
-print(df)
-print(df.shape)
-print(df.dtypes)
+root = ET.fromstring(xml_string)
 
-print(df['language'])
-print(df.iloc[1])
-print(df.loc[2, 'segments'])
+# Find all <book> elements
 
-incomplete = df[df['translated'] < df['segments']]
-print(incomplete)
+allBooks = root.findall('book')
 
-#df['coverage'] = df['translated'] / df['segments']
-print(df)
+# For each book: print its id attribute, title text, and year text
 
-not_reviewed = df[df['review_done'] == False]
-print(not_reviewed)
+for book in allBooks:
+    book_id = book.attrib
+    title_text = book.find("title")
+    year = book.find("year")
+    print(book_id["id"], title_text.text, year.text)
 
-df.loc[1, 'translation'] = np.nan
-df.loc[3, 'coverage'] = np.nan
-
-print(df)
-print(df.isnull().sum)
-print(df.dropna())
-print(df.fillna(0))
-
+# Handle the empty year gracefully — don't crash
