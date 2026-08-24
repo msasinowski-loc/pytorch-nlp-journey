@@ -312,7 +312,7 @@
       </div>
 
       <div class="week-block" id="wb-day1">
-        <div class="week-header open" onclick="toggleWeek('day1', this)">
+        <div class="week-header" onclick="toggleWeek('day1', this)">
           <div class="week-label">Day 1</div>
           <div class="week-title">Environment · First video · Exercises</div>
           <div class="week-progress">
@@ -321,7 +321,7 @@
           </div>
           <div class="chev open">▾</div>
         </div>
-        <div class="week-tasks open" id="tasks-day1">
+        <div class="week-tasks open" id="tasks-day1" style="display:none">
           <div class="task-row" onclick="toggle(this)" data-id="d1-1">
             <div class="cb checked"></div>
             <div class="task-text checked">Install Python 3.11+, create a venv, install jupyter + numpy + pandas. Confirm <strong>import numpy as np</strong> works.</div>
@@ -491,16 +491,16 @@
       </div>
 
       <div class="week-block">
-        <div class="week-header" onclick="toggleWeek('wk1d7', this)">
+        <div class="week-header open" onclick="toggleWeek('wk1d7', this)">
           <div class="week-label">Day 7</div>
-          <div class="week-title">Calculus 4–5 · Pandas continued · Week review</div>
+          <div class="week-title">3B1B Calculus 4 (chain rule) · 5 (Euler's e) · Pandas groupby · Week review</div>
           <div class="week-progress"><div class="mini-bar"><div class="mini-fill" id="fill-wk1d7" style="background:var(--p1)"></div></div><div class="mini-pct" id="pct-wk1d7"></div></div>
           <div class="chev">▾</div>
         </div>
-        <div class="week-tasks" id="tasks-wk1d7">
+        <div class="week-tasks open" id="tasks-wk1d7">
           <div class="task-row" onclick="toggle(this)" data-id="w17-1">
             <div class="cb"></div>
-            <div class="task-text">3B1B Calculus videos 4–5 — Partial derivatives, gradient <span class="tag tag-res">resource</span></div>
+            <div class="task-text">3B1B Calculus video 4 — Chain rule · video 5 — Euler's number e <span class="tag tag-res">resource</span></div>
           </div>
           <div class="task-row" onclick="toggle(this)" data-id="w17-2">
             <div class="cb"></div>
@@ -801,7 +801,7 @@ function save(s) { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch {
 let state = load();
 
 // Pre-check completed tasks
-const PRE_CHECKED = ['d1-1','d1-2','d1-3','d1-4','d1-5','d2-1','d2-2','d2-3','d2-4','d2-5','w1-1','w1-2','w1-3','w1-4','w14-1','w14-2','w14-3','w14-4','w15-1','w15-2','w15-3','w15-4','w16-1','w16-2'];
+const PRE_CHECKED = ['d1-1','d1-2','d1-3','d1-4','d1-5','d2-1','d2-2','d2-3','d2-4','d2-5','w1-1','w1-2','w1-3','w1-4','w14-1','w14-2','w14-3','w14-4','w15-1','w15-2','w15-3','w15-4','w16-1','w16-2','w16-3','w16-4','w17-1'];
 PRE_CHECKED.forEach(id => { state[id] = true; });
 save(state);
 

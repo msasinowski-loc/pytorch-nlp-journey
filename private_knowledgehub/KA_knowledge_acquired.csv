@@ -61,6 +61,7 @@ FundMath-Calculus-004-Theory,Gradient descent — theory (learning rate sensitiv
 FundMath-Calculus-005-PnP,Logarithms — pen and paper (simplify log expressions; change of base),Fundamental Math / Calculus,1
 FundMath-Calculus-005-Coding,Logarithms — Python (np.log / np.log2 / np.log10; log-sum-exp trick),Fundamental Math / Calculus,2
 FundMath-Calculus-005-Theory,Logarithms — theory (why cross-entropy uses log; numerical stability of log-softmax),Fundamental Math / Calculus,1
+FundMath-Calculus-005b-Theory,Euler's number e — theory (why e is the natural base; e as the unique number where d/dx eˣ = eˣ; connection to continuous growth; why ln uses e and why cross-entropy loss does too),Fundamental Math / Calculus,1
 FundMath-Prob-001-PnP,Basic probability — pen and paper (enumerate sample space; compute P(A)),Fundamental Math / Probability,0
 FundMath-Prob-001-Coding,Basic probability — Python (simulate with np.random; verify empirically),Fundamental Math / Probability,0
 FundMath-Prob-001-Theory,Basic probability — theory (frequentist vs Bayesian framing),Fundamental Math / Probability,0
@@ -89,7 +90,7 @@ Ph1-Python-001-Coding,Python basic setup — venv and pip,Phase 1 / Python,0
 Ph1-Python-002-Coding,NumPy — installation and import,Phase 1 / Python,2
 Ph1-Python-003-Coding,NumPy — array creation (np.array / np.zeros / np.ones),Phase 1 / Python,2
 Ph1-Python-004-Coding,NumPy — indexing and slicing,Phase 1 / Python,1
-Ph1-Python-004b-Coding,NumPy — indexing syntax (single element; negative index; slices with start:stop:step; [:-1] vs [-1]; multi-dim M[row col]; column access M[:, n]),Phase 1 / Python,1
+Ph1-Python-004b-Coding,NumPy — indexing syntax (single element; negative index; slices with start:stop:step; [:-1] vs [-1]; multi-dim M[row col]; column access M[:, n]),Phase 1 / Python,2
 Ph1-Python-005-Coding,NumPy — broadcasting rules,Phase 1 / Python,2
 Ph1-Python-006-Coding,NumPy — vectorized operations vs Python loops,Phase 1 / Python,2
 Ph1-Python-007-Coding,NumPy — matrix operations (np.dot / np.matmul),Phase 1 / Python,2

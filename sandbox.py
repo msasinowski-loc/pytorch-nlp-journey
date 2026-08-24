@@ -1,36 +1,23 @@
-import xml.etree.ElementTree as ET
+import pandas as pd
+import numpy as np
 
-xml_string = """
-<library>
-  <book id="1">
-    <title>Deep Learning</title>
-    <year>2016</year>
-  </book>
-  <book id="2">
-    <title>Python for Data Analysis</title>
-    <year>2022</year>
-  </book>
-  <book id="3">
-    <title>Attention Is All You Need</title>
-    <year></year>
-  </book>
-</library>
-"""
+data = {
+    'language': ['fr-FR', 'fr-FR', 'fr-FR', 'de-DE', 'de-DE', 'de-DE', 'es-ES', 'es-ES', 'es-ES'],
+    'source':   ['Update available', 'Click confirm', 'Contact support',
+                 'Update available', 'Click confirm', 'Contact support',
+                 'Update available', 'Click confirm', 'Contact support'],
+    'target':   ['Mise à jour', 'Cliquez confirmer', None,
+                 'Update verfügbar', None, 'Support kontaktieren',
+                 'Actualización', 'Haga clic', 'Contacte soporte'],
+    'src_len':  [2, 2, 2, 2, 2, 2, 2, 2, 2],
+    'tgt_len':  [3, 2, None, 2, None, 2, 1, 3, 2]
+}
 
-# Parse the string (not a file this time — use ET.fromstring())
+df = pd.DataFrame(data)
+print(df)
 
-root = ET.fromstring(xml_string)
+# Count total segments per language
+print(df.groupby('language')['source'].count())
 
-# Find all <book> elements
-
-allBooks = root.findall('book')
-
-# For each book: print its id attribute, title text, and year text
-
-for book in allBooks:
-    book_id = book.attrib
-    title_text = book.find("title")
-    year = book.find("year")
-    print(book_id["id"], title_text.text, year.text)
-
-# Handle the empty year gracefully — don't crash
+# Count non-null targets per language (translated segments only)
+print(df.groupby('language')['target'].count())
