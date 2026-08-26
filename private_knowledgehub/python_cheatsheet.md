@@ -231,8 +231,29 @@ df[~df['coverage'].isnull()]         # rows without missing values
 df['pct'] = df['coverage'] * 100
 
 # Groupby
-df.groupby('language')['segments'].sum()    # sum per group
-df.groupby('language')['segments'].count()  # count non-null per group
+df.groupby('language')['segments'].sum()         # sum per group
+df.groupby('language')['segments'].count()        # count non-null per group
+df.groupby('language')['segments'].mean()         # mean per group, nulls ignored
+
+# Multiple aggregations at once
+df.groupby('language').agg({
+    'source': 'count',     # same as .count() — pass as string or function
+    'target': 'count',
+    'tgt_len': 'mean'
+})
+# Other agg options: 'sum', 'min', 'max', 'std', 'first', 'last'
+# Pass np.mean etc. instead of string for custom functions
+
+# Count non-null values as 0/1 (useful for coverage %)
+df['translated'] = df['target'].notna().astype(int)
+# notna() → True/False per row, astype(int) → 1/0
+# Then groupby().sum() gives count of translated segments
+# Note: astype(int) crashes if NaNs present — use 'Int64' (capital I) for nullable int
+
+# Coverage pattern
+total = df.groupby('language')['source'].count()
+translated = df.groupby('language')['target'].count()
+coverage = translated / total * 100
 
 # Missing values
 df.isnull()              # boolean mask of missing values

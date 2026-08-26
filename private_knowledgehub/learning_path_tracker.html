@@ -491,13 +491,13 @@
       </div>
 
       <div class="week-block">
-        <div class="week-header open" onclick="toggleWeek('wk1d7', this)">
+        <div class="week-header" onclick="toggleWeek('wk1d7', this)">
           <div class="week-label">Day 7</div>
-          <div class="week-title">3B1B Calculus 4 (chain rule) · 5 (Euler's e) · Pandas groupby · Week review</div>
+          <div class="week-title">3B1B Calculus 4 (chain rule) · 5 (Euler's e) · Pandas groupby</div>
           <div class="week-progress"><div class="mini-bar"><div class="mini-fill" id="fill-wk1d7" style="background:var(--p1)"></div></div><div class="mini-pct" id="pct-wk1d7"></div></div>
           <div class="chev">▾</div>
         </div>
-        <div class="week-tasks open" id="tasks-wk1d7">
+        <div class="week-tasks" id="tasks-wk1d7">
           <div class="task-row" onclick="toggle(this)" data-id="w17-1">
             <div class="cb"></div>
             <div class="task-text">3B1B Calculus video 4 — Chain rule · video 5 — Euler's number e <span class="tag tag-res">resource</span></div>
@@ -505,10 +505,6 @@
           <div class="task-row" onclick="toggle(this)" data-id="w17-2">
             <div class="cb"></div>
             <div class="task-text">Pandas: groupby, aggregation, missing values <span class="tag tag-py">python</span></div>
-          </div>
-          <div class="task-row" onclick="toggle(this)" data-id="w17-3">
-            <div class="cb"></div>
-            <div class="task-text">Week 1 KA review session — filter confidence 1, test yourself</div>
           </div>
         </div>
       </div>
@@ -521,6 +517,39 @@
         <div class="milestone">
           <div class="milestone-title">→ Week 2 entry</div>
           <p>Start the TMX parser. Real data, real Python, first portfolio commit.</p>
+        </div>
+      </div>
+
+      <div class="week-block">
+        <div class="week-header open" onclick="toggleWeek('now-w2', this)">
+          <div class="week-label">Week 2</div>
+          <div class="week-title">TMX parser · TM coverage analysis</div>
+          <div class="week-progress"><div class="mini-bar"><div class="mini-fill" id="fill-now-w2" style="background:var(--p1)"></div></div><div class="mini-pct" id="pct-now-w2"></div></div>
+          <div class="chev open">▾</div>
+        </div>
+        <div class="week-tasks open" id="tasks-now-w2">
+          <div class="section-divider">Python</div>
+          <div class="task-row" onclick="toggle(this)" data-id="nw2-1">
+            <div class="cb"></div>
+            <div class="task-text">XML parsing — read TMX with ElementTree, navigate tree, extract attributes <span class="tag tag-py">python</span></div>
+          </div>
+          <div class="task-row" onclick="toggle(this)" data-id="nw2-2">
+            <div class="cb"></div>
+            <div class="task-text">Dictionary building — build and append dicts in a loop, handle None, load into DataFrame <span class="tag tag-py">python</span></div>
+          </div>
+          <div class="section-divider">Localization Project</div>
+          <div class="task-row" onclick="toggle(this)" data-id="nw2-3">
+            <div class="cb"></div>
+            <div class="task-text">Write TMX parser — extract source/target pairs into a DataFrame <span class="tag tag-loc">localization</span></div>
+          </div>
+          <div class="task-row" onclick="toggle(this)" data-id="nw2-4">
+            <div class="cb"></div>
+            <div class="task-text">TM coverage analysis — groupby language, count segments, flag missing <span class="tag tag-loc">localization</span></div>
+          </div>
+          <div class="task-row" onclick="toggle(this)" data-id="nw2-5">
+            <div class="cb"></div>
+            <div class="task-text">Push first script to GitHub — first portfolio commit <span class="tag tag-loc">localization</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -801,7 +830,7 @@ function save(s) { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch {
 let state = load();
 
 // Pre-check completed tasks
-const PRE_CHECKED = ['d1-1','d1-2','d1-3','d1-4','d1-5','d2-1','d2-2','d2-3','d2-4','d2-5','w1-1','w1-2','w1-3','w1-4','w14-1','w14-2','w14-3','w14-4','w15-1','w15-2','w15-3','w15-4','w16-1','w16-2','w16-3','w16-4','w17-1'];
+const PRE_CHECKED = ['d1-1','d1-2','d1-3','d1-4','d1-5','d2-1','d2-2','d2-3','d2-4','d2-5','w1-1','w1-2','w1-3','w1-4','w14-1','w14-2','w14-3','w14-4','w15-1','w15-2','w15-3','w15-4','w16-1','w16-2','w16-3','w16-4','w17-1','w17-2'];
 PRE_CHECKED.forEach(id => { state[id] = true; });
 save(state);
 
@@ -842,7 +871,7 @@ function updateAll() {
 
   // Update progress bars per week block
   const blocks = [
-    'day1','day2','wk1rest','wk1d4','wk1d5','wk1d6','wk1d7',
+    'day1','day2','wk1rest','wk1d4','wk1d5','wk1d6','wk1d7','now-w2',
     'p1w1','p1w2','p1w3','p1w4','p1w56',
     'p2w1','p2w2','p2w3',
     'p3w1','p3w2','p3w3','p3w4',

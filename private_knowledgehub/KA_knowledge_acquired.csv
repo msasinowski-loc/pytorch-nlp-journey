@@ -20,7 +20,7 @@ FundMath-LinAlg-004-PnP,Transpose — pen and paper (flip rows/cols by hand),Fun
 FundMath-LinAlg-004-Coding,Transpose — Python (arr.T and np.transpose),Fundamental Math / Linear Algebra,0
 FundMath-LinAlg-004-Theory,Transpose — theory (relationship to dot product; symmetric matrices),Fundamental Math / Linear Algebra,0
 FundMath-LinAlg-005-PnP,Dot product — pen and paper (compute a·b and angle between two vectors),Fundamental Math / Linear Algebra,1
-FundMath-LinAlg-005b-PnP,Dot product — pen and paper (compute angle between vectors using cos θ = a·b / (‖a‖·‖b‖); interpret the angle),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-005b-PnP,Dot product — pen and paper (compute angle between vectors using cos θ = a·b / (‖a‖·‖b‖); interpret the angle),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-005-Coding,Dot product — Python (np.dot; verify with magnitudes and angle),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-005-Theory,Dot product — theory (projection interpretation; why it shows up everywhere in ML),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-016-Theory,Dot product duality — theory (3B1B duality: dot product as projection onto a line; every linear transformation from nD to 1D has a dual vector; why dot product captures directional alignment),Fundamental Math / Linear Algebra,2
@@ -77,9 +77,10 @@ FundMath-Prob-004-Theory,Probability distributions — theory (discrete vs conti
 FundMath-Prob-005-PnP,Expected value and variance — pen and paper (compute E[X] and Var[X] for a simple distribution),Fundamental Math / Probability,0
 FundMath-Prob-005-Coding,Expected value and variance — Python (np.mean / np.var; empirical vs theoretical),Fundamental Math / Probability,0
 FundMath-Prob-005-Theory,Expected value and variance — theory (bias-variance trade-off; what high variance in a model means),Fundamental Math / Probability,0
-FundMath-MLMath-001-PnP,MSE — pen and paper (compute for a tiny prediction set),Fundamental Math / ML Math,1
+FundMath-MLMath-001-PnP,MSE — pen and paper (compute for a tiny prediction set),Fundamental Math / ML Math,2
 FundMath-MLMath-001-Coding,MSE — Python (np.mean((y_pred - y_true)**2); sklearn.metrics.mean_squared_error),Fundamental Math / ML Math,2
 FundMath-MLMath-001-Theory,MSE — theory (why squaring? connection to L2 norm; sensitivity to outliers vs MAE),Fundamental Math / ML Math,1
+FundMath-MLMath-001b-Theory,MAE vs MSE — theory (MAE = mean absolute error; MSE penalises large errors quadratically; MAE penalises linearly; MSE preferred when large errors are especially bad; MAE more robust to outliers),Fundamental Math / ML Math,0
 FundMath-MLMath-002-PnP,Sigmoid function — pen and paper (evaluate at z = 0 / 2 / -2; sketch curve),Fundamental Math / ML Math,1
 FundMath-MLMath-002-Coding,Sigmoid function — Python (implement manually; compare to torch.sigmoid),Fundamental Math / ML Math,1
 FundMath-MLMath-002-Theory,Sigmoid function — theory (squashing to [0,1]; vanishing gradient problem; why ReLU replaced it in deep nets),Fundamental Math / ML Math,1

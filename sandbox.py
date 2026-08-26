@@ -21,3 +21,19 @@ print(df.groupby('language')['source'].count())
 
 # Count non-null targets per language (translated segments only)
 print(df.groupby('language')['target'].count())
+
+total = df.groupby('language')['source'].count()
+translated = df.groupby('language')['target'].count()
+coverage = translated / total * 100
+print(coverage)
+
+print(df.groupby('language')['tgt_len'].mean())
+
+print(df.groupby('language').agg({
+    'source': 'count',
+    "target": "count",
+    "tgt_len": "mean"
+}))
+
+df['coverage'] = df['target'].notna().astype(int)
+print(df.groupby('language')['coverage'].sum())

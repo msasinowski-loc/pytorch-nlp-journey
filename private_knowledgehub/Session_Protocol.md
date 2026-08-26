@@ -183,3 +183,42 @@ It's the weekend. I have [X] minutes.
 My current KA items at confidence 2+: [paste or link CSV]
 Suggest a weekend coding project appropriate for my level.
 ```
+
+---
+
+## 🎓 Teaching & confidence level principles
+
+### Python teaching flow
+When introducing new Python/Pandas/NumPy content:
+1. Show the setup code, explain what it does
+2. Ask the learner to **explain it back in their own words**
+3. Ask for a **prediction before running** — what do you expect this to output and why?
+4. Run the code and compare to prediction
+5. Explain any gaps, then move to the next concept
+
+This flow builds durable understanding — prediction forces active thinking, not passive reading.
+
+### Confidence level definitions
+
+| Level | Name | Meaning |
+|---|---|---|
+| 0 | Unseen | Not yet encountered |
+| 1 | Fuzzy | Seen it, couldn't fully recall without help |
+| 2 | Familiar | Can recall and apply with some effort — **expected steady state** |
+| 3 | Mastery | Can recall fluently, explain to others, apply in novel contexts |
+
+**Confidence 2 is the target for all content.** Progression from 2 → 3 is slow and deliberate.
+
+### Warm-up item rules by confidence level
+
+**Items at confidence 1 → 2:**
+- Standard warm-up exercises — recall and apply the basic concept
+- Move to 2 when: got it right on first attempt without hints
+
+**Items at confidence 2 → 3:**
+- Max 1–2 items per warm-up
+- Challenge goes beyond basic recall — novel application, edge cases, explaining the why, connecting to upcoming content
+- Move to 3 only when: demonstrated mastery unprompted
+- Devalue back to 1 if: fundamental gap surfaces during the exercise
+
+**Confidence 2 is not a stepping stone — it's the destination.** Most items will live at 2 for weeks before earning a 3.
