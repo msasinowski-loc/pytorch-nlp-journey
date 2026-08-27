@@ -1,39 +1,36 @@
-import pandas as pd
-import numpy as np
+import xml.etree.ElementTree as ET
 
-data = {
-    'language': ['fr-FR', 'fr-FR', 'fr-FR', 'de-DE', 'de-DE', 'de-DE', 'es-ES', 'es-ES', 'es-ES'],
-    'source':   ['Update available', 'Click confirm', 'Contact support',
-                 'Update available', 'Click confirm', 'Contact support',
-                 'Update available', 'Click confirm', 'Contact support'],
-    'target':   ['Mise à jour', 'Cliquez confirmer', None,
-                 'Update verfügbar', None, 'Support kontaktieren',
-                 'Actualización', 'Haga clic', 'Contacte soporte'],
-    'src_len':  [2, 2, 2, 2, 2, 2, 2, 2, 2],
-    'tgt_len':  [3, 2, None, 2, None, 2, 1, 3, 2]
-}
+xml_string = """
+<catalog>
+  <item id="A1" type="software">
+    <name>Translation Editor</name>
+    <version>3.2</version>
+  </item>
+  <item id="A2" type="hardware">
+    <name>CAT Tool Dongle</name>
+    <version></version>
+  </item>
+  <item id="A3" type="software">
+    <name>QA Checker</name>
+    <version>1.0</version>
+  </item>
+</catalog>
+"""
 
-df = pd.DataFrame(data)
-print(df)
+# 1. Parse the string
 
-# Count total segments per language
-print(df.groupby('language')['source'].count())
+root = ET.fromstring(xml_string)
+print(root)
 
-# Count non-null targets per language (translated segments only)
-print(df.groupby('language')['target'].count())
+# 2. Find all <item> elements
+# 3. For each item print: id attribute, type attribute, name text, version text
 
-total = df.groupby('language')['source'].count()
-translated = df.groupby('language')['target'].count()
-coverage = translated / total * 100
-print(coverage)
+for item in root.findall('item'):
+    print(item.attrib['id'])
+    print(item.attrib['type'])
+    nameElement, versionElement = item.find('name'), item.find('version')
+    version = versionElement.text if versionElement is not None and versionElement.text else None
+    print(nameElement.text, version)
+    
 
-print(df.groupby('language')['tgt_len'].mean())
-
-print(df.groupby('language').agg({
-    'source': 'count',
-    "target": "count",
-    "tgt_len": "mean"
-}))
-
-df['coverage'] = df['target'].notna().astype(int)
-print(df.groupby('language')['coverage'].sum())
+# 4. Handle empty version gracefully
