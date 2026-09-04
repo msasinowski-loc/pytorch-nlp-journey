@@ -133,15 +133,39 @@ __pycache__/
 .env
 .ipynb_checkpoints/
 *.csv
+!private_knowledgehub/KA_knowledge_acquired.csv
 *.tmx
 *.xliff
 data/
 models/
 *.pt
 *.bin
+tmxes_samples/full_size/
 ```
 
 > Add this as `.gitignore` in your repo root. Keeps large files and secrets off GitHub.
+
+### Un-ignoring specific files with `!`
+
+Ignore all files of a type, but explicitly allow specific ones:
+
+```
+*.tmx                              # ignore all TMX files
+!tmxes_samples/sample_en_fr.tmx   # except this one
+!tmxes_samples/sample_en_de.tmx   # and this one
+```
+
+Useful when you want to sync sample/test files but not large production data.
+
+> ⚠️ **Caveat:** if the parent directory itself is ignored, `!` exceptions won't work. Make sure `tmxes_samples/` is NOT in `.gitignore` — only the subdirectory `tmxes_samples/full_size/` should be ignored.
+
+### Ignoring a specific subdirectory
+
+```
+tmxes_samples/full_size/           # ignore everything inside this folder
+```
+
+Always use a trailing slash for directories — without it, Git may also match a file with that name.
 
 ---
 
@@ -256,4 +280,4 @@ Examples:
 
 ---
 
-*Last updated: Weekend — uncommitted changes troubleshooting added*
+*Last updated: Week 2 — gitignore un-ignore pattern added*

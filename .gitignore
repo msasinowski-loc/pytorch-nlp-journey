@@ -5,6 +5,8 @@ __pycache__/
 *.csv
 !private_knowledgeHub/KA_knowledge_acquired.csv
 *.tmx
+!tmxes_samples/sample_en_fr.tmx
+!tmxes_samples/sample_en_de.tmx
 *.xliff
 data/
 models/
