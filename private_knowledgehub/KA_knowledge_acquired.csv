@@ -59,6 +59,7 @@ FundMath-Calculus-004-PnP,Gradient descent — pen and paper (one step of θ = �
 FundMath-Calculus-004-Coding,Gradient descent — Python (implement from scratch; compare to torch.optim.SGD),Fundamental Math / Calculus,0
 FundMath-Calculus-004-Theory,Gradient descent — theory (learning rate sensitivity; saddle points; local vs global minima),Fundamental Math / Calculus,0
 FundMath-Calculus-005-PnP,Logarithms — pen and paper (simplify log expressions; change of base),Fundamental Math / Calculus,1
+FundMath-Calculus-005b-PnP,Logarithm rules — pen and paper (log(AB)=log(A)+log(B); log(A/B)=log(A)-log(B); log(Aⁿ)=n·log(A); apply to simplify expressions),Fundamental Math / Calculus,0
 FundMath-Calculus-005-Coding,Logarithms — Python (np.log / np.log2 / np.log10; log-sum-exp trick),Fundamental Math / Calculus,2
 FundMath-Calculus-005-Theory,Logarithms — theory (why cross-entropy uses log; numerical stability of log-softmax),Fundamental Math / Calculus,1
 FundMath-Calculus-005b-Theory,Euler's number e — theory (why e is the natural base; e as the unique number where d/dx eˣ = eˣ; connection to continuous growth; why ln uses e and why cross-entropy loss does too),Fundamental Math / Calculus,1
