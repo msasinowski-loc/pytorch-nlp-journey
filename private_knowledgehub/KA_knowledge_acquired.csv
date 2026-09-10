@@ -109,7 +109,7 @@ Ph1-Python-017-Coding,Python — decorators and context managers,Phase 1 / Pytho
 Ph1-Python-018-Coding,Parsing TMX files in Python,Phase 1 / Localization Practice,0
 Ph1-Python-019-Coding,Parsing XLIFF files in Python,Phase 1 / Localization Practice,0
 Ph1-Python-020-Coding,Analyzing translation memory coverage with Pandas,Phase 1 / Localization Practice,0
-Ph1-Loc-001-Coding,XML parsing — read a TMX/XLIFF file with ElementTree; navigate tree structure; extract attributes and text from elements,Phase 1 / Localization Practice,0
+Ph1-Loc-001-Coding,XML parsing — read a TMX/XLIFF file with ElementTree; navigate tree structure; extract attributes and text from elements,Phase 1 / Localization Practice,2
 Ph1-Loc-002-Coding,Dictionary building — build and append dicts in a loop; handle None/missing values; collect results into a list for DataFrame conversion,Phase 1 / Localization Practice,0
 Ph2-PyTorch-001-Coding,PyTorch — installation and basic import,Phase 2 / Tensors,0
 Ph2-PyTorch-001-Theory,PyTorch — installation and basic import,Phase 2 / Tensors,0
