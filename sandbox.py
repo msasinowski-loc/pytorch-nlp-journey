@@ -25,8 +25,14 @@ root = ET.fromstring(xml_string)
 entries = []
 
 for unit in root.findall('unit'):
+    source_element = unit.find("source")
+    target_element = unit.find("target")
     entries.append({
-        
+        "id": unit.attrib["id"],
+        "status": unit.attrib["status"],
+        "source": source_element.text,
+        "target": target_element.text,
+        "source_word_count": len(source_element.text)
     })
 
 # Keys: id, status, source, target, lang, source_word_count

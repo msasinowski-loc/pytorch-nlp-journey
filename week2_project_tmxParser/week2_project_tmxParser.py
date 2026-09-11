@@ -8,8 +8,12 @@
 
 import xml.etree.ElementTree as ET
 import pandas as pd
+import regex as re
 
 XML_LANG = '{http://www.w3.org/XML/1998/namespace}lang'
+
+file_path = r'C:\@my stuff\@study\Programming\pytorch-nlp-journey\tmxes_samples\full_size\LIUNA-Other-eng-spa-US-Master.tmx'
+
 
 # detect language code used in the tmx
 # on reflection, deemed as redundant, code left in case of future use
@@ -40,24 +44,30 @@ def tmx_parser(file_path):
         source = None
         target = None
         target_lang = None
+
+        source_clean = None # guardrails against no source tuv in TU, as it's appended below
+        target_clean = None  # ditto
+        
         for tuv in tu.findall('tuv'):
             lang = tuv.attrib[XML_LANG]
             seg = tuv.find('seg')
-            text = seg.text if seg is not None and seg.text else None
 
-            if lang == source_language:
-                source = seg.text
-            else:
-                target_lang = lang
-                target = seg.text if seg is not None and seg.text else None
+            if seg is not None:
+                if lang == source_language:
+                    source_full = ' '.join(seg.itertext())
+                    source_clean = re.sub(r'&lt;.*?&gt;', '', source_full)
+                else:
+                    target_lang = lang
+                    target_full = ' '.join(seg.itertext())
+                    target_clean = re.sub(r'&lt;.*?&gt;', '', target_full)
 
         # append the dict here - outside the inner loop
         segments_from_tmx.append({
-            'source': source,
-            'target': target,
+            'source': source_clean,
+            'target': target_clean,
             'target_lang': target_lang,
-            'source_len': len(source.split()) if source else None,
-            'target_len': len(target.split()) if target else None
+            'source_len': len(source_clean.split()) if source_clean else None,
+            'target_len': len(target_clean.split()) if target_clean else None
             })
     return segments_from_tmx
 
@@ -77,7 +87,6 @@ def counting_coverage(df_from_results):
     print(coverage)
 
 
-file_path = r'C:\@my stuff\@study\Programming\pytorch-nlp-journey\tmxes_samples\full_size\LIUNA-Other-eng-spa-US-Master.tmx'
 results = tmx_parser(file_path)
 
 '''
@@ -94,5 +103,5 @@ df = pd.DataFrame(results)
 
 #print(counting_coverage(df))
 
-# df[df['source'].isnull()].to_csv('empty_tus.csv', index=False) # not used rn
+df.to_csv('empty_tus.csv', index=False) # not used rn
 # print(df[df['source'].isnull()])  # ditto
