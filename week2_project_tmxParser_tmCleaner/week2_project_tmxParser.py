@@ -1,7 +1,12 @@
 # starting on 08/26/26 as part of the week2 flow
+
 # v2 started on 09/05 - moves from mock TMX to actual examples
 # v2.1 is identifying language codes instead of hardcoding
 # v2.2 is improving the TUs parser to account for nested tags 
+
+# 09/12
+# decided to separate the cleaner into a stand-alone tool, closing this script
+# as a pure parser
 
 # before runnin ensure you cd to
 # C:\Users\mateu\pytorch-nlp-journey\week2_project_tmxParser
@@ -12,7 +17,8 @@ import regex as re
 
 XML_LANG = '{http://www.w3.org/XML/1998/namespace}lang'
 
-file_path = r'C:\@my stuff\@study\Programming\pytorch-nlp-journey\tmxes_samples\full_size\LIUNA-Other-eng-spa-US-Master.tmx'
+#file_path = r'C:\@my stuff\@study\Programming\pytorch-nlp-journey\tmxes_samples\full_size\LIUNA-Other-eng-spa-US-Master.tmx'
+file_path = r'C:\Users\mateu\pytorch-nlp-journey\week2_project_tmxParser\tmxes_samples\full_size\LIUNA-Other-eng-spa-US-Master.tmx'
 
 
 # detect language code used in the tmx
@@ -103,5 +109,5 @@ df = pd.DataFrame(results)
 
 #print(counting_coverage(df))
 
-df.to_csv('empty_tus.csv', index=False) # not used rn
+df.to_csv('parsed_tmx_raw.csv', index=False) # not used rn
 # print(df[df['source'].isnull()])  # ditto
