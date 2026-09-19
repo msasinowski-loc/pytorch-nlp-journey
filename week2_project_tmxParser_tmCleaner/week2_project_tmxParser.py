@@ -18,8 +18,7 @@ import regex as re
 XML_LANG = '{http://www.w3.org/XML/1998/namespace}lang'
 
 #file_path = r'C:\@my stuff\@study\Programming\pytorch-nlp-journey\tmxes_samples\full_size\LIUNA-Other-eng-spa-US-Master.tmx'
-file_path = r'C:\Users\mateu\pytorch-nlp-journey\week2_project_tmxParser\tmxes_samples\full_size\LIUNA-Other-eng-spa-US-Master.tmx'
-
+file_path = r'C:\Users\mateu\pytorch-nlp-journey\week2_project_tmxParser_tmCleaner\tmxes_samples\full_size\LIUNA-Other-eng-spa-US-Master.tmx'
 
 # detect language code used in the tmx
 # on reflection, deemed as redundant, code left in case of future use
@@ -61,7 +60,8 @@ def tmx_parser(file_path):
             if seg is not None:
                 if lang == source_language:
                     source_full = ' '.join(seg.itertext())
-                    source_clean = re.sub(r'&lt;.*?&gt;', '', source_full)
+                    source_clean = re.sub(r'&lt;.*?&gt;', '', source_full) # this strips escaped <>, technically
+                    # not essential anymore as moved to a tmx cleaner, but doesn't hurt
                 else:
                     target_lang = lang
                     target_full = ' '.join(seg.itertext())
