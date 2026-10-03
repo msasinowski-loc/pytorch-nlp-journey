@@ -298,6 +298,7 @@
   <div class="tab" onclick="showPane('p2')">Phase 2</div>
   <div class="tab" onclick="showPane('p3')">Phase 3</div>
   <div class="tab" onclick="showPane('p4')">Phase 4</div>
+  <div class="tab" onclick="showPane('grad')">Grad School</div>
 </div>
 
 <div class="content">
@@ -521,34 +522,35 @@
       </div>
 
       <div class="week-block">
-        <div class="week-header open" onclick="toggleWeek('now-w2', this)">
-          <div class="week-label">Week 2</div>
-          <div class="week-title">TMX parser · TM coverage analysis</div>
-          <div class="week-progress"><div class="mini-bar"><div class="mini-fill" id="fill-now-w2" style="background:var(--p1)"></div></div><div class="mini-pct" id="pct-now-w2"></div></div>
+        <div class="week-header open" onclick="toggleWeek('now-w4', this)">
+          <div class="week-label">Week 4 — now</div>
+          <div class="week-title">OOP · Probability · Corpus cleaner</div>
+          <div class="week-progress"><div class="mini-bar"><div class="mini-fill" id="fill-now-w4" style="background:var(--p1)"></div></div><div class="mini-pct" id="pct-now-w4"></div></div>
           <div class="chev open">▾</div>
         </div>
-        <div class="week-tasks open" id="tasks-now-w2">
-          <div class="section-divider">Python</div>
-          <div class="task-row" onclick="toggle(this)" data-id="nw2-1">
+        <div class="week-tasks open" id="tasks-now-w4">
+          <div class="section-divider">Math</div>
+          <div class="task-row" onclick="toggle(this)" data-id="nw4-1">
             <div class="cb"></div>
-            <div class="task-text">XML parsing — read TMX with ElementTree, navigate tree, extract attributes <span class="tag tag-py">python</span></div>
+            <div class="task-text">Probability: conditional probability, Bayes' theorem, distributions <span class="tag tag-math">math</span></div>
           </div>
-          <div class="task-row" onclick="toggle(this)" data-id="nw2-2">
+          <div class="section-divider">Python</div>
+          <div class="task-row" onclick="toggle(this)" data-id="nw4-2">
             <div class="cb"></div>
-            <div class="task-text">Dictionary building — build and append dicts in a loop, handle None, load into DataFrame <span class="tag tag-py">python</span></div>
+            <div class="task-text">OOP: classes, instances, inheritance, method overriding <span class="tag tag-py">python</span></div>
+          </div>
+          <div class="task-row" onclick="toggle(this)" data-id="nw4-3">
+            <div class="cb"></div>
+            <div class="task-text">List comprehensions, generators, decorators, context managers <span class="tag tag-py">python</span></div>
           </div>
           <div class="section-divider">Localization Project</div>
-          <div class="task-row" onclick="toggle(this)" data-id="nw2-3">
+          <div class="task-row" onclick="toggle(this)" data-id="nw4-4">
             <div class="cb"></div>
-            <div class="task-text">Write TMX parser — extract source/target pairs into a DataFrame <span class="tag tag-loc">localization</span></div>
+            <div class="task-text">Rewrite TMX parser as a proper OOP class <span class="tag tag-loc">localization</span></div>
           </div>
-          <div class="task-row" onclick="toggle(this)" data-id="nw2-4">
+          <div class="task-row" onclick="toggle(this)" data-id="nw4-5">
             <div class="cb"></div>
-            <div class="task-text">TM coverage analysis — groupby language, count segments, flag missing <span class="tag tag-loc">localization</span></div>
-          </div>
-          <div class="task-row" onclick="toggle(this)" data-id="nw2-5">
-            <div class="cb"></div>
-            <div class="task-text">Push first script to GitHub — first portfolio commit <span class="tag tag-loc">localization</span></div>
+            <div class="task-text">Bilingual corpus cleaner: deduplicate, normalise whitespace, output CSV <span class="tag tag-loc">localization</span></div>
           </div>
         </div>
       </div>
@@ -820,6 +822,71 @@
     </div>
   </div>
 
+  <div class="pane" id="pane-grad">
+    <div class="phase-section">
+      <div class="phase-title-row">
+        <div class="phase-dot" style="background:#7C6AF5"></div>
+        <div class="phase-name" style="color:#7C6AF5">Grad School Prep — Penn State MAI / Georgia Tech OMSCS</div>
+        <div class="phase-weeks">parallel track · not blocking</div>
+      </div>
+
+      <div style="background:var(--color-background-secondary,#1a1a2e);border-radius:8px;padding:12px 16px;margin-bottom:1rem;font-size:13px;color:var(--color-text-secondary,#aaa);line-height:1.6;">
+        These prerequisites run <strong>in parallel</strong> with the main curriculum — they don't block Phase 2–4 progress. Items marked with a phase tag show where they naturally overlap with the main journey. Calculus II and Probability are the biggest gaps.
+      </div>
+
+      <div class="week-block">
+        <div class="week-header open" onclick="toggleWeek('grad-calc', this)">
+          <div class="week-label">Calculus I+</div>
+          <div class="week-title">Power rule ✓ · Chain rule ✓ · Integration · Limits · Taylor series</div>
+          <div class="week-progress"><div class="mini-bar"><div class="mini-fill" id="fill-grad-calc" style="background:#7C6AF5;width:40%"></div></div></div>
+          <div class="chev open">▾</div>
+        </div>
+        <div class="week-tasks open" id="tasks-grad-calc">
+          <div class="task-row" onclick="toggle(this)" data-id="gc-1"><div class="cb"></div><div class="task-text">Derivatives — power rule, chain rule, partial derivatives <span class="tag tag-math">Phase 1 ✓</span></div></div>
+          <div class="task-row" onclick="toggle(this)" data-id="gc-2"><div class="cb"></div><div class="task-text">Limits — formal definition, L'Hôpital's rule <span class="tag tag-math">gap</span></div></div>
+          <div class="task-row" onclick="toggle(this)" data-id="gc-3"><div class="cb"></div><div class="task-text">Integration — definite and indefinite integrals, Riemann sums <span class="tag tag-math">gap</span></div></div>
+          <div class="task-row" onclick="toggle(this)" data-id="gc-4"><div class="cb"></div><div class="task-text">Fundamental theorem of calculus <span class="tag tag-math">gap</span></div></div>
+          <div class="task-row" onclick="toggle(this)" data-id="gc-5"><div class="cb"></div><div class="task-text">Taylor series and approximation <span class="tag tag-math">gap · Phase 3 adjacent</span></div></div>
+        </div>
+      </div>
+
+      <div class="week-block">
+        <div class="week-header" onclick="toggleWeek('grad-linalg', this)">
+          <div class="week-label">Linear Algebra</div>
+          <div class="week-title">Vectors ✓ · Matrices ✓ · Eigenvalues · SVD · Vector spaces</div>
+          <div class="week-progress"><div class="mini-bar"><div class="mini-fill" id="fill-grad-linalg" style="background:#7C6AF5;width:65%"></div></div></div>
+          <div class="chev">▾</div>
+        </div>
+        <div class="week-tasks" id="tasks-grad-linalg">
+          <div class="task-row" onclick="toggle(this)" data-id="gl-1"><div class="cb"></div><div class="task-text">Vectors, dot product, norms, cosine similarity <span class="tag tag-math">Phase 1 ✓</span></div></div>
+          <div class="task-row" onclick="toggle(this)" data-id="gl-2"><div class="cb"></div><div class="task-text">Matrix multiplication, transpose, inverse, determinant <span class="tag tag-math">Phase 1 ✓</span></div></div>
+          <div class="task-row" onclick="toggle(this)" data-id="gl-3"><div class="cb"></div><div class="task-text">Eigenvalues and eigenvectors <span class="tag tag-math">Phase 1 — confidence 1</span></div></div>
+          <div class="task-row" onclick="toggle(this)" data-id="gl-4"><div class="cb"></div><div class="task-text">Vector spaces, span, basis, rank formally <span class="tag tag-math">gap · Phase 1 adjacent</span></div></div>
+          <div class="task-row" onclick="toggle(this)" data-id="gl-5"><div class="cb"></div><div class="task-text">Singular Value Decomposition (SVD) <span class="tag tag-math">gap · Phase 3 adjacent</span></div></div>
+          <div class="task-row" onclick="toggle(this)" data-id="gl-6"><div class="cb"></div><div class="task-text">Linear transformations formally <span class="tag tag-math">Phase 1 — confidence 1</span></div></div>
+        </div>
+      </div>
+
+      <div class="week-block">
+        <div class="week-header" onclick="toggleWeek('grad-prob', this)">
+          <div class="week-label">Probability & Stats</div>
+          <div class="week-title">Biggest gap — not yet started</div>
+          <div class="week-progress"><div class="mini-bar"><div class="mini-fill" id="fill-grad-prob" style="background:#7C6AF5;width:5%"></div></div></div>
+          <div class="chev">▾</div>
+        </div>
+        <div class="week-tasks" id="tasks-grad-prob">
+          <div class="task-row" onclick="toggle(this)" data-id="gp-1"><div class="cb"></div><div class="task-text">Basic probability — sample space, events, independence <span class="tag tag-math">Phase 1 Week 4 plan</span></div></div>
+          <div class="task-row" onclick="toggle(this)" data-id="gp-2"><div class="cb"></div><div class="task-text">Conditional probability and Bayes' theorem <span class="tag tag-math">gap</span></div></div>
+          <div class="task-row" onclick="toggle(this)" data-id="gp-3"><div class="cb"></div><div class="task-text">Probability distributions — normal, binomial, Poisson <span class="tag tag-math">gap</span></div></div>
+          <div class="task-row" onclick="toggle(this)" data-id="gp-4"><div class="cb"></div><div class="task-text">Descriptive statistics — mean, median, variance, std <span class="tag tag-math">partially covered in practice</span></div></div>
+          <div class="task-row" onclick="toggle(this)" data-id="gp-5"><div class="cb"></div><div class="task-text">Hypothesis testing and confidence intervals <span class="tag tag-math">gap</span></div></div>
+          <div class="task-row" onclick="toggle(this)" data-id="gp-6"><div class="cb"></div><div class="task-text">Maximum likelihood estimation (MLE) <span class="tag tag-math">gap · Phase 2 adjacent</span></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </div>
 
 <script>
@@ -830,7 +897,7 @@ function save(s) { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch {
 let state = load();
 
 // Pre-check completed tasks
-const PRE_CHECKED = ['d1-1','d1-2','d1-3','d1-4','d1-5','d2-1','d2-2','d2-3','d2-4','d2-5','w1-1','w1-2','w1-3','w1-4','w14-1','w14-2','w14-3','w14-4','w15-1','w15-2','w15-3','w15-4','w16-1','w16-2','w16-3','w16-4','w17-1','w17-2'];
+const PRE_CHECKED = ['d1-1','d1-2','d1-3','d1-4','d1-5','d2-1','d2-2','d2-3','d2-4','d2-5','w1-1','w1-2','w1-3','w1-4','w14-1','w14-2','w14-3','w14-4','w15-1','w15-2','w15-3','w15-4','w16-1','w16-2','w16-3','w16-4','w17-1','w17-2','p1w1-1','p1w1-2','p1w1-3','p1w1-4','p1w1-5','p1w1-6','p1w2-1','p1w2-2','p1w2-3','p1w3-1','p1w3-2','p1w3-3','nw2-1','nw2-2','nw2-3','nw2-4'];
 PRE_CHECKED.forEach(id => { state[id] = true; });
 save(state);
 
@@ -871,7 +938,7 @@ function updateAll() {
 
   // Update progress bars per week block
   const blocks = [
-    'day1','day2','wk1rest','wk1d4','wk1d5','wk1d6','wk1d7','now-w2',
+    'day1','day2','wk1rest','wk1d4','wk1d5','wk1d6','wk1d7','now-w2','now-w4','grad-calc','grad-linalg','grad-prob',
     'p1w1','p1w2','p1w3','p1w4','p1w56',
     'p2w1','p2w2','p2w3',
     'p3w1','p3w2','p3w3','p3w4',

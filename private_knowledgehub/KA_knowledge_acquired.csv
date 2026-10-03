@@ -1,4 +1,5 @@
 id,knowledge_point,category,confidence
+FundMath-Arithmetic-001-PnP,Long division with decimals — pen and paper (clear decimal by multiplying both sides; build mini multiplication table for the divisor; estimate digit by digit),Fundamental Math / Arithmetic,0
 FundMath-LinAlg-001-PnP,Vectors — pen and paper (draw and add vectors by hand),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-001-Coding,Vectors — Python (numpy array operations),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-001-Theory,Vectors — theory (what a vector space is; geometric vs algebraic view),Fundamental Math / Linear Algebra,1
@@ -84,7 +85,7 @@ FundMath-MLMath-001-Theory,MSE — theory (why squaring? connection to L2 norm; 
 FundMath-MLMath-001b-Theory,MAE vs MSE — theory (MAE = mean absolute error; MSE penalises large errors quadratically; MAE penalises linearly; MSE preferred when large errors are especially bad; MAE more robust to outliers),Fundamental Math / ML Math,0
 FundMath-MLMath-002-PnP,Sigmoid function — pen and paper (evaluate at z = 0 / 2 / -2; sketch curve),Fundamental Math / ML Math,1
 FundMath-MLMath-002-Coding,Sigmoid function — Python (implement manually; compare to torch.sigmoid),Fundamental Math / ML Math,1
-FundMath-MLMath-002-Theory,Sigmoid function — theory (squashing to [0,1]; vanishing gradient problem; why ReLU replaced it in deep nets),Fundamental Math / ML Math,1
+FundMath-MLMath-002-Theory,Sigmoid function — theory (squashing to [0,1]; vanishing gradient problem; why ReLU replaced it in deep nets),Fundamental Math / ML Math,2
 FundMath-MLMath-003-PnP,TF-IDF — pen and paper (compute TF and IDF for a tiny 3-doc corpus),Fundamental Math / ML Math,1
 FundMath-MLMath-003-Coding,TF-IDF — Python (sklearn TfidfVectorizer; inspect feature weights),Fundamental Math / ML Math,1
 FundMath-MLMath-003-Theory,TF-IDF — theory (why IDF down-weights common words; limits vs embeddings; still useful in MT domain adaptation),Fundamental Math / ML Math,1

@@ -1,47 +1,24 @@
-import xml.etree.ElementTree as ET
-import pandas as pd
+import numpy as np
 
-xml_string = """
-<translations>
-  <unit id="U1" status="final">
-    <source>Click to continue</source>
-    <target lang="fr">Cliquez pour continuer</target>
-  </unit>
-  <unit id="U2" status="draft">
-    <source>Cancel</source>
-    <target lang="fr"></target>
-  </unit>
-  <unit id="U3" status="final">
-    <source>Save and exit</source>
-    <target lang="fr">Enregistrer et quitter</target>
-  </unit>
-</translations>
-"""
+z = np.array([-3.0, -1.0, 0.0, 1.0, 3.0])
 
-root = ET.fromstring(xml_string)
+# 1. σ(z) — one line from memory
 
-# Using same root — build list of dicts, then DataFrame
+sigma = 1 / (1 + np.exp(-z))
 
-entries = []
+# 2. Suppress scientific notation, print
 
-for unit in root.findall('unit'):
-    source_element = unit.find("source")
-    target_element = unit.find("target")
-    entries.append({
-        "id": unit.attrib["id"],
-        "status": unit.attrib["status"],
-        "source": source_element.text,
-        "target": target_element.text,
-        "source_word_count": len(source_element.text)
-    })
+np.set_printoptions(suppress=True)
 
-# Keys: id, status, source, target, lang, source_word_count
+# 3. σ'(z) = σ(z) · (1 − σ(z)) — one line, print
 
-df = pd.DataFrame()
+sigma_det = sigma * (1 - sigma)
+print(sigma_det)
 
-# Handle missing target as None
-# Then:
-# - filter to final status only
-# - filter to units where target is not null
-# - add a 'translated' column: 1 if target exists, 0 if not
+# 4. Flag where σ(z) > 0.7 — boolean array, then print flagged z values
 
+flagged_mask = sigma > 0.7
+print(z[flagged_mask])
+        
+
+# 5. Comment: what does np.exp() do and why is it needed?
