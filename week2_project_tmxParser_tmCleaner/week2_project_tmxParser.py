@@ -8,6 +8,9 @@
 # decided to separate the cleaner into a stand-alone tool, closing this script
 # as a pure parser
 
+# 10/14
+# came back to add encoding fix
+
 # before runnin ensure you cd to
 # C:\Users\mateu\pytorch-nlp-journey\week2_project_tmxParser
 
@@ -39,7 +42,8 @@ def language_code_detector(file_path):
 
 def tmx_parser(file_path):
     segments_from_tmx = []
-    xml_tree = ET.parse(file_path)
+    with open(file_path, 'rb') as f:
+        xml_tree = ET.parse(f)
     root = xml_tree.getroot()
 
     header = root.find('header')
