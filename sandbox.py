@@ -1,47 +1,25 @@
-import xml.etree.ElementTree as ET
-import pandas as pd
+import numpy as np
 
-xml_string = """
-<translations>
-  <unit id="U1" status="final">
-    <source>Click to continue</source>
-    <target lang="fr">Cliquez pour continuer</target>
-  </unit>
-  <unit id="U2" status="draft">
-    <source>Cancel</source>
-    <target lang="fr"></target>
-  </unit>
-  <unit id="U3" status="final">
-    <source>Save and exit</source>
-    <target lang="fr">Enregistrer et quitter</target>
-  </unit>
-</translations>
-"""
+z = np.array([-5, -1, 0, 1, 5])
 
-root = ET.fromstring(xml_string)
+# 1. Implement σ(z) — one line, from memory
 
-# Using same root — build list of dicts, then DataFrame
+sigma = 1 / (1 + np.exp(-z))
 
-entries = []
+# 2. Print result with scientific notation suppressed
 
-for unit in root.findall('unit'):
-    source_element = unit.find("source")
-    target_element = unit.find("target")
-    entries.append({
-        "id": unit.attrib["id"],
-        "status": unit.attrib["status"],
-        "source": source_element.text,
-        "target": target_element.text,
-        "source_word_count": len(source_element.text)
-    })
+np.set_printoptions(suppress=True)
 
-# Keys: id, status, source, target, lang, source_word_count
+print(sigma)
 
-df = pd.DataFrame()
+# 3. Compute the derivative of sigmoid at each point:
+#    σ'(z) = σ(z) · (1 − σ(z))
+#    Print it — where is the derivative largest?
 
-# Handle missing target as None
-# Then:
-# - filter to final status only
-# - filter to units where target is not null
-# - add a 'translated' column: 1 if target exists, 0 if not
+derivative_of_sigma = sigma * (1 - sigma)
+print(derivative_of_sigma)
 
+# 4. In a comment: why does σ'(z) being small at extremes
+#    cause the vanishing gradient problem?
+
+# because in hidden layers the gradients multiply, eventually becoming too small to leave an impact

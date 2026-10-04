@@ -17,8 +17,8 @@ import regex as re
 
 XML_LANG = '{http://www.w3.org/XML/1998/namespace}lang'
 
-#file_path = r'C:\@my stuff\@study\Programming\pytorch-nlp-journey\tmxes_samples\full_size\LIUNA-Other-eng-spa-US-Master.tmx'
-file_path = r'C:\Users\mateu\pytorch-nlp-journey\week2_project_tmxParser_tmCleaner\tmxes_samples\full_size\LIUNA-Other-eng-spa-US-Master.tmx'
+file_path = r'C:\@my stuff\@study\Programming\pytorch-nlp-journey\tmxes_samples\full_size\LIUNA-Other-eng-spa-US-Master.tmx'
+#file_path = r'C:\Users\mateu\pytorch-nlp-journey\week2_project_tmxParser_tmCleaner\tmxes_samples\full_size\LIUNA-Other-eng-spa-US-Master.tmx'
 
 # detect language code used in the tmx
 # on reflection, deemed as redundant, code left in case of future use

@@ -13,10 +13,10 @@ import pandas as pd
 import re 
 
 # path on the rig
-# file_path = r'C:\@my stuff\@study\Programming\pytorch-nlp-journey\tmxes_processed\parsed_tmx_raw.csv'
+file_path = r'C:\@my stuff\@study\Programming\pytorch-nlp-journey\tmxes_processed\parsed_tmx_raw.csv'
 
 # path on the laptop
-file_path = r'C:\Users\mateu\pytorch-nlp-journey\tmx_processed\parsed_tmx_raw.csv'
+# file_path = r'C:\Users\mateu\pytorch-nlp-journey\tmx_processed\parsed_tmx_raw.csv'
 
 # establish possible tagging noise 
 
