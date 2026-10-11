@@ -5,8 +5,9 @@
 
 # picking up on 10/10 to add tag clean-up
 # and it's done - the other four cleaning functions remain as placeholder, ready to add to the master logic when needed
+# done on 10/11
 
-# NEXT: remove trailing and extra spaces in tmx_cleaner function
+# NEXT: write the four remaining functions or add new as needed. otherwise, it's done understnading it's a modular toolkit
 
 
 '''
@@ -19,10 +20,10 @@ import pandas as pd
 import re 
 
 # path on the rig
-# file_path = r'C:\@my stuff\@study\Programming\pytorch-nlp-journey\tmxes_processed\parsed_tmx_raw.csv'
+file_path = r'C:\@my stuff\@study\Programming\pytorch-nlp-journey\tmxes_processed\parsed_tmx_raw.csv'
 
 # path on the laptop
-file_path = r'C:\Users\mateu\pytorch-nlp-journey\tmx_processed\parsed_tmx_raw.csv'
+# file_path = r'C:\Users\mateu\pytorch-nlp-journey\tmx_processed\parsed_tmx_raw.csv'
 
 # establish possible tagging noise 
 
@@ -91,6 +92,8 @@ def tmx_cleaner(file, detected_problems):
             cleaned_df = CLEANING_FUNCTIONS[problem](cleaned_df)
 
     # stripping function created leading and trailing spaces + multiple spaces, removing them here:
+    cleaned_df['target'] = cleaned_df['target'].str.replace(' +', ' ', regex=True).str.strip()
+    cleaned_df['source'] = cleaned_df['source'].str.replace(' +', ' ', regex=True).str.strip()
 
 
     cleaned_df.to_csv('parsed_tmx_raw_CleanedUp.csv', index=False)

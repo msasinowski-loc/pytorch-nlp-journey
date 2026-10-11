@@ -68,12 +68,12 @@ FundMath-Calculus-005b-Theory,Euler's number e — theory (why e is the natural 
 FundMath-Prob-001-PnP,Basic probability — pen and paper (compute P(A); P(A and B); P(A or B)),Fundamental Math / Probability,0
 FundMath-Prob-001-Coding,Basic probability — Python (simulate with np.random; estimate P from samples),Fundamental Math / Probability,0
 FundMath-Prob-001-Theory,Basic probability — theory (sample space; events; why ML outputs are probabilities),Fundamental Math / Probability,0
-FundMath-Prob-002-PnP,Conditional probability — pen and paper (P(A|B) = P(A∩B)/P(B)),Fundamental Math / Probability,0
+FundMath-Prob-002-PnP,Conditional probability — pen and paper (P(A|B) = P(A∩B)/P(B)),Fundamental Math / Probability,1
 FundMath-Prob-002-Coding,Conditional probability — Python (filter DataFrame; estimate P(A|B)),Fundamental Math / Probability,0
-FundMath-Prob-002-Theory,Conditional probability — theory (independence; why it matters in naive Bayes),Fundamental Math / Probability,0
+FundMath-Prob-002-Theory,Conditional probability — theory (independence; why it matters in naive Bayes),Fundamental Math / Probability,1
 FundMath-Prob-003-PnP,Bayes' theorem — pen and paper (classic medical test example),Fundamental Math / Probability,0
 FundMath-Prob-003-Coding,Bayes' theorem — Python (apply formula to a simple example),Fundamental Math / Probability,0
-FundMath-Prob-003-Theory,Bayes' theorem — theory (prior / likelihood / posterior; Bayesian vs frequentist),Fundamental Math / Probability,0
+FundMath-Prob-003-Theory,Bayes' theorem — theory (prior / likelihood / posterior; Bayesian vs frequentist),Fundamental Math / Probability,1
 FundMath-Prob-004-PnP,Probability distributions — pen and paper (draw Bernoulli and Gaussian; compute mean and variance),Fundamental Math / Probability,0
 FundMath-Prob-004-Coding,Probability distributions — Python (scipy.stats; np.random.normal),Fundamental Math / Probability,0
 FundMath-Prob-004-Theory,Probability distributions — theory (why Gaussian is everywhere; CLT intuition),Fundamental Math / Probability,0

@@ -4,6 +4,20 @@
 
 ---
 
+## 📋 Table of Contents
+
+- [NumPy — Arrays & Creation](#-numpy--arrays--creation)
+- [NumPy — Indexing & Slicing](#-numpy--indexing--slicing)
+- [NumPy — Vectorised Operations](#-numpy--vectorised-operations)
+- [NumPy — Broadcasting](#-numpy--broadcasting)
+- [NumPy — Matrix Operations](#-numpy--matrix-operations)
+- [NumPy — Reshaping](#-numpy--reshaping)
+- [Pandas — DataFrame basics](#-pandas--dataframe-basics)
+- [XML parsing — ElementTree](#-xml-parsing--elementtree)
+- [Pandas — Column Modification & String Cleaning](#-pandas--column-modification--string-cleaning)
+
+---
+
 ## 🐍 NumPy — Arrays & Creation
 `[numpy] [array] [creation] [zeros] [ones] [eye] [identity] [shape] [dtype]`
 
@@ -208,11 +222,23 @@ df = pd.DataFrame({
     'coverage':  [1.0, 0.85, None]       # None → NaN automatically
 })
 
+# Load from file
+df = pd.read_csv('file.csv')                          # basic read
+df = pd.read_csv('file.csv', encoding='utf-8-sig')    # handle BOM (Excel exports)
+df = pd.read_csv('file.csv', index_col=0)             # use first column as index
+
 # Inspection
 df.shape          # (3, 3) — rows, cols
 df.dtypes         # column types — strings show as 'object'
 df.head()         # first 5 rows
+df.head(10)       # first N rows
+df.columns.tolist()  # list of column names
 df.isnull().sum() # count missing per column
+
+# Display options — useful when terminal truncates output
+pd.set_option('display.max_columns', None)   # show all columns
+pd.set_option('display.max_colwidth', None)  # show full cell content
+pd.reset_option('display.max_columns')       # reset to default
 
 # Column and row access
 df['language']           # single column → Series
@@ -348,3 +374,50 @@ df = pd.DataFrame(segments)
 
 *Last updated: Day 7 — XML element anatomy and find vs findall clarified*
 *Next: PyTorch tensors · OOP · TMX parser project*
+
+---
+
+## 🐼 Pandas — Column Modification & String Cleaning
+`[pandas] [column] [str] [replace] [strip] [regex] [vectorized] [apply] [cleaning]`
+
+```python
+# ── Modify a column in place ──────────────────────────────────────
+df['column'] = df['column'].any_modification_here
+
+# Same variable for source and target — overwrites in place
+cleaned_df['source'] = cleaned_df['source'].str.replace(' +', ' ', regex=True).str.strip()
+cleaned_df['target'] = cleaned_df['target'].str.replace(' +', ' ', regex=True).str.strip()
+```
+
+**The `.str.` accessor** — bridges from a Pandas Series to string methods.
+You must use it before any string method (`str.replace`, `str.strip`, `str.contains`, etc.).
+Without it, Pandas doesn't know you want string operations.
+
+**Vectorized vs apply:**
+
+| | Vectorized (`str.replace`, `str.strip`, math ops) | `apply(fn)` |
+|---|---|---|
+| How it runs | C loop under the hood — fast | Python loop — slower |
+| When to use | Standard string/math transformations | Custom per-row logic |
+| Example | `.str.replace(' +', ' ', regex=True)` | `.apply(lambda x: my_function(x))` |
+
+**Chaining** — each method returns a Series, so you can keep chaining:
+```python
+df['col'].str.replace(pattern, replacement, regex=True).str.strip().str.lower()
+```
+
+**Common string methods:**
+
+```python
+df['col'].str.replace(r'<[^>]+>', '', regex=True)   # strip HTML/inline tags
+df['col'].str.replace(' +', ' ', regex=True)         # collapse multiple spaces
+df['col'].str.strip()                                 # remove leading/trailing spaces
+df['col'].str.contains(pattern, na=False)             # boolean mask — use na=False to handle NaN
+df['col'].str.lower()                                 # lowercase
+df['col'].str.split(' ')                              # split into list
+```
+
+**Note:** always pass `regex=True` to `str.replace()` when using a pattern — without it Pandas
+may warn or treat the pattern as a literal string.
+
+*Added: 2026-10-11 — column modification, vectorized ops, str accessor, apply*
