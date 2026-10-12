@@ -8,8 +8,8 @@ FundMath-LinAlg-002-PnP2,Linear combinations — pen and paper (determine if a t
 FundMath-LinAlg-002-Coding,Linear combinations — Python (np.dot / weighted sum),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-002-Theory,Linear combinations — theory (span and basis; when is a set linearly independent?),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-003-PnP,Matrix multiplication — pen and paper (row × column by hand),Fundamental Math / Linear Algebra,1
-FundMath-LinAlg-003-Coding,Matrix multiplication — Python (np.matmul / @ operator),Fundamental Math / Linear Algebra,2
-FundMath-LinAlg-003-Theory,Matrix multiplication — theory (why order matters; composition of linear maps; inner dimension rule; why dot products require equal-length vectors; 1D vector special case; A@A.T as similarity matrix; batched matmul in 3D),Fundamental Math / Linear Algebra,2
+FundMath-LinAlg-003-Coding,Matrix multiplication — Python (np.matmul / @ operator),Fundamental Math / Linear Algebra,1
+FundMath-LinAlg-003-Theory,Matrix multiplication — theory (why order matters; composition of linear maps; inner dimension rule; why dot products require equal-length vectors; 1D vector special case; A@A.T as similarity matrix; batched matmul in 3D),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-015-Theory,Matrix multiplication — theory (shape rules: (m×n)@(n×p)→(m×p); inner dims must match; NumPy 1D exception; non-square matrices change dimensionality; A@A.T = row similarity matrix; batched matmul),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-013-PnP,Linear transformations — pen and paper (draw how a 2×2 matrix transforms the unit square),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-013-Coding,Linear transformations — Python (apply matrix to a grid of vectors; visualise with matplotlib),Fundamental Math / Linear Algebra,0
@@ -37,10 +37,10 @@ FundMath-LinAlg-008b-PnP,Matrix inverse — pen and paper (verify A × A⁻¹ = 
 FundMath-LinAlg-008-Coding,Matrix inverse — Python (np.linalg.inv; check when matrix is singular),Fundamental Math / Linear Algebra,0
 FundMath-LinAlg-008-Theory,Matrix inverse — theory (when does it exist? determinant = 0 case),Fundamental Math / Linear Algebra,0
 FundMath-LinAlg-009-PnP,Matrix transpose — pen and paper (flip rows and columns by hand),Fundamental Math / Linear Algebra,2
-FundMath-LinAlg-009-Coding,Matrix transpose — Python (A.T / np.transpose),Fundamental Math / Linear Algebra,2
+FundMath-LinAlg-009-Coding,Matrix transpose — Python (A.T / np.transpose),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-009-Theory,Matrix transpose — theory (symmetric matrices; role in A@A.T),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-010-PnP,Identity matrix — pen and paper (write 3×3 identity; verify Av = v),Fundamental Math / Linear Algebra,0
-FundMath-LinAlg-010-Coding,Identity matrix — Python (np.eye(n)),Fundamental Math / Linear Algebra,2
+FundMath-LinAlg-010-Coding,Identity matrix — Python (np.eye(n)),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-010-Theory,Identity matrix — theory (neutral element of matrix mult; role in initialisation),Fundamental Math / Linear Algebra,0
 FundMath-LinAlg-011-PnP,Inverse of a matrix — pen and paper (2×2 inverse by hand),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-011-Coding,Inverse — Python (np.linalg.inv; check when matrix is singular),Fundamental Math / Linear Algebra,0
@@ -95,9 +95,9 @@ Ph1-Python-002-Coding,Python — data types and control flow (lists; dicts; loop
 Ph1-Python-003-Coding,Python — functions and scope,Phase 1 / Python,2
 Ph1-Python-004-Coding,Python — file I/O (open; read; write; csv module),Phase 1 / Python,1
 Ph1-Python-004b-Coding,Python — file I/O (pathlib; context managers; encoding),Phase 1 / Python,1
-Ph1-Python-005-Coding,NumPy — broadcasting rules,Phase 1 / Python,2
-Ph1-Python-006-Coding,NumPy — array creation and indexing,Phase 1 / Python,2
-Ph1-Python-007-Coding,NumPy — matrix operations (np.dot / np.matmul),Phase 1 / Python,2
+Ph1-Python-005-Coding,NumPy — broadcasting rules,Phase 1 / Python,1
+Ph1-Python-006-Coding,NumPy — array creation and indexing,Phase 1 / Python,1
+Ph1-Python-007-Coding,NumPy — matrix operations (np.dot / np.matmul),Phase 1 / Python,1
 Ph1-Python-008-Coding,Pandas — DataFrame creation and basic ops,Phase 1 / Python,2
 Ph1-Python-009-Coding,Pandas — groupby and aggregation,Phase 1 / Python,1
 Ph1-Python-010-Coding,Pandas — merging and joining DataFrames,Phase 1 / Python,1
