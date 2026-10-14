@@ -1,50 +1,38 @@
 import numpy as np
 
-<<<<<<< HEAD
-z = np.array([-5, -1, 0, 1, 5])
+# Setup data: word counts for 3 files × 4 target languages (FR, ES, DE, PL).
 
-# 1. Implement σ(z) — one line, from memory
+counts = np.array([[1200,  850,  930, 400],
+                   [ 300,  310,  290, 150],
+                   [2100, 1980, 2050, 900]])
 
-sigma = 1 / (1 + np.exp(-z))
+# a) all DE counts 3x1
+answer_1a = counts[:, 2]
+print(counts)
+print (counts.ndim)
+print (answer_1a.ndim)
+print(answer_1a)
 
-# 2. Print result with scientific notation suppressed
+# b) 1x4
+answer_1b = counts[1, :]
 
-np.set_printoptions(suppress=True)
+# c) 2x2
+answer_1c = counts[:-2 :-2]
 
-print(sigma)
 
-# 3. Compute the derivative of sigmoid at each point:
-#    σ'(z) = σ(z) · (1 − σ(z))
-#    Print it — where is the derivative largest?
 
-derivative_of_sigma = sigma * (1 - sigma)
-print(derivative_of_sigma)
+answer_2a = counts * np.array([0.12, 0.10, 0.14, 0.16
+])
 
-# 4. In a comment: why does σ'(z) being small at extremes
-#    cause the vanishing gradient problem?
+# answer_2b the problem here is with broadcasting - the counts array is 3x4
+# while the volume discount is a 1d vector
+# I know numpy will broadcast, which means it will make the 1d vector 3x4 for the purpose of multiplication
+# which makes me thinkg it's okay to multiply as is
 
-# because in hidden layers the gradients multiply, eventually becoming too small to leave an impact
-=======
-z = np.array([-3.0, -1.0, 0.0, 1.0, 3.0])
 
-# 1. σ(z) — one line from memory
+# answer_3a = counts * I dont know
+# counts @ counts.T should give the same shape, it's transposition
+# same for other direction
+# but I forgot how to code .T
 
-sigma = 1 / (1 + np.exp(-z))
-
-# 2. Suppress scientific notation, print
-
-np.set_printoptions(suppress=True)
-
-# 3. σ'(z) = σ(z) · (1 − σ(z)) — one line, print
-
-sigma_det = sigma * (1 - sigma)
-print(sigma_det)
-
-# 4. Flag where σ(z) > 0.7 — boolean array, then print flagged z values
-
-flagged_mask = sigma > 0.7
-print(z[flagged_mask])
-        
-
-# 5. Comment: what does np.exp() do and why is it needed?
->>>>>>> e8603d41f3c00b790f3d7a920fafe63517328230
+# single cell of counts @ counts.T represents.... dunno

@@ -90,6 +90,9 @@ FundMath-MLMath-002-Theory,Cross-entropy loss — theory (information-theoretic 
 FundMath-MLMath-003-PnP,TF-IDF — pen and paper (compute TF and IDF for a tiny 3-doc corpus),Fundamental Math / ML Math,1
 FundMath-MLMath-003-Coding,TF-IDF — Python (sklearn TfidfVectorizer; inspect feature weights),Fundamental Math / ML Math,1
 FundMath-MLMath-003-Theory,TF-IDF — theory (why IDF down-weights common words; connection to information gain),Fundamental Math / ML Math,1
+FundMath-MLMath-004-PnP,Sigmoid — pen and paper (compute σ(z) = 1/(1+e⁻ᶻ) by hand for several z; apply a 0.5 decision threshold),Fundamental Math / ML Math,1
+FundMath-MLMath-004-Coding,Sigmoid — Python (vectorised σ with np.exp; boolean masks to flag values above a threshold),Fundamental Math / ML Math,1
+FundMath-MLMath-004-Theory,Sigmoid — theory (squashes any real z into (0; 1); why the denominator uses + not −; output as a probability),Fundamental Math / ML Math,2
 Ph1-Python-001-Coding,Python — environment setup (venv; pip; requirements.txt),Phase 1 / Python,0
 Ph1-Python-002-Coding,Python — data types and control flow (lists; dicts; loops; comprehensions),Phase 1 / Python,2
 Ph1-Python-003-Coding,Python — functions and scope,Phase 1 / Python,2
