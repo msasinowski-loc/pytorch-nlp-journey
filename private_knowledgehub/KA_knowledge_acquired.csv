@@ -1,5 +1,6 @@
 id,knowledge_point,category,confidence
 FundMath-Arithmetic-001-PnP,Long division with decimals — pen and paper (clear decimal by multiplying both sides; build mini multiplication table for the divisor; estimate digit by digit),Fundamental Math / Arithmetic,0
+FundMath-Arithmetic-002-PnP,Exponent rules — pen and paper (a⁰ = 1; a⁻ⁿ = 1/aⁿ; aᵐ·aⁿ = aᵐ⁺ⁿ; evaluate e.g. 2⁻³ and e⁻² by hand),Fundamental Math / Arithmetic,0
 FundMath-LinAlg-001-PnP,Vectors — pen and paper (draw and add vectors by hand),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-001-Coding,Vectors — Python (numpy array operations),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-001-Theory,Vectors — theory (what a vector space is; geometric vs algebraic view),Fundamental Math / Linear Algebra,1
