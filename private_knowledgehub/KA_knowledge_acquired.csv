@@ -1,11 +1,11 @@
 id,knowledge_point,category,confidence
-FundMath-Arithmetic-001-PnP,Long division with decimals — pen and paper (clear decimal by multiplying both sides; build mini multiplication table for the divisor; estimate digit by digit),Fundamental Math / Arithmetic,2
-FundMath-Arithmetic-002-PnP,Exponent rules — pen and paper (a⁰ = 1; a⁻ⁿ = 1/aⁿ; aᵐ·aⁿ = aᵐ⁺ⁿ; evaluate e.g. 2⁻³ and e⁻² by hand),Fundamental Math / Arithmetic,2
+FundMath-Arithmetic-001-PnP,Long division with decimals — pen and paper (clear decimal by multiplying both sides; build mini multiplication table for the divisor; estimate digit by digit),Fundamental Math / Arithmetic,3
+FundMath-Arithmetic-002-PnP,Exponent rules — pen and paper (a⁰ = 1; a⁻ⁿ = 1/aⁿ; aᵐ·aⁿ = aᵐ⁺ⁿ; evaluate e.g. 2⁻³ and e⁻² by hand),Fundamental Math / Arithmetic,3
 FundMath-LinAlg-001-PnP,Vectors — pen and paper (draw and add vectors by hand),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-001-Coding,Vectors — Python (numpy array operations),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-001-Theory,Vectors — theory (what a vector space is; geometric vs algebraic view),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-002-PnP,Linear combinations — pen and paper (compute c1v1 + c2v2 by hand),Fundamental Math / Linear Algebra,2
-FundMath-LinAlg-002-PnP2,Linear combinations — pen and paper (determine if a target point is reachable given two vectors; solve c1v1 + c2v2 = target or prove impossibility),Fundamental Math / Linear Algebra,2
+FundMath-LinAlg-002b-PnP,Linear combinations — pen and paper (determine if a target point is reachable given two vectors; solve c1v1 + c2v2 = target or prove impossibility),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-002-Coding,Linear combinations — Python (np.dot / weighted sum),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-002-Theory,Linear combinations — theory (span and basis; when is a set linearly independent?),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-003-PnP,Matrix multiplication — pen and paper (row × column by hand),Fundamental Math / Linear Algebra,1
@@ -27,17 +27,17 @@ FundMath-LinAlg-005c-PnP,Angle between vectors — pen and paper (rearrange dot 
 FundMath-LinAlg-005-Coding,Dot product — Python (np.dot; verify with magnitudes and angle),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-005-Theory,Dot product — theory (projection interpretation; why it shows up everywhere in ML),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-016-Theory,Dot product duality — theory (3B1B duality: dot product as projection onto a line; every linear transformation from nD to 1D has a dual vector; why dot product captures directional alignment),Fundamental Math / Linear Algebra,2
-FundMath-LinAlg-006-PnP,L1 norm — pen and paper (Manhattan distance; count steps on a grid),Fundamental Math / Linear Algebra,2
+FundMath-LinAlg-006-PnP,L1 norm — pen and paper (Manhattan distance; count steps on a grid),Fundamental Math / Linear Algebra,3
 FundMath-LinAlg-006-Coding,L1 norm — Python (np.linalg.norm(v; ord=1)),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-006-Theory,L1 norm — theory (sparsity; why L1 is used in Lasso),Fundamental Math / Linear Algebra,1
-FundMath-LinAlg-007-PnP,L2 norm (Euclidean distance) — pen and paper (Pythagorean theorem in n dimensions),Fundamental Math / Linear Algebra,2
+FundMath-LinAlg-007-PnP,L2 norm (Euclidean distance) — pen and paper (Pythagorean theorem in n dimensions),Fundamental Math / Linear Algebra,3
 FundMath-LinAlg-007-Coding,L2 norm — Python (np.linalg.norm(v)),Fundamental Math / Linear Algebra,2
 FundMath-LinAlg-007-Theory,L2 norm — theory (unit vectors; why MSE implicitly uses L2),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-008-PnP,Matrix inverse — pen and paper (2×2 inverse by hand using 1/det * adjugate),Fundamental Math / Linear Algebra,0
 FundMath-LinAlg-008b-PnP,Matrix inverse — pen and paper (verify A × A⁻¹ = I by hand),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-008-Coding,Matrix inverse — Python (np.linalg.inv; check when matrix is singular),Fundamental Math / Linear Algebra,0
 FundMath-LinAlg-008-Theory,Matrix inverse — theory (when does it exist? determinant = 0 case),Fundamental Math / Linear Algebra,0
-FundMath-LinAlg-009-PnP,Matrix transpose — pen and paper (flip rows and columns by hand),Fundamental Math / Linear Algebra,2
+FundMath-LinAlg-009-PnP,Matrix transpose — pen and paper (flip rows and columns by hand),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-009-Coding,Matrix transpose — Python (A.T / np.transpose),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-009-Theory,Matrix transpose — theory (symmetric matrices; role in A@A.T),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-010-PnP,Identity matrix — pen and paper (write 3×3 identity; verify Av = v),Fundamental Math / Linear Algebra,0
@@ -49,7 +49,7 @@ FundMath-LinAlg-011-Theory,Inverse — theory (when does it exist? determinant =
 FundMath-LinAlg-012-PnP,Eigenvalues and eigenvectors — pen and paper (solve det(A - λI) = 0 for a 2×2 matrix),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-012-Coding,Eigenvalues and eigenvectors — Python (np.linalg.eig),Fundamental Math / Linear Algebra,1
 FundMath-LinAlg-012-Theory,Eigenvalues and eigenvectors — theory (PCA connection; what eigendecomposition reveals about a matrix),Fundamental Math / Linear Algebra,1
-FundMath-Calculus-001-PnP,Derivatives — pen and paper (power rule; chain rule),Fundamental Math / Calculus,2
+FundMath-Calculus-001-PnP,Derivatives — pen and paper (power rule; constants and sums; chain rule tracked separately in Calculus-002-PnP),Fundamental Math / Calculus,2
 FundMath-Calculus-001-Coding,Derivatives — Python (sympy diff; numerical gradient),Fundamental Math / Calculus,0
 FundMath-Calculus-001-Theory,Derivatives — theory (rate of change; tangent line; why gradients point uphill),Fundamental Math / Calculus,2
 FundMath-Calculus-002-PnP,Chain rule — pen and paper (compose two functions; compute derivative),Fundamental Math / Calculus,1
@@ -81,7 +81,7 @@ FundMath-Prob-004-Theory,Probability distributions — theory (why Gaussian is e
 FundMath-Prob-005-PnP,Expected value and variance — pen and paper (compute E[X] and Var[X] for a simple distribution),Fundamental Math / Probability,0
 FundMath-Prob-005-Coding,Expected value and variance — Python (np.mean / np.var; empirical vs theoretical),Fundamental Math / Probability,0
 FundMath-Prob-005-Theory,Expected value and variance — theory (bias-variance trade-off; what high variance in a model means),Fundamental Math / Probability,0
-FundMath-MLMath-001-PnP,MSE loss — pen and paper (compute MSE for 3 predictions by hand),Fundamental Math / ML Math,2
+FundMath-MLMath-001-PnP,MSE loss — pen and paper (compute MSE for 3 predictions by hand),Fundamental Math / ML Math,3
 FundMath-MLMath-001-Coding,MSE loss — Python (torch.nn.MSELoss; manual np version),Fundamental Math / ML Math,2
 FundMath-MLMath-001-Theory,MSE loss — theory (why squared; connection to L2 norm; gradient of MSE),Fundamental Math / ML Math,1
 FundMath-MLMath-001b-Theory,MSE loss — theory (why squaring punishes outliers more than MAE; connection to Gaussian likelihood; when to prefer MAE),Fundamental Math / ML Math,0
