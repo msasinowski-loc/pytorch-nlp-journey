@@ -1,4 +1,5 @@
 '''
+start date: 10/03
 The core idea is simple: for a good translation, 
 the target should be roughly proportional in length to the source. 
 EN→ES typically runs 15-25% longer. 
@@ -18,6 +19,8 @@ Short segments amplify the ratio
 A more useful signal would combine z-score with a segment type check — that's exactly the "segment classifier" idea I put in the weekend projects backlog. 
 An abbreviation-heavy short segment with high ratio is probably fine; a full sentence with high ratio is more suspicious.
 More to come maybe
+
+v1 done on 10/03
 '''
 
 import numpy as np

@@ -382,7 +382,8 @@ df = pd.DataFrame(segments)
 
 ```python
 # ── Modify a column in place ──────────────────────────────────────
-df['column'] = df['column'].any_modification_here
+df['column'] = df['column'].any_modification_here  # this works on a whole column at once, creating a Panda Series. Note the relevance of it in the accessor below
+
 
 # Same variable for source and target — overwrites in place
 cleaned_df['source'] = cleaned_df['source'].str.replace(' +', ' ', regex=True).str.strip()
