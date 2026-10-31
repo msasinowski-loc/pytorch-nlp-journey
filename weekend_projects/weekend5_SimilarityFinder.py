@@ -74,6 +74,9 @@ VERSION LOG
 v0.1  2026-10-24  Project scoped. Milestones M1-M6 defined. CleanedUp dataset
                   chosen; raw kept as reference. CAT comparison documented.
                   Open decisions listed as TODOs.
+
+
+next planned:
 """
 
 import numpy as np
@@ -91,8 +94,8 @@ file_path = r'C:\Users\mateu\pytorch-nlp-journey\tmx_processed\parsed_tmx_raw_Cl
 dataset = pd.read_csv(file_path)
 
 # basic sanity checks
-print(dataset.shape)
-#print(dataset.head())
+# print(dataset.shape)
+# print(dataset.head())
 
 # verifying how many empty segments are there
 # they need to be removed to reduce the computation costs - there is no value in calculating them
@@ -100,15 +103,19 @@ print(dataset.shape)
 # it's a two-step approach, first for None or NaN
 # followed by whitespaces only, which Panda doesn't see as None/NaN but an empty, yet present, string data
 
-is_empty_source = (dataset['source'].isnull()) | (dataset['source'].str.strip() == '') # note the use of .str. as the accessor for Panda Series to string method bridge
+is_nan_source = dataset['source'].isnull()
+is_source_whitespace =  dataset['source'].str.strip() == '' # note the use of .str. as the accessor for Panda Series to string method bridge
 
-empty_segments = dataset[is_empty_source] 
+
+is_empty_source_combined = (is_nan_source) | (is_source_whitespace)
+empty_segments = dataset[is_empty_source_combined] 
+
 
 print(empty_segments.shape)
 print(empty_segments.head())
 
 # rmeoving the empty segments from the dataset
-dataset_no_empty_segments = dataset[~is_empty_source]
+dataset_no_empty_segments = dataset[~is_empty_source_combined]
 
 
 
