@@ -76,7 +76,18 @@ v0.1  2026-10-24  Project scoped. Milestones M1-M6 defined. CleanedUp dataset
                   Open decisions listed as TODOs.
 
 
-next planned:
+next planned (last update: 11/7): 
+M1: load, clean, sample (about 20 minutes)
+Step 3: sample 500. Use .sample() on the cleaned dataset with a fixed random_state. In a comment, say why the seed is fixed. Think about running the script again tomorrow on your other machine.
+
+Step 4: make the list. Turn the sample’s source column into a plain Python list. Predict its length, then print it and the first 3 items.
+
+Step 5: document it.
+
+Add a version-log entry, v0.2: M1 done, with the counts you found.
+Under Design decisions, add the source_len finding as a [TODO]: it’s stale because it was computed before the cleanup.
+
+CAT link: steps 1 and 2 match what memoQ does silently before an analysis, which is to drop segments with nothing to translate. Your version shows its work and counts what it dropped. A CAT report doesn’t do that.
 """
 
 import numpy as np
@@ -86,10 +97,10 @@ import pandas as pd
 # clunky at the moment, to be fixed at a later stage
 
 # rig
-# file_path = r'C:\@my stuff\@study\Programming\pytorch-nlp-journey\tmxes_processed\parsed_tmx_raw_CleanedUp.csv'
+file_path = r'C:\@my stuff\@study\Programming\pytorch-nlp-journey\tmxes_processed\parsed_tmx_raw_CleanedUp.csv'
 
-# laptopt
-file_path = r'C:\Users\mateu\pytorch-nlp-journey\tmx_processed\parsed_tmx_raw_CleanedUp.csv'
+# laptop
+# file_path = r'C:\Users\mateu\pytorch-nlp-journey\tmx_processed\parsed_tmx_raw_CleanedUp.csv'
 
 dataset = pd.read_csv(file_path)
 
@@ -106,16 +117,21 @@ dataset = pd.read_csv(file_path)
 is_nan_source = dataset['source'].isnull()
 is_source_whitespace =  dataset['source'].str.strip() == '' # note the use of .str. as the accessor for Panda Series to string method bridge
 
-
 is_empty_source_combined = (is_nan_source) | (is_source_whitespace)
 empty_segments = dataset[is_empty_source_combined] 
 
+# defensive code - verifying the individual results if needed
+# print(f'The count for NaN segments is: {is_nan_source.sum()}')
+# print(f'The count for whitespaces segments is: {is_source_whitespace.sum()}')
 
-print(empty_segments.shape)
-print(empty_segments.head())
+# defensive code - checking the total
+# print(empty_segments.shape)
+# print(empty_segments.head())
 
 # rmeoving the empty segments from the dataset
 dataset_no_empty_segments = dataset[~is_empty_source_combined]
+
+print(dataset_no_empty_segments.shape)
 
 
 

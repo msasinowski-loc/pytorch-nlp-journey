@@ -322,6 +322,23 @@ df.head(10)       # first N rows
 df.columns.tolist()  # list of column names
 df.isnull().sum() # count missing per column
 
+# Random sample of rows — reproducible with a seed
+sample = df.sample(n=500, random_state=42)   # 500 random rows; same 500 every run
+df.sample(frac=0.1, random_state=42)         # or a fraction instead of a count (10%)
+# n            → how many rows (use frac= for a share instead; not both)
+# random_state → the seed: any fixed int; same seed + same data = same rows,
+#                on any machine, any day → results can be reproduced and compared
+# Without random_state, every run picks different rows → numbers drift between runs
+# The sample KEEPS the original index labels (e.g. 4417, 102, 7980…), not 0..499
+sample.reset_index(drop=True)                 # renumber 0..n-1 if needed; drop=True discards the old labels
+# n larger than the number of rows → error (unless replace=True)
+
+# Column → plain Python list
+df['source'].tolist()                         # Series → list; len() = number of rows
+
+# Don't know a function? Ask Python first
+help(pd.DataFrame.sample)                     # prints the docs; read the Parameters section
+
 # Display options — useful when terminal truncates output
 pd.set_option('display.max_columns', None)   # show all columns
 pd.set_option('display.max_colwidth', None)  # show full cell content
