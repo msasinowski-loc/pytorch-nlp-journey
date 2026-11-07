@@ -31,6 +31,13 @@
 - Built the empty-source mask once and reused it: NaN **or** whitespace-only (`.str.strip() == ''`). It finds **42 empty rows**.
 - Prediction vs result: predicted about 214 extra rows (a 2.5% rate from a 40-row look at the raw file); got 42 in total. The miss is probably down to the small sample and the tag-heavy file opening.
 
+**Progress check (2026-10-31)**
+- Refactored the mask into two named halves, a NaN test and a whitespace test, with the combined mask built from those two names.
+- Wrote the removal line: `dataset_no_empty_segments = dataset[~is_empty_source_combined]`.
+- Prediction recorded, not yet tested: about 42 from the NaN test and very few from whitespace, because `read_csv` turns empty fields into NaN.
+- Paused here: the split counts (summing each half-mask) haven't been run yet.
+- No session between 2026-11-01 and 2026-11-06 (unplanned break).
+
 **Learned along the way**
 - The `.str` accessor bridges a Series to string methods.
 - `''` is a present (empty) string, not null, so `.isnull()` never catches it.
@@ -42,12 +49,12 @@
 - **`source_len` is stale:** empty sources still show `source_len = 3`, so it was computed before the cleanup. Recompute it after cleaning, or don't rely on it.
 - **NaN vs whitespace:** all five rows inspected are NaN, not whitespace. Hypothesis to check: an empty string saved to CSV comes back as NaN through `read_csv`.
 
-**Next steps**
-1. Split the 42 into Test A (NaN) and Test B (whitespace) counts.
-2. Write the removal line with `~is_empty_source`.
+**Next steps** (as of 2026-11-07)
+1. Sum each half-mask (True counts as 1) and print both counts. Test the `read_csv` → NaN hypothesis against the prediction.
+2. ✅ ~~Write the removal line~~ (done 2026-10-31). Still to do: predict and print its row count (8,552 − 42 = ?).
 3. Take the 500-row sample with a fixed `random_state`, and turn the source column into a list.
 4. Add the M1 entry to the version log and record the `source_len` finding as a TODO.
-5. M2: make the tokenisation decisions: lowercase, punctuation, `{}` placeholders, placeholder-only segments (`‹#›`), and exact duplicates reported as repetitions.
+5. M2: make the tokenisation decisions: lowercase, punctuation, `{}` placeholders, placeholder-only segments (`‹#›`), and exact duplicates reported as repetitions. Then write `tokenise(text)`, test it on the tricky segments (`{}`, `…`, `MUST`), and build and print the vocabulary dict (word → column index).
 6. **End of queue:** replace the two hardcoded machine paths with a `pathlib` path relative to the script. First make the data folder names match (`tmxes_processed` on the rig vs `tmx_processed` on the laptop). Exercises KA `Ph1-Python-004b-Coding`.
 
 ---
