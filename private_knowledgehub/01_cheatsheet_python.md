@@ -12,6 +12,7 @@
 - [NumPy — Broadcasting](#-numpy--broadcasting)
 - [NumPy — Matrix Operations](#-numpy--matrix-operations)
 - [NumPy — Reshaping](#-numpy--reshaping)
+- [NumPy — Reading shapes (the way I worked it out)](#-numpy--reading-shapes-the-way-i-worked-it-out)
 - [Pandas — DataFrame basics](#-pandas--dataframe-basics)
 - [XML parsing — ElementTree](#-xml-parsing--elementtree)
 - [Pandas — Column Modification & String Cleaning](#-pandas--column-modification--string-cleaning)
@@ -111,7 +112,8 @@ M + col       # (2,1) broadcast across columns → (2,3)
               # [[11,12,13], [24,25,26]]
 ```
 
-**The rule:** align shapes from the right. Any dimension of size 1 stretches to match the other.
+**The rule:** align shapes from the right. Pad the shorter shape on the **left with 1** (not 0). Each pair must be **equal, or one of them 1**. A size-1 dimension stretches to match the other; anything else is an error.
+**Full worked example (file discounts, `(3,)` → `(3, 1)`) and the `*` vs `@` comparison:** see `math_concepts_cheatsheet.md`, section "Element-wise `*` vs matrix product `@`".
 
 | Operation | Shapes | Result |
 |---|---|---|
@@ -152,8 +154,9 @@ np.linalg.inv(M)                        # inverse — FundMath-LinAlg-011
 np.linalg.eig(M)                        # eigenvalues & eigenvectors — FundMath-LinAlg-012
 ```
 
-**Shape rule for matmul:** `(a×b) @ (b×c)` → `(a×c)`. Inner dims must match and disappear.
-**@ vs *:** `@` is matrix multiplication, `*` is element-wise.
+**Shape rule for matmul:** `(a×b) @ (b×c)` → `(a×c)`. Inner dims must match and disappear. **Order matters** — write the shapes in the order of the call.
+**@ vs *:** `@` is matrix multiplication, `*` is element-wise. In code, `*` is *never* the matrix product — even though written maths often uses "×" for it.
+**`A @ A.T` vs `A.T @ A`:** the outer dims survive, so `(2,3) @ (3,2)` → `(2,2)` compares **rows** with rows; `(3,2) @ (2,3)` → `(3,3)` compares **columns** with columns. Each cell `[i, j]` of `A @ A.T` is the dot product of row i with row j — a similarity matrix (not yet normalised). The diagonal holds each row's squared length.
 
 ---
 
@@ -200,6 +203,90 @@ batch = np.array([[0.2, 0.8, 0.1, 0.5],
 | `(1, 768)` | one word embedding, batch-ready |
 | `(768, 1)` | column vector for matmul |
 | `(32, 768)` | batch of 32 embeddings |
+
+---
+
+## 🐍 NumPy — Reading shapes (the way I worked it out)
+`[numpy] [shape] [ndim] [axis] [1D vs 2D] [row vs column] [transpose] [stack] [indexing] [slice]`
+
+**The question I kept asking:** is `(5,)` the same as `(1, 5)`? **No** — and most of my shape slips came from treating them as the same.
+
+### Read the brackets — the layout on the page doesn't matter
+1. **Bracket depth = number of axes (`ndim`).** Count the `[` before the first number.
+2. **Items at each level = the shape**, outer level first.
+
+| Written as | Depth | Outer holds | Inner holds | Shape |
+|---|---|---|---|---|
+| `[4, 5]` | 1 | 2 numbers | — | `(2,)` |
+| `[[4, 5]]` | 2 | 1 list | 2 numbers | `(1, 2)` |
+| `[[4], [5]]` | 2 | 2 lists | 1 number each | `(2, 1)` |
+| `[[1, 2], [3, 4]]` | 2 | 2 lists | 2 numbers each | `(2, 2)` |
+
+Commas at the outer level separate **rows**. Line breaks are only for humans.
+
+### `(n,)` vs `(1, n)` vs `(n, 1)`
+
+```
+      (2,)                   (1, 2)                  (2, 1)
+  1 axis, length 2       2 axes: 1 row × 2 cols   2 axes: 2 rows × 1 col
+
+    ┌───┬───┐               ┌───┬───┐                 ┌───┐
+    │ 7 │ 8 │               │ 7 │ 8 │                 │ 7 │
+    └───┴───┘               └───┴───┘                 ├───┤
+  a line — no rows,       a grid that happens         │ 8 │
+  no columns              to have one row             └───┘
+                                                    a grid that happens
+                                                    to have one column
+```
+
+| | `(2,)` | `(1, 2)` | `(2, 1)` |
+|---|---|---|---|
+| `.ndim` | 1 | 2 | 2 |
+| Index one value | `x[0]` | `x[0, 0]` | `x[0, 0]` |
+| `.T` | **no change** | → `(2, 1)` | → `(1, 2)` |
+
+- **Don't call `(n,)` "1×n"** — "1×n" means two axes. A 1D array has a **length**, not rows and columns.
+- **`.ndim` = how many numbers are in the shape.** `(5,)` → 1, `(1, 5)` → 2, `(2, 3, 4)` → 3. The values never change ndim — only the count does.
+- **`.T` swaps axes that exist — it never creates one.** On a 1D array it's a valid no-op.
+- **Axis size** = how many positions along that direction. `np.newaxis` always adds a size-**1** axis, so no data is created or copied.
+
+### Building the same single-row grid three ways
+```python
+v = np.array([1, 2, 3, 4, 5])     # (5,), ndim 1
+v.reshape(1, 5)                    # (1, 5), ndim 2
+v[np.newaxis, :]                   # (1, 5), ndim 2 — new axis in slot 1
+np.array([[1, 2, 3, 4, 5]])        # (1, 5), ndim 2 — outer holds 1 list of 5
+v[:, np.newaxis]                   # (5, 1) — new axis in slot 2
+```
+
+### Integer vs slice when indexing
+**An integer removes that axis; a slice keeps it.**
+```python
+counts.shape          # (3, 4)
+counts[1, :]          # (4,)   — integer 1 drops the row axis
+counts[1:2, :]        # (1, 4) — slice 1:2 keeps it (stops *before* 2 → one row)
+counts[-2:, -2:]      # (2, 2) — slices on both axes keep both
+```
+To test a shape prediction, print **`.shape`**, not the values — the values can look identical.
+
+### Stack vs concatenate vs add
+| Operation | Two `(5,)` vectors become | What happens |
+|---|---|---|
+| `np.stack([a, b])` | `(2, 5)` | each vector becomes a **row**; a new axis appears; **no arithmetic** |
+| `np.concatenate([a, b])` | `(10,)` | joined end-to-end; still one axis |
+| `a + b` | `(5,)` | element-wise arithmetic |
+
+`np.stack` takes **one** argument holding all the arrays (a list). `np.stack(a, b)` fails — Python reads `b` as the `axis` option.
+
+### Comparing arrays
+`a == b` compares **cell by cell** and returns an array of True/False. For one answer: `(a == b).all()`, or `np.allclose(a, b)` for floats (tolerates rounding).
+
+### Attribute vs method
+- **Read** without brackets (attributes): `.shape`, `.ndim`, `.T`
+- **Call** with brackets (methods): `.head()`, `.reshape(1, 5)`, `.all()`, `.sum()`
+- `df.shape()` → `TypeError: 'tuple' object is not callable` — the tuple is the shape itself
+
+*Added: 2026-11-07 — shapes refresher from the bench sessions of 2026-10-20 to 2026-10-27*
 
 ---
 
@@ -382,8 +469,7 @@ df = pd.DataFrame(segments)
 
 ```python
 # ── Modify a column in place ──────────────────────────────────────
-df['column'] = df['column'].any_modification_here  # this works on a whole column at once, creating a Panda Series. Note the relevance of it in the accessor below
-
+df['column'] = df['column'].any_modification_here
 
 # Same variable for source and target — overwrites in place
 cleaned_df['source'] = cleaned_df['source'].str.replace(' +', ' ', regex=True).str.strip()
