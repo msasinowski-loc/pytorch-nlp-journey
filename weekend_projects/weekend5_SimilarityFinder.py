@@ -1,5 +1,5 @@
 """
-near_duplicate_detector.py
+Similarity Finder \ near_duplicate_detector
 ==========================
 pytorch-nlp-journey · weekend build · msasinowski-loc
 
@@ -74,20 +74,18 @@ VERSION LOG
 v0.1  2026-10-24  Project scoped. Milestones M1-M6 defined. CleanedUp dataset
                   chosen; raw kept as reference. CAT comparison documented.
                   Open decisions listed as TODOs.
+v0.2  2026-11-08  M1 completed, creating a sampled clean list of source segments
+                  42 empty rows removed (42 NaN, 0 whitespace), 8,510 rows left, 500 sampled with random_state=42. 
+                  one learning: read_csv turns empty fields into NaN.
 
 
-next planned (last update: 11/7): 
-M1: load, clean, sample (about 20 minutes)
-Step 3: sample 500. Use .sample() on the cleaned dataset with a fixed random_state. In a comment, say why the seed is fixed. Think about running the script again tomorrow on your other machine.
+next planned (last update: 11/8): 
+M2 starts:
+The goal: turn each segment’s text into tokens, then give every unique token a column number.
+That dict defines the columns of M3’s count matrix, shape (N, V), where V = the vocabulary size.
 
-Step 4: make the list. Turn the sample’s source column into a plain Python list. Predict its length, then print it and the first 3 items.
+Part 1: decide first. Write each decision as a comment with its why. These fill in your header’s TODOs.
 
-Step 5: document it.
-
-Add a version-log entry, v0.2: M1 done, with the counts you found.
-Under Design decisions, add the source_len finding as a [TODO]: it’s stale because it was computed before the cleanup.
-
-CAT link: steps 1 and 2 match what memoQ does silently before an analysis, which is to drop segments with nothing to translate. Your version shows its work and counts what it dropped. A CAT report doesn’t do that.
 """
 
 import numpy as np
@@ -97,10 +95,10 @@ import pandas as pd
 # clunky at the moment, to be fixed at a later stage
 
 # rig
-file_path = r'C:\@my stuff\@study\Programming\pytorch-nlp-journey\tmxes_processed\parsed_tmx_raw_CleanedUp.csv'
+# file_path = r'C:\@my stuff\@study\Programming\pytorch-nlp-journey\tmxes_processed\parsed_tmx_raw_CleanedUp.csv'
 
 # laptop
-# file_path = r'C:\Users\mateu\pytorch-nlp-journey\tmx_processed\parsed_tmx_raw_CleanedUp.csv'
+file_path = r'C:\Users\mateu\pytorch-nlp-journey\tmx_processed\parsed_tmx_raw_CleanedUp.csv'
 
 dataset = pd.read_csv(file_path)
 
@@ -109,10 +107,15 @@ dataset = pd.read_csv(file_path)
 # print(dataset.head())
 
 # verifying how many empty segments are there
-# they need to be removed to reduce the computation costs - there is no value in calculating them
+# they need to be removed to reduce the computation costs - there is no value in calculating them. 
+# Remove empty sources: their word-count vector is all zeros → L2 norm = 0 →
+# the cosine denominator (||a|| * ||b||) becomes 0 in M4. NumPy doesn't crash on
+# division by zero: it quietly returns NaN (with a warning), and that NaN spreads
+# into every pair involving the segment. Fewer rows to compute is a bonus.
 
 # it's a two-step approach, first for None or NaN
 # followed by whitespaces only, which Panda doesn't see as None/NaN but an empty, yet present, string data
+# it's defensive code - breaking into components instead of a blended result
 
 is_nan_source = dataset['source'].isnull()
 is_source_whitespace =  dataset['source'].str.strip() == '' # note the use of .str. as the accessor for Panda Series to string method bridge
@@ -120,18 +123,21 @@ is_source_whitespace =  dataset['source'].str.strip() == '' # note the use of .s
 is_empty_source_combined = (is_nan_source) | (is_source_whitespace)
 empty_segments = dataset[is_empty_source_combined] 
 
-# defensive code - verifying the individual results if needed
 # print(f'The count for NaN segments is: {is_nan_source.sum()}')
 # print(f'The count for whitespaces segments is: {is_source_whitespace.sum()}')
 
-# defensive code - checking the total
+# sanity checks - checking the total
 # print(empty_segments.shape)
 # print(empty_segments.head())
 
-# rmeoving the empty segments from the dataset
+# removing the empty segments from the dataset
 dataset_no_empty_segments = dataset[~is_empty_source_combined]
 
 print(dataset_no_empty_segments.shape)
 
+# random sampling on a fixed seed to allow consistency in results between sessions
+sampled_dataset = dataset_no_empty_segments.sample(n=500, random_state=42)
+#print(sampled_dataset.head(5))
 
+list_from_sampled_dataset = sampled_dataset['source'].tolist()
 
