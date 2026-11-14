@@ -28,6 +28,10 @@ M5  Pair extraction    -> upper triangle only (no self-pairs, no duplicate pairs
 M6  Report             -> DataFrame (seg_i, seg_j, score), sorted, exported to CSV,
                           with counts per match band
 
+11/14 update, upon M2 progress:
+load → remove empty → dedupe raw text (count repetitions) → sample 500
+     → tokenise → filter [] (count) → vocabulary → M3
+
 CAT TOOL COMPARISON (memoQ homogeneity / internal fuzzy matching)
 -----------------------------------------------------------------
 Shared:
@@ -55,13 +59,28 @@ via broadcasting: (N, 1) against (1, N)
 
 DESIGN DECISIONS
 ----------------
+DESIGN DECISIONS
+----------------
 - Cleaned dataset over raw: tag codes would otherwise become "words"
 - 500-segment prototype: the full N x N matrix for 8,552 segments is ~73M
   cells  [TODO: record the memory cost you calculated]
-- Tokenisation  [TODO: lowercase? strip punctuation? strip {} placeholders?]
-- Placeholder-only segments (e.g. ‹#›)  [TODO: filter? count separately?]
-- Exact duplicates  [TODO: dedupe first and report as repetitions?]
-- Threshold and bands  [TODO: e.g. 100 / 95-99 / 85-94 / 75-84]
+- source_len is stale: the 42 empty sources still show source_len = 3, so it was
+  computed before the regex cleanup  [TODO: recompute on cleaned text, or don't use]
+
+Decided 2026-11-14 (M2):
+- Case: all lowercase. Only risk is an all-caps acronym that spells out as a word,
+  e.g. SHIP (State Health Insurance Assistance Program) vs "ship". Not relevant
+  for the pilot, so decided against the distraction.
+- Punctuation: strip it. Low risk, not worth complicating the code until proven
+  otherwise. Side effect: stripping punctuation also removes { and }.
+- {} placeholders: [TABLED] want to see specific examples to assess the risk.
+  Build the core code first, then isolate these cases.
+- Placeholder-only segments (e.g. ‹#›): filter out of scoring. After stripping
+  they become empty -> zero vector -> norm 0 -> NaN in the cosine (M1 lesson).
+  [TODO: count and report them, as CAT lists them with 0 billable
+- dedupe on raw text, before sampling, to get a clean source data
+- [TODO] for n-grams/compounds as a future enhancement.
+
 
 KA ITEMS EXERCISED
 ------------------
@@ -77,19 +96,18 @@ v0.1  2026-10-24  Project scoped. Milestones M1-M6 defined. CleanedUp dataset
 v0.2  2026-11-08  M1 completed, creating a sampled clean list of source segments
                   42 empty rows removed (42 NaN, 0 whitespace), 8,510 rows left, 500 sampled with random_state=42. 
                   one learning: read_csv turns empty fields into NaN.
+v0.3  2026-11-14  M2 started; decisions made; tokenise() written and tested on 4 segments; 
+                  the empty-list result found to identify placeholder-only segments.
 
 
-next planned (last update: 11/8): 
-M2 starts:
-The goal: turn each segment’s text into tokens, then give every unique token a column number.
-That dict defines the columns of M3’s count matrix, shape (N, V), where V = the vocabulary size.
-
-Part 1: decide first. Write each decision as a comment with its why. These fill in your header’s TODOs.
-
+next planned (last update: 11/14): 
+M2 continues:
+move dedupe into M1, the [] filter, the vocabulary dict, then M3.
 """
 
 import numpy as np
 import pandas as pd
+import regex as re
 
 # FILE PATH ESTABLISHING
 # clunky at the moment, to be fixed at a later stage
@@ -141,3 +159,19 @@ sampled_dataset = dataset_no_empty_segments.sample(n=500, random_state=42)
 
 list_from_sampled_dataset = sampled_dataset['source'].tolist()
 
+
+# building the tokenizer
+
+def tokenizer(text):
+    text_clean = re.sub(r'[^\w\s]', ' ', text) # removing punctuation
+    tokens = text_clean.lower().split() 
+    return tokens
+
+''' testing the tokenizer
+test_text = "{} Underground Utilities {}"
+test_text2 = "Before using a pile driver…"
+test_text3 = "but if there are electrical, gas, water lines, or other underground utilities, they MUST be avoided."
+test_text4 ="‹#›"
+
+print(tokenizer(test_text4))
+'''

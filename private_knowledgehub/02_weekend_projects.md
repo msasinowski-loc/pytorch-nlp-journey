@@ -11,14 +11,14 @@
 **Goal:** Find near-duplicate source segments inside one TM (internal fuzzy matches), score them with cosine similarity on word-count vectors, and report them in CAT-style match bands (100 / 95–99 / 85–94 / 75–84).
 **CAT link:** Same idea as memoQ's homogeneity analysis (segments compared within the document, not against a TM). Differences: memoQ runs in document order and uses proprietary scoring; this tool scores all pairs at once with transparent cosine, which ignores word order. Not imitating memoQ for now.
 **Data:** `parsed_tmx_raw_CleanedUp.csv` (regexes applied); `parsed_tmx_raw.csv` kept untouched as reference. 8,552 segments, EN→ES-US, LIUNA project.
-**File:** `weekend_projects/weekend5_SimilarityFinder.py` (header docstring with version log, v0.1)
+**File:** `weekend_projects/weekend5_SimilarityFinder.py` (header docstring with version log, v0.3)
 
 **Milestones**
 
 | # | Milestone | Status |
 |---|---|---|
-| M1 | Load, clean, sample 500 | 🟡 partly done |
-| M2 | Vocabulary (word → column index) | ⬜ |
+| M1 | Load, clean, sample 500 | ✅ closed 2026-11-08 (v0.2) |
+| M2 | Vocabulary (word → column index) | 🟡 started 2026-11-14 (v0.3): decisions made, `tokenise()` built |
 | M3 | Count matrix A, shape (N, V) | ⬜ |
 | M4 | Similarity matrix `A @ A.T`, normalised to cosine | ⬜ |
 | M5 | Pair extraction: upper triangle, threshold | ⬜ |
@@ -38,24 +38,57 @@
 - Paused here: the split counts (summing each half-mask) haven't been run yet.
 - No session between 2026-11-01 and 2026-11-06 (unplanned break).
 
+**Progress check (2026-11-07/08): M1 closed**
+- Split counts: **42 NaN, 0 whitespace**. The prediction held: `read_csv` turns empty fields into NaN by default.
+- The whitespace test stays as defensive code. It caught nothing today, but a field containing only spaces would *not* become NaN.
+- Removal checked against the prediction: 8,552 − 42 = **8,510 rows**, `(8510, 5)`.
+- Sampled **500 rows** with `random_state=42`, so results stay reproducible across sessions and machines. The sample keeps the original row labels.
+- Source column turned into a list of length 500.
+- Found the **real reason for removing empty segments**: an all-zero word-count vector has L2 norm 0, which puts a 0 in the cosine denominator in M4. NumPy quietly returns NaN, and that NaN spreads into every pair involving the segment.
+- Version log v0.2 written. The header title now matches the file.
+
+**Progress check (2026-11-14): M2 started** (first project session of the Forge pilot)
+- M1 leftovers done: the `source_len` TODO is in Design decisions, and the typo is fixed.
+- M2 decisions recorded in the header, each with its why:
+  - **Case:** all lowercase. Accepted risk: an all-caps acronym that spells a word (SHIP vs "ship").
+  - **Punctuation:** stripped. Low risk, and simpler. Side effect: `{` and `}` go too.
+  - **`{}` placeholders:** tabled until there are real examples to assess.
+  - **Placeholder-only segments:** filtered out of scoring, because they would become zero vectors. Counting and reporting them is still a TODO.
+  - **Exact duplicates:** reported as repetitions, deduplicated on **raw text** (case and punctuation can carry meaning) and **before sampling** (true repetition counts for the whole TM).
+  - **Bands:** 100 / 95–99 / 85–94 / 75–84, mirroring CAT.
+- Pipeline redrawn: load → remove empty → dedupe raw text (count repetitions) → sample 500 → tokenise → filter `[]` (count) → vocabulary → M3.
+- Built `tokenizer(text)`: regex `[^\w\s]` → space, then lowercase, then `.split()`. All four test predictions checked out, apart from one:
+  - `"{} Underground Utilities {}"` → `['underground', 'utilities']`
+  - `"Before using a pile driver…"` → `['before', 'using', 'a', 'pile', 'driver']`
+  - The long "MUST be avoided" segment → clean lowercase words
+  - `"‹#›"` → **`[]`**. Predicted `['   ']`. `.split()` with no arguments drops empty pieces, so whitespace-only text gives an empty list. That's the signature of a placeholder-only segment, and `if not tokens` is the filter test.
+- Known limitation recorded: bag-of-words breaks compounds ("pile driver", "hard hat"). Future enhancement: n-grams, which would also partly address the word-order blind spot.
+
 **Learned along the way**
 - The `.str` accessor bridges a Series to string methods.
 - `''` is a present (empty) string, not null, so `.isnull()` never catches it.
 - Each condition joined with `|` needs its own brackets, because `|` binds tighter than `==`.
 - Attributes are read without brackets (`.shape`, `.T`); methods are called with them (`.head()`, `.reshape()`).
 - Anchor predictions on a sample, and be wary of non-random samples.
+- A prediction can be a calculation, not a guess: work out the expected value, then check that the code matches it.
+- Summing a boolean mask counts its True values.
+- `.sample(n, random_state)` keeps the original index; `.tolist()` turns a Series into a list. Both are now in the cheatsheet.
+- NaN doesn't create wrong scores, it makes pairs disappear: any comparison with NaN is False, and any average that includes NaN becomes NaN.
+- `regex=True` belongs to pandas' `.str.replace`. On a plain string, use `re.sub(pattern, repl, text)`, and assign the result, because strings can't be changed in place.
+- Write regex patterns as raw strings (`r'...'`) so that `\w` reaches the regex untouched.
+- Replace punctuation with a **space**, not nothing, so that `end-to-end` becomes three words.
 
 **Open findings**
-- **`source_len` is stale:** empty sources still show `source_len = 3`, so it was computed before the cleanup. Recompute it after cleaning, or don't rely on it.
-- **NaN vs whitespace:** all five rows inspected are NaN, not whitespace. Hypothesis to check: an empty string saved to CSV comes back as NaN through `read_csv`.
+- **`source_len` is stale:** empty sources still show `source_len = 3`, so it was computed before the cleanup. Recompute it after cleaning, or don't rely on it. *Recorded as a `[TODO]` in the header on 2026-11-14.*
+- ✅ ~~NaN vs whitespace hypothesis~~: confirmed, 42 NaN and 0 whitespace.
+- **`{}` placeholders:** tabled. Check real examples once the core build works.
 
-**Next steps** (as of 2026-11-07)
-1. Sum each half-mask (True counts as 1) and print both counts. Test the `read_csv` → NaN hypothesis against the prediction.
-2. ✅ ~~Write the removal line~~ (done 2026-10-31). Still to do: predict and print its row count (8,552 − 42 = ?).
-3. Take the 500-row sample with a fixed `random_state`, and turn the source column into a list.
-4. Add the M1 entry to the version log and record the `source_len` finding as a TODO.
-5. M2: make the tokenisation decisions: lowercase, punctuation, `{}` placeholders, placeholder-only segments (`‹#›`), and exact duplicates reported as repetitions. Then write `tokenise(text)`, test it on the tricky segments (`{}`, `…`, `MUST`), and build and print the vocabulary dict (word → column index).
-6. **End of queue:** replace the two hardcoded machine paths with a `pathlib` path relative to the script. First make the data folder names match (`tmxes_processed` on the rig vs `tmx_processed` on the laptop). Exercises KA `Ph1-Python-004b-Coding`.
+**Next steps** (as of 2026-11-14)
+1. **Move dedupe into M1:** deduplicate on raw text after removing empty sources and before `.sample()`, and keep a repetition count.
+2. **The `[]` filter:** tokenise the sample, separate out segments with no tokens, and count them.
+3. **The vocabulary dict:** each unique token → a column index (0, 1, 2…). Predict roughly how many unique words 500 segments will give, then print the size and 10 entries.
+4. **M3:** the count matrix A, shape (N, V).
+5. **End of queue:** replace the two hardcoded machine paths with a `pathlib` path relative to the script. First make the data folder names match (`tmxes_processed` on the rig vs `tmx_processed` on the laptop). Exercises KA `Ph1-Python-004b-Coding`.
 
 ---
 
