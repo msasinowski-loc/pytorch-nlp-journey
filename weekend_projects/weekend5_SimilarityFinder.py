@@ -98,11 +98,12 @@ v0.2  2026-11-08  M1 completed, creating a sampled clean list of source segments
                   one learning: read_csv turns empty fields into NaN.
 v0.3  2026-11-14  M2 started; decisions made; tokenise() written and tested on 4 segments; 
                   the empty-list result found to identify placeholder-only segments.
+v0.4  2026-11-15  M2 closed: deduped the raw entries, found 2,243 reps. established dictionary of tokens
+                  with 1,863 entries on the fixed 500-segments sample, 0 empty segments in it
 
 
-next planned (last update: 11/14): 
-M2 continues:
-move dedupe into M1, the [] filter, the vocabulary dict, then M3.
+next planned (last update: 11/15): 
+M3 starts
 """
 
 import numpy as np
@@ -113,10 +114,10 @@ import regex as re
 # clunky at the moment, to be fixed at a later stage
 
 # rig
-# file_path = r'C:\@my stuff\@study\Programming\pytorch-nlp-journey\tmxes_processed\parsed_tmx_raw_CleanedUp.csv'
+file_path = r'C:\@my stuff\@study\Programming\pytorch-nlp-journey\tmxes_processed\parsed_tmx_raw_CleanedUp.csv'
 
 # laptop
-file_path = r'C:\Users\mateu\pytorch-nlp-journey\tmx_processed\parsed_tmx_raw_CleanedUp.csv'
+# file_path = r'C:\Users\mateu\pytorch-nlp-journey\tmx_processed\parsed_tmx_raw_CleanedUp.csv'
 
 dataset = pd.read_csv(file_path)
 
@@ -153,8 +154,22 @@ dataset_no_empty_segments = dataset[~is_empty_source_combined]
 
 print(dataset_no_empty_segments.shape)
 
+# deduping - removing duplicates from the dataset with no empty segments:
+# WHY? to remove what CAT would count as repetitions, multiple instaces of identical segments would
+# introduce noise to the similarity calculations, as same segment will identify multiple pairs of identity
+
+is_duplicate_source = dataset_no_empty_segments.duplicated(subset='source')
+count_of_duplicates = is_duplicate_source.sum()
+print(f'The total count of found duplicated segments is {count_of_duplicates}')
+# veryfing what was identified as duplicates
+# print(f"The 5 most common duplicates are: {dataset_no_empty_segments['source'].value_counts().head(5)}")
+
+# removing the duplicates
+
+dataset_unique = dataset_no_empty_segments[~is_duplicate_source]
+
 # random sampling on a fixed seed to allow consistency in results between sessions
-sampled_dataset = dataset_no_empty_segments.sample(n=500, random_state=42)
+sampled_dataset = dataset_unique.sample(n=500, random_state=42)
 #print(sampled_dataset.head(5))
 
 list_from_sampled_dataset = sampled_dataset['source'].tolist()
@@ -175,3 +190,22 @@ test_text4 ="‹#›"
 
 print(tokenizer(test_text4))
 '''
+
+# BUILDING VOCAB POOL
+
+vocab_pool = {}
+empty_lists_entry = 0
+
+for entry in list_from_sampled_dataset:
+    tokens_in_the_entry = tokenizer(entry)
+    if tokens_in_the_entry == []:
+        empty_lists_entry += 1
+    for token in tokens_in_the_entry:
+        if token not in vocab_pool:
+            counter = len(vocab_pool)
+            vocab_pool[token] = counter
+
+print(f'Checking the number of unique words generated: {len(vocab_pool)}')
+print(f'And checking the number of empty segments in the cleaned up dataset: {empty_lists_entry}')
+            
+    
