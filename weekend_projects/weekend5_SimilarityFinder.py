@@ -81,6 +81,11 @@ Decided 2026-11-14 (M2):
 - dedupe on raw text, before sampling, to get a clean source data
 - [TODO] for n-grams/compounds as a future enhancement.
 
+Decided 2026-11-21 (M3):
+- M2 established the token pool. Re-doing it in M3 would offer clarity of logical connection,
+but means re-doing the operation, computation and cost. Decided to re-use M2's pool.
+- [TODO] in 
+
 
 KA ITEMS EXERCISED
 ------------------
@@ -100,7 +105,11 @@ v0.3  2026-11-14  M2 started; decisions made; tokenise() written and tested on 4
                   the empty-list result found to identify placeholder-only segments.
 v0.4  2026-11-15  M2 closed: deduped the raw entries, found 2,243 reps. established dictionary of tokens
                   with 1,863 entries on the fixed 500-segments sample, 0 empty segments in it
+v0.5  2026-11-21  M3 started: the A array created with zeros, set for vectorizing sentences. (N,V) shape
+                  where N is the number of rows, V is one column per token
+                  
 
+                  
 
 next planned (last update: 11/15): 
 M3 starts
@@ -159,6 +168,7 @@ print(dataset_no_empty_segments.shape)
 # introduce noise to the similarity calculations, as same segment will identify multiple pairs of identity
 
 is_duplicate_source = dataset_no_empty_segments.duplicated(subset='source')
+
 count_of_duplicates = is_duplicate_source.sum()
 print(f'The total count of found duplicated segments is {count_of_duplicates}')
 # veryfing what was identified as duplicates
@@ -196,8 +206,16 @@ print(tokenizer(test_text4))
 vocab_pool = {}
 empty_lists_entry = 0
 
+
+# preparing for M3 - transitioning from full sentences ("check the hat") in list_from_sampled_dataset
+# to an intermediary storage of ["check", "the", "hat"] - this will be used to loop through it and assign values to columns
+
+
+list_of_tokenized_sentences = [] 
+
 for entry in list_from_sampled_dataset:
     tokens_in_the_entry = tokenizer(entry)
+    list_of_tokenized_sentences.append(tokens_in_the_entry)
     if tokens_in_the_entry == []:
         empty_lists_entry += 1
     for token in tokens_in_the_entry:
@@ -207,5 +225,11 @@ for entry in list_from_sampled_dataset:
 
 print(f'Checking the number of unique words generated: {len(vocab_pool)}')
 print(f'And checking the number of empty segments in the cleaned up dataset: {empty_lists_entry}')
-            
-    
+print(f'The length of the list_of_tokenized_sentences is: {len(list_of_tokenized_sentences)}')
+
+
+# creating the zero matrix
+
+A = np.zeros((len(list_from_sampled_dataset), len(vocab_pool)))
+print(A.shape)
+print(A.sum())
