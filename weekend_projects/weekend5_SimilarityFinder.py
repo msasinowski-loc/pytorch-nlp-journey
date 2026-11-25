@@ -231,5 +231,25 @@ print(f'The length of the list_of_tokenized_sentences is: {len(list_of_tokenized
 # creating the zero matrix
 
 A = np.zeros((len(list_from_sampled_dataset), len(vocab_pool)))
-print(A.shape)
-print(A.sum())
+#print(A.shape)
+#print(A.sum())
+
+# filling in the A array with actual vectors
+
+for i, sentence in enumerate(list_of_tokenized_sentences):
+    row_number = i
+    for token in sentence:
+        A[row_number, vocab_pool[token]] += 1
+
+
+# check on the loop result, it needs to match the token count from the itemized list
+
+tokens_total = 0
+for sentence in list_of_tokenized_sentences:
+    tokens_total += len(sentence)
+
+#print(tokens_total)
+print(f'Check if the A loop yielded same token total as the length of the list: {tokens_total == A.sum()}')
+
+# sanity checks:
+print(A.max())

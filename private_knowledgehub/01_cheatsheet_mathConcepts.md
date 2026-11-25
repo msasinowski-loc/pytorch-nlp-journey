@@ -301,3 +301,18 @@ Each element = Σ over files of (discount × count) for one language. French = 1
 | `discount.newaxis()` / `np,newaxis` | `discount[:, np.newaxis]` — NumPy attribute, inside the brackets, with a **dot** |
 
 *Added: 2026-11-07 — re-entry carry-over: discount reshape, `*` vs `@`, weighted word counts*
+
+---
+
+## Bernoulli distribution
+
+**In my words:** The number p in a Bernoulli distribution is the chance of getting a positive result (a 1). The mean **estimates** it, and the bigger the sample, the closer the mean gets to p.
+
+| Edge case | Result |
+|---|---|
+| No 1s at all | mean = 0 ÷ N = 0 |
+| All 1s except the first | mean = (N − 1) ÷ N, close to 1 |
+| Whole population counted (the full TM) | the mean *is* p, not an estimate |
+| Zero rows | 0 ÷ 0 is undefined → NumPy/pandas quietly return **NaN** (Not a Number, not `None`) |
+
+*Added: 2026-11-18 — Forge v2, week 1 (Learn, Use, Test)*

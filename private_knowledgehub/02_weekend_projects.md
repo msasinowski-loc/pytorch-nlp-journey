@@ -5,20 +5,65 @@
 
 ---
 
+## 💡 Ideas for later
+
+### i18n linter — *stand-alone project, inspired by an industry peer's post (seen 2026-11-21)*
+**Source:** https://juliadiez.substack.com/p/i-turned-my-i18n-checklist-into-a
+A command-line linter that scans an app's code and translation files and flags i18n bugs before they ship: hardcoded user-facing text, sentences glued together from pieces, hand-rolled plurals, keys missing from the source file, poor key names (a 0–100 naming score), placeholders translated or dropped (`{name}` → `{nom}`), missing plural forms per language.
+**Why I want to build it:**
+- **A linter is a kind of tool I've never built**: parsing code, rules, a report, a CI exit code.
+- **A different tech stack**: the original runs on Node (`npx`) against React/Vue/Svelte/Flutter projects. Good exposure beyond Python and pandas.
+- **An interview hook for more technical roles**: it sits right where localization expertise meets engineering.
+**Head start:** the placeholder checker (OOP week, Nov 23–29) is a small version of its third layer, run on a TM instead of app files.
+**Skills needed:** regex, file walking, JSON parsing, rule design, CLI arguments, CI basics; JavaScript/Node if built in the original stack.
+
+### Segment type classifier
+Categorise each segment into types using regex + word count rules:
+- `placeholder_only` — segments containing only `‹#›`, `{}`, `{0}` etc.
+- `tag_heavy` — segments where >50% of tokens are inline tags
+- `ui_string` — short segments ≤ 3 words after cleaning
+- `full_sentence` — >10 words, likely prose
+- `number_only` — segments that are purely numeric
+
+**Output:** enriched DataFrame with `segment_type` column + breakdown report.
+**Skills needed:** regex, Pandas apply/map, value_counts.
+
+### Near-duplicate detector → *now in progress (see below)*
+Find source segments that are very similar to each other using cosine similarity on word frequency vectors. Flags fuzzy matches in the TM — real coverage analysis tool.
+**Skills needed:** NumPy cosine similarity (see KA `FundMath-LinAlg-004` for current confidence — KA is the source of truth), basic tokenisation.
+
+### MT quality estimator (stretch)
+Use length ratio + segment type + tag density as features to score each segment's translation quality without a reference. Outputs a risk score per segment.
+**Skills needed:** Pandas feature engineering, basic scoring logic.
+
+---
+
+## 🗓️ Up next: placeholder checker — *OOP week, 2026-11-23 to 11-29*
+Decided 2026-11-21, for 9 days of 60 minutes (Nov 21–29):
+- **Sat 21 – Sun 22:** detector M3–M4, to reach a clean pause point.
+- **Mon 23 – Fri 27:** 20 min OOP theme, then 40 min building a placeholder checker as a **class** from day one.
+- **Sat 28 – Sun 29:** finish it and run it on the full TM; Sunday is the teach-back and weekly check-in.
+**Goal:** for each TM row, do the target's placeholders match the source's (`{}`, `{0}`, `‹#›`…)? Report mismatches.
+**Bernoulli link:** "placeholders intact?" is a yes/no per row, so its mean is the TM's placeholder error rate.
+**CAT link:** the tag/placeholder mismatch check in memoQ QA and Xbench.
+**Data:** `parsed_tmx_raw_CleanedUp.csv` (source and target columns). Also unblocks the tabled `{}` decision in the detector.
+
+---
+
 ## 🔨 In progress
 
 ### Near-duplicate detector — *weekend of 2026-10-24*
 **Goal:** Find near-duplicate source segments inside one TM (internal fuzzy matches), score them with cosine similarity on word-count vectors, and report them in CAT-style match bands (100 / 95–99 / 85–94 / 75–84).
 **CAT link:** Same idea as memoQ's homogeneity analysis (segments compared within the document, not against a TM). Differences: memoQ runs in document order and uses proprietary scoring; this tool scores all pairs at once with transparent cosine, which ignores word order. Not imitating memoQ for now.
 **Data:** `parsed_tmx_raw_CleanedUp.csv` (regexes applied); `parsed_tmx_raw.csv` kept untouched as reference. 8,552 segments, EN→ES-US, LIUNA project.
-**File:** `weekend_projects/weekend5_SimilarityFinder.py` (header docstring with version log, v0.3)
+**File:** `weekend_projects/weekend5_SimilarityFinder.py` (header docstring with version log, v0.4)
 
 **Milestones**
 
 | # | Milestone | Status |
 |---|---|---|
 | M1 | Load, clean, sample 500 | ✅ closed 2026-11-08 (v0.2) |
-| M2 | Vocabulary (word → column index) | 🟡 started 2026-11-14 (v0.3): decisions made, `tokenise()` built |
+| M2 | Vocabulary (word → column index) | ✅ closed 2026-11-15 (v0.4) |
 | M3 | Count matrix A, shape (N, V) | ⬜ |
 | M4 | Similarity matrix `A @ A.T`, normalised to cosine | ⬜ |
 | M5 | Pair extraction: upper triangle, threshold | ⬜ |
@@ -64,6 +109,13 @@
   - `"‹#›"` → **`[]`**. Predicted `['   ']`. `.split()` with no arguments drops empty pieces, so whitespace-only text gives an empty list. That's the signature of a placeholder-only segment, and `if not tokens` is the filter test.
 - Known limitation recorded: bag-of-words breaks compounds ("pile driver", "hard hat"). Future enhancement: n-grams, which would also partly address the word-order blind spot.
 
+**Progress check (2026-11-15): M2 closed** (v0.4)
+- Dedupe moved before sampling: **2,243 repetitions** found in the 8,510 non-empty rows, leaving 6,267 unique rows.
+- Top repeats: "{} Instructions {} :" (77), "During this activity you will:" (52), "CONTINUE" (46), "Complete the content above before moving on." (45), "{} {} Task 2 {} {} :" (32). Evidence for stripping `{}`.
+- Vocabulary dict on the 500-row sample: **V = 1,863** (predicted about 1,750). **0** empty token lists.
+- Mask renamed to `is_duplicate_source`.
+- Week 1 (Bernoulli) found the share of repetitions: `is_duplicate_source.mean()` ≈ 0.26.
+
 **Learned along the way**
 - The `.str` accessor bridges a Series to string methods.
 - `''` is a present (empty) string, not null, so `.isnull()` never catches it.
@@ -88,7 +140,14 @@
 2. **The `[]` filter:** tokenise the sample, separate out segments with no tokens, and count them.
 3. **The vocabulary dict:** each unique token → a column index (0, 1, 2…). Predict roughly how many unique words 500 segments will give, then print the size and 10 entries.
 4. **M3:** the count matrix A, shape (N, V).
-5. **End of queue:** replace the two hardcoded machine paths with a `pathlib` path relative to the script. First make the data folder names match (`tmxes_processed` on the rig vs `tmx_processed` on the laptop). Exercises KA `Ph1-Python-004b-Coding`.
+5. **Tabled code-review findings (2026-11-14):** none break the current output.
+   - ⚠️ `import regex as re` is the third-party package, so the script fails on a machine without it. The built-in `re` is enough. Fix before the next run on the rig.
+   - Docstring `Finder \ near_…`: `\ ` is an invalid escape, and Python 3.12+ warns.
+   - `tokenizer()` raises `TypeError` on NaN: keep the empty-row removal before tokenising, and add a comment saying so.
+   - Header tidy-up: the duplicate `DESIGN DECISIONS` heading; the cut-off placeholder TODO ("0 billable…"); a fuller why for dedupe; update M1's pipeline line (now load → remove empty → dedupe → sample).
+   - Naming: `tokenizer` vs `tokenise()` in the log.
+   - KA list: add `Ph1-Python-012`, `Ph1-Python-003`, `Ph1-Loc-002`.
+6. **End of queue:** replace the two hardcoded machine paths with a `pathlib` path relative to the script. First make the data folder names match (`tmxes_processed` on the rig vs `tmx_processed` on the laptop). Exercises KA `Ph1-Python-004b-Coding`.
 
 ---
 
@@ -117,29 +176,6 @@
 **Skills used:** Pandas, NumPy, standard deviation / z-score outlier detection.
 **Output:** `lqa_length_ratio_report.csv` + summary stats.
 **Status:** v1 complete.
-
----
-
-## 💡 Ideas for later
-
-### Segment type classifier
-Categorise each segment into types using regex + word count rules:
-- `placeholder_only` — segments containing only `‹#›`, `{}`, `{0}` etc.
-- `tag_heavy` — segments where >50% of tokens are inline tags
-- `ui_string` — short segments ≤ 3 words after cleaning
-- `full_sentence` — >10 words, likely prose
-- `number_only` — segments that are purely numeric
-
-**Output:** enriched DataFrame with `segment_type` column + breakdown report.
-**Skills needed:** regex, Pandas apply/map, value_counts.
-
-### Near-duplicate detector → *now in progress (see top)*
-Find source segments that are very similar to each other using cosine similarity on word frequency vectors. Flags fuzzy matches in the TM — real coverage analysis tool.
-**Skills needed:** NumPy cosine similarity (see KA `FundMath-LinAlg-004` for current confidence — KA is the source of truth), basic tokenisation.
-
-### MT quality estimator (stretch)
-Use length ratio + segment type + tag density as features to score each segment's translation quality without a reference. Outputs a risk score per segment.
-**Skills needed:** Pandas feature engineering, basic scoring logic.
 
 ---
 
