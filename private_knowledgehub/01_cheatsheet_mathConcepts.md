@@ -9,6 +9,7 @@
 
 - [Bayes' theorem — the essence](#-bayes-theorem--the-essence)
 - [Element-wise `*` vs matrix product `@` — the two rules](#-element-wise--vs-matrix-product---the-two-rules)
+- [Bernoulli distribution](#-bernoulli-distribution)
 
 ---
 
@@ -304,7 +305,7 @@ Each element = Σ over files of (discount × count) for one language. French = 1
 
 ---
 
-## Bernoulli distribution
+## 🎲 Bernoulli distribution
 
 **In my words:** The number p in a Bernoulli distribution is the chance of getting a positive result (a 1). The mean **estimates** it, and the bigger the sample, the closer the mean gets to p.
 

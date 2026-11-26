@@ -47,6 +47,7 @@ Decided 2026-11-21, for 9 days of 60 minutes (Nov 21–29):
 **Bernoulli link:** "placeholders intact?" is a yes/no per row, so its mean is the TM's placeholder error rate.
 **CAT link:** the tag/placeholder mismatch check in memoQ QA and Xbench.
 **Data:** `parsed_tmx_raw_CleanedUp.csv` (source and target columns). Also unblocks the tabled `{}` decision in the detector.
+**Folder:** `_sideProjects/01_ooo_Intro/`. **Status (2026-11-26):** v0.1, `Segment` class with `__init__`, `extract_placeholders(text)` and `placeholders_match()`; first mismatch found on a test row.
 
 ---
 
@@ -56,7 +57,7 @@ Decided 2026-11-21, for 9 days of 60 minutes (Nov 21–29):
 **Goal:** Find near-duplicate source segments inside one TM (internal fuzzy matches), score them with cosine similarity on word-count vectors, and report them in CAT-style match bands (100 / 95–99 / 85–94 / 75–84).
 **CAT link:** Same idea as memoQ's homogeneity analysis (segments compared within the document, not against a TM). Differences: memoQ runs in document order and uses proprietary scoring; this tool scores all pairs at once with transparent cosine, which ignores word order. Not imitating memoQ for now.
 **Data:** `parsed_tmx_raw_CleanedUp.csv` (regexes applied); `parsed_tmx_raw.csv` kept untouched as reference. 8,552 segments, EN→ES-US, LIUNA project.
-**File:** `weekend_projects/weekend5_SimilarityFinder.py` (header docstring with version log, v0.4)
+**Folder:** `week3-9_SimilarityFinder/` (renamed 2026-11-26; script `weekend5_SimilarityFinder.py`, header docstring with version log, v0.4)
 
 **Milestones**
 
@@ -134,6 +135,7 @@ Decided 2026-11-21, for 9 days of 60 minutes (Nov 21–29):
 - **`source_len` is stale:** empty sources still show `source_len = 3`, so it was computed before the cleanup. Recompute it after cleaning, or don't rely on it. *Recorded as a `[TODO]` in the header on 2026-11-14.*
 - ✅ ~~NaN vs whitespace hypothesis~~: confirmed, 42 NaN and 0 whitespace.
 - **`{}` placeholders:** tabled. Check real examples once the core build works.
+- **Paragraph-level TM units (found 2026-11-25):** `A.max()` = 27 turned out to be "the" ×27 in one TM unit that holds a whole paragraph (~10 sentences, formwork instructions). Not a code bug: the fill loop was verified (`A.sum()` = 7,175 = independent token count). The TM mixes sentence-level and paragraph-level units. Effect on M4: long units get large vector lengths, and function words like "the" dominate their vectors, so unrelated segments can look similar. **Decision: finish M1–M6 as is and accept this as a known limitation**, so the project doesn't keep growing. Future fixes, in order of likely value: stop-word removal or TF-IDF (Week 4 theme); flag or split over-long units (segmentation).
 
 **Next steps** (as of 2026-11-14)
 1. **Move dedupe into M1:** deduplicate on raw text after removing empty sources and before `.sample()`, and keep a repetition count.

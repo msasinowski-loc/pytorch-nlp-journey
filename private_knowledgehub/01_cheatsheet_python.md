@@ -16,6 +16,7 @@
 - [Pandas — DataFrame basics](#-pandas--dataframe-basics)
 - [XML parsing — ElementTree](#-xml-parsing--elementtree)
 - [Pandas — Column Modification & String Cleaning](#-pandas--column-modification--string-cleaning)
+- [Python — Dictionaries](#-python--dictionaries)
 
 ---
 
@@ -525,3 +526,27 @@ df['col'].str.split(' ')                              # split into list
 may warn or treat the pattern as a literal string.
 
 *Added: 2026-10-11 — column modification, vectorized ops, str accessor, apply*
+
+---
+
+## 🐍 Python — Dictionaries
+`[python] [dict] [items] [lookup] [reverse]`
+
+```python
+vocab_pool = {}                      # empty dict
+vocab_pool['hat'] = 3                # add or overwrite: key -> value
+vocab_pool['hat']                    # look up the value for a key -> 3
+'hat' in vocab_pool                  # is this key there? -> True/False (fast)
+len(vocab_pool)                      # number of keys (my "next index" trick)
+for word, col in vocab_pool.items(): # loop over (key, value) pairs
+```
+
+**Flip a dict once, rather than searching it every time:**
+```python
+reverse_vocab_pool_dictionary = {}
+for word, column in vocab_pool.items():
+    reverse_vocab_pool_dictionary[column] = word
+```
+A dict only answers one direction quickly (key → value). Need the other direction often? Build the reverse dict once.
+
+*Added: 2026-11-26 — reverse lookup for matrix A (column number → word)*

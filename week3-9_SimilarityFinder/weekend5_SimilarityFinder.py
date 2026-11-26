@@ -228,6 +228,12 @@ print(f'And checking the number of empty segments in the cleaned up dataset: {em
 print(f'The length of the list_of_tokenized_sentences is: {len(list_of_tokenized_sentences)}')
 
 
+# and building the flipped dictionary to allow column-to-word check
+
+reverse_vocab_pool_dictionary = {}
+for word, column in vocab_pool.items():
+    reverse_vocab_pool_dictionary[column] = word
+
 # creating the zero matrix
 
 A = np.zeros((len(list_from_sampled_dataset), len(vocab_pool)))
@@ -253,3 +259,11 @@ print(f'Check if the A loop yielded same token total as the length of the list: 
 
 # sanity checks:
 print(A.max())
+
+# if sanity checks gives an unexpected result (example: 27), then this is the way to identify the segment:
+
+row_with_the_highest_token_count = A.max(axis=1)
+row_id_for_the_highest_token_count = np.argmax(row_with_the_highest_token_count)
+
+#print(list_from_sampled_dataset[row_id_for_the_highest_token_count])
+print(reverse_vocab_pool_dictionary[np.argmax(A[row_id_for_the_highest_token_count])])
