@@ -60,9 +60,12 @@ class Segment:
       self.target = target
 
     def extract_placeholders(self, text):
-        placeholders = re.findall(r'\{\d*\}|‹#›', text)
+        placeholders = re.findall(r'\{\w*\}|‹#›', text)
         return placeholders
 
+    def has_target(self):
+       return isinstance(self.target, str)
+    
     def placeholders_match(self):
        source_placeholders = self.extract_placeholders(self.source)
        target_placeholders = self.extract_placeholders(self.target)
@@ -74,3 +77,16 @@ print(seg.target)
 print(type(seg))
 print(seg.extract_placeholders('{} Task 2 {} :'))
 print(seg.extract_placeholders('{} Tarea 2 :'))
+
+cases = [
+    ("Click Next", "Haga clic en Siguiente"),
+    ("{0} sent {1}", "{1} envió {0}"),
+    ("‹#›", "‹#›"),
+    ("{name} shared a file", "{nombre} compartió un archivo"),
+    ("Save", float('nan')),
+    
+]
+
+for number, (source, target) in enumerate(cases, start=1):
+    seg = Segment(source, target)
+    print(number, seg.extract_placeholders(seg.source), seg.extract_placeholders(seg.target), seg.placeholders_match())
